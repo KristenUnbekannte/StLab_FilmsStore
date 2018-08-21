@@ -1,5 +1,5 @@
-﻿using System.Threading.Tasks;
-using FilmsStore.BusinessLogic.Models;;
+using System.Threading.Tasks;
+using FilmsStore.BusinessLogic.Models;
 
 namespace FilmsStore.BusinessLogic.Interfaces
 {
