@@ -20,9 +20,15 @@
     "redux-form": "^7.4.2"
   },
   "scripts": {
+    "prettier": "prettier --single-quote --use-tabs --trailing-comma es5 --write \"src/**/*.js\"",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
+  },
+  "devDependencies": {
+    "husky": "^0.14.3",
+    "lint-staged": "^7.2.2",
+    "prettier": "^1.14.2"
   }
 }

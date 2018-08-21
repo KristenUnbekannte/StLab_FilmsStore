@@ -6,5 +6,3 @@ const actions = keymirror({
 });
 
 export default actions;
-
-	

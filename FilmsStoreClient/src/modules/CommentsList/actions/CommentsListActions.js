@@ -5,15 +5,15 @@ export const commentsLoading = () => {
 		type: actionTypes.COMMENTS_LOADING,
 	};
 };
-export const commentsLoaded = (comments) => {
+export const commentsLoaded = comments => {
 	return {
 		type: actionTypes.COMMENTS_LOADED,
-		comments
+		comments,
 	};
 };
-export const commentsError = (error) => {
+export const commentsError = error => {
 	return {
 		type: actionTypes.COMMENTS_ERROR,
-		error
+		error,
 	};
 };

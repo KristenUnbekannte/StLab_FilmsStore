@@ -8,5 +8,7 @@ namespace FilmsStore.BusinessLogic.Interfaces
     {
         Task<IList<FilmModel>> GetFilmsAsync();
         Task<FilmDetailsModel> GetFilmByIdAsync(int id);
+        Task UpdateTotalRatingAsync(RatingModel model);
+        Task<double> GetTotalRatingByFilmIdAsync(int id);
     }
 }

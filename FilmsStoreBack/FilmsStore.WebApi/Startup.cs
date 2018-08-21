@@ -40,11 +40,13 @@ namespace FilmsStore.WebApi
             services.AddTransient<IFilmRepository, FilmRepository>();
             services.AddTransient<ICommentRepository, CommentRepository>();
             services.AddTransient<IUserRepository, UserRepository>();
+            services.AddTransient<IRatingRepository, RatingRepository>();
 
             services.AddTransient<IFilmService, FilmService>();
             services.AddTransient<IUserService, UserService>();
             services.AddTransient<ICommentService, CommentService>();
             services.AddTransient<ITokenService, TokenService>();
+            services.AddTransient<IRatingService, RatingService>();
 
             string connection = Configuration.GetConnectionString("DefaultConnection");
             services.AddDbContext<ApplicationContext>(options => options.UseSqlServer(connection));
@@ -86,6 +88,7 @@ namespace FilmsStore.WebApi
                 cfg.CreateMap<RegistrationViewModel, UserModel>();
                 cfg.CreateMap<LoginViewModel, UserModel>();
                 cfg.CreateMap<UserModel, User>();
+                cfg.CreateMap<RatingModel, Rating>();
                 cfg.CreateMap<CommentViewModel, CommentModel>();
                 cfg.CreateMap<CommentModel, Comment>();
                 cfg.CreateMap<Comment, CommentModel>().ForMember(c => c.UserName, c => c.MapFrom(m => m.User.UserName));

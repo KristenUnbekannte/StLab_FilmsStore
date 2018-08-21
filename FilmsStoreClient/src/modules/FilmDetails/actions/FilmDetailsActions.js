@@ -5,15 +5,21 @@ export const filmDetailsLoading = () => {
 		type: actionTypes.FILM_DETAILS_LOADING,
 	};
 };
-export const filmDetailsLoaded = (film) => {
+export const filmDetailsLoaded = film => {
 	return {
 		type: actionTypes.FILM_DETAILS_LOADED,
-		film
+		film,
 	};
 };
-export const filmDetailsError = (error) => {
+export const filmDetailsError = error => {
 	return {
 		type: actionTypes.FILM_DETAILS_ERROR,
-		error
+		error,
+	};
+};
+export const totalRatingChanged = value => {
+	return {
+		type: actionTypes.TOTAL_RATING_CHANGED,
+		value,
 	};
 };

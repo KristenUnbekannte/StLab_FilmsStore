@@ -19,7 +19,6 @@ namespace FilmsStore.Domain.EF
         {
             base.OnModelCreating(builder);
             builder.Entity<Film>().HasMany(f => f.Images).WithOne(f => f.Film).OnDelete(DeleteBehavior.Cascade);
-            builder.Entity<Film>().HasMany(f => f.Ratings).WithOne(f => f.Film).OnDelete(DeleteBehavior.Cascade);
             builder.Entity<User>().HasMany(u => u.Comments).WithOne(u => u.User).OnDelete(DeleteBehavior.Cascade);
             builder.Entity<User>().HasMany(u => u.Ratings).WithOne(u => u.User).OnDelete(DeleteBehavior.Cascade);
         }

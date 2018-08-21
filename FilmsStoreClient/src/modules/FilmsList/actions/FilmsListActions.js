@@ -5,15 +5,15 @@ export const filmsLoading = () => {
 		type: actionTypes.FILMS_LOADING,
 	};
 };
-export const filmsLoaded = (films) => {
+export const filmsLoaded = films => {
 	return {
 		type: actionTypes.FILMS_LOADED,
-		films
+		films,
 	};
 };
-export const filmsError = (error) => {
+export const filmsError = error => {
 	return {
 		type: actionTypes.FILMS_ERROR,
-		error
+		error,
 	};
 };

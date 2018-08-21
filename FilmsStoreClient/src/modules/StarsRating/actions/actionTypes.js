@@ -1,9 +1,8 @@
 import keymirror from 'keymirror';
 
 const actions = keymirror({
-	FILMS_LOADING: null,
-	FILMS_LOADED: null,
-	FILMS_ERROR: null,
+	RATING_SET: null,
+	RATING_CLEARED: null,
 });
 
 export default actions;
