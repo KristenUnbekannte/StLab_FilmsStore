@@ -1,0 +1,118 @@
+﻿using FilmsStore.Domain.EF;
+using FilmsStore.Domain.Entities;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.IdentityModel.Tokens;
+using FilmsStore.Domain.Interfaces;
+using FilmsStore.Domain.Repositories;
+using FilmsStore.BusinessLogic.Interfaces;
+using FilmsStore.BusinessLogic.Services;
+using AutoMapper;
+using FilmsStore.BusinessLogic.Models;
+using FilmsStore.BusinessLogic.Infrastructure;
+using FilmsStore.WebApi.Models;
+
+namespace FilmsStore.WebApi
+{
+    public class Startup
+    {
+        public Startup(IConfiguration configuration)
+        {
+            Configuration = configuration;
+        }
+
+        public IConfiguration Configuration { get; }
+
+        // This method gets called by the runtime. Use this method to add services to the container.
+        public void ConfigureServices(IServiceCollection services)
+        {
+            services.AddCors();
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1)
+                .AddJsonOptions(options =>
+                options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
+
+            services.AddTransient<IFilmRepository, FilmRepository>();
+            services.AddTransient<ICommentRepository, CommentRepository>();
+            services.AddTransient<IUserRepository, UserRepository>();
+
+            services.AddTransient<IFilmService, FilmService>();
+            services.AddTransient<IUserService, UserService>();
+            services.AddTransient<ICommentService, CommentService>();
+            services.AddTransient<ITokenService, TokenService>();
+
+            string connection = Configuration.GetConnectionString("DefaultConnection");
+            services.AddDbContext<ApplicationContext>(options => options.UseSqlServer(connection));
+
+            services.AddIdentity<User, IdentityRole>(opts =>
+            {
+                opts.Password.RequiredLength = 6;
+                opts.Password.RequireNonAlphanumeric = false;
+                opts.Password.RequireLowercase = false;
+                opts.Password.RequireUppercase = false;
+                opts.Password.RequireDigit = true;
+            })
+            .AddEntityFrameworkStores<ApplicationContext>()
+            .AddDefaultTokenProviders();
+
+            services.AddAuthentication(options =>
+            {
+                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+            })
+            .AddJwtBearer(options =>
+            {
+                options.RequireHttpsMetadata = false;
+                options.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuer = true,
+                    ValidIssuer = AuthOptions.ISSUER,
+                    ValidateAudience = true,
+                    ValidAudience = AuthOptions.AUDIENCE,
+                    ValidateLifetime = true,
+                    IssuerSigningKey = AuthOptions.GetSymmetricSecurityKey(),
+                    ValidateIssuerSigningKey = true,
+                };
+            });
+            Mapper.Initialize(cfg =>
+            {
+                cfg.CreateMap<FilmModel, Film>();
+                cfg.CreateMap<RegistrationViewModel, UserModel>();
+                cfg.CreateMap<LoginViewModel, UserModel>();
+                cfg.CreateMap<UserModel, User>();
+                cfg.CreateMap<CommentViewModel, CommentModel>();
+                cfg.CreateMap<CommentModel, Comment>();
+                cfg.CreateMap<Comment, CommentModel>().ForMember(c => c.UserName, c => c.MapFrom(m => m.User.UserName));
+            });
+        }
+
+        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        {
+            if (env.IsDevelopment())
+            {
+                app.UseDeveloperExceptionPage();
+            }
+
+            app.UseCors(builder =>
+            {
+                builder.AllowAnyOrigin()
+                .AllowAnyMethod()
+                .AllowAnyHeader()
+                .AllowCredentials();
+            });
+            app.UseAuthentication();
+            DbInitializer.Seed(app);
+
+            app.UseStaticFiles();
+            app.UseHttpsRedirection();
+            app.UseMvc();
+        }
+    }
+}
