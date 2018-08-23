@@ -6,6 +6,9 @@ namespace FilmsStore.Domain.Interfaces
     public interface IRatingRepository
     {
         Task AddRatingAsync(Rating rating);
-        int GetCountByFilmIdAsync(int id);
+        Task<double> GetAverageRatingByFilmId(int id);
+        Task<Rating> GetRatingByFilmIdandUserIdAsync(int id, string userId);
+        Task UpdateRatingAsync(Rating rating);
+        bool CheckFilmIsMarkedByCurrentUser(int id, string userId);
     }
 }

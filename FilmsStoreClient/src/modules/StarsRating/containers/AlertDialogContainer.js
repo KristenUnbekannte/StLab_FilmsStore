@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as actions from '../actions/RatingActions';
 import * as filmDetailsActions from '../../FilmDetails/actions/FilmDetailsActions';
+import * as userActions from '../../Authorization/reducers/UserReducer';
 import TokenService from '../../../Services/TokenService';
 import baseUrl from '../../../Common/BaseUrl';
 
@@ -41,7 +42,7 @@ class AlertDialogContainer extends React.Component {
 		};
 
 		axios
-			.post(`${baseUrl}/api/films/rating`, data, {
+			.post(`${baseUrl}/rating`, data, {
 				headers: {
 					'Content-Type': 'application/json',
 					Authorization: `Bearer ${TokenService.getToken('Token')}`,
@@ -50,15 +51,22 @@ class AlertDialogContainer extends React.Component {
 			.then(response => {
 				this.props.rating.ratingCleared();
 				this.updateTotalRating();
+				this.props.filmDetails.userRatingSet(true);
 			})
 			.catch(error => {
-				console.log(error.toString());
+				if (error.response) {
+					if (error.response.status === 401) {
+						this.props.user.userUnauthorized();
+						TokenService.removeToken();
+						this.props.history.push('/login');
+					}
+				}
 			});
 	}
 
 	updateTotalRating() {
 		axios
-			.get(`${baseUrl}/api/films/rating/${this.props.filmId}`)
+			.get(`${baseUrl}/films/rating/${this.props.filmId}`)
 			.then(response => {
 				this.props.filmDetails.totalRatingChanged(response.data);
 			})
@@ -74,6 +82,7 @@ class AlertDialogContainer extends React.Component {
 				handleClickOpen={this.handleClickOpen}
 				handleClose={this.handleClose}
 				ratingSend={this.ratingSend}
+				isUserRated={this.props.isUserRated}
 			/>
 		);
 	}
@@ -83,14 +92,17 @@ AlertDialogContainer.propTypes = {
 	value: PropTypes.number.isRequired,
 	filmId: PropTypes.number.isRequired,
 	isAuthorized: PropTypes.bool.isRequired,
+	isUserRated: PropTypes.bool.isRequired,
 	rating: PropTypes.object.isRequired,
 	filmDetails: PropTypes.object.isRequired,
+	user: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = state => {
 	return {
 		value: state.rating.value,
 		filmId: state.filmDetails.filmId,
+		isUserRated: state.filmDetails.isUserRated,
 		isAuthorized: state.user.isAuthorized,
 	};
 };
@@ -98,6 +110,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => ({
 	rating: bindActionCreators({ ...actions }, dispatch),
 	filmDetails: bindActionCreators({ ...filmDetailsActions }, dispatch),
+	user: bindActionCreators({ ...userActions }, dispatch),
 });
 
 export default connect(

@@ -12,7 +12,7 @@ import {
 	TableCell,
 	TableRow,
 } from '@material-ui/core';
-import StarBorderIcon from '@material-ui/icons/StarBorder';
+import StarIcon from '@material-ui/icons/Star';
 import ImagesListContainer from '../../ImagesList/container/ImagesListContainer';
 import CommentsListContainer from '../../CommentsList/container/CommentsListContainer';
 import AlertDialogContainer from '../../StarsRating/containers/AlertDialogContainer';
@@ -34,8 +34,14 @@ const FilmDetail = ({ classes, film, history }) => {
 						<Typography variant="headline">{film.name}</Typography>
 						<Typography variant="subheading">({film.year})</Typography>
 						<div className={classes.starsContainer}>
-							<StarBorderIcon className={classes.icon} />
-							<Avatar className={classes.orangeAvatar}>{film.rating}</Avatar>
+							<StarIcon
+								className={
+									film.isUserRated ? classes.starGold : classes.starEmpty
+								}
+							/>
+							<Avatar className={classes.orangeAvatar}>
+								{film.rating.toString()}
+							</Avatar>
 						</div>
 						<Table padding="checkbox">
 							<TableBody>
@@ -60,8 +66,19 @@ const FilmDetail = ({ classes, film, history }) => {
 					</div>
 				</div>
 			</Card>
-			<ImagesListContainer history={history} />
-			<CommentsListContainer filmId={film.filmId} />
+			<Card className={classes.video}>
+				<iframe
+					title={film.name}
+					width="690"
+					height="400"
+					src={film.videoUrl}
+					frameBorder="0"
+					allow="autoplay; encrypted-media"
+					allowFullScreen
+				/>
+			</Card>
+			<ImagesListContainer />
+			<CommentsListContainer filmId={film.filmId} history={history} />
 		</React.Fragment>
 	);
 };

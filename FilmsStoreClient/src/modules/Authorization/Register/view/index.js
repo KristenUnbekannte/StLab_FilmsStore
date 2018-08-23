@@ -11,7 +11,7 @@ let RegistrationForm = ({ handleSubmit, registrationError, classes }) => {
 	return (
 		<Paper className={classes.container}>
 			<img
-				src="https://gifer.com/i/VVKb.gif"
+				src="https://cdn-images-1.medium.com/max/1600/1*a4wtjbUyx9VHZmOO0AnI5w.gif"
 				alt="joke"
 				className={classes.image}
 			/>

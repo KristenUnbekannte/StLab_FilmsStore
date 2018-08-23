@@ -6,5 +6,6 @@ namespace FilmsStore.BusinessLogic.Interfaces
     public interface IRatingService
     {
         Task AddRatingByFilmIdAsync(RatingModel model);
+        bool CheckFilmIsMarkedByCurrentUser(int id, string userId);
     }
 }

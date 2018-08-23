@@ -11,8 +11,10 @@ const initialState = {
 	producer: '',
 	rating: 0,
 	imageUrl: '',
+	videoUrl: '',
 	description: '',
 	images: [],
+	isUserRated: false,
 };
 
 const FilmDetailsReducer = (state = initialState, action) => {
@@ -37,6 +39,16 @@ const FilmDetailsReducer = (state = initialState, action) => {
 			return {
 				...state,
 				rating: action.value,
+			};
+		case actionTypes.USER_RATING_SET:
+			return {
+				...state,
+				isUserRated: action.value,
+			};
+		case actionTypes.USER_RATING_RESET:
+			return {
+				...state,
+				isUserRated: false,
 			};
 		default:
 			return state;

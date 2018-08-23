@@ -60,6 +60,7 @@ namespace FilmsStore.Domain.Migrations
                     Producer = table.Column<string>(nullable: false),
                     Rating = table.Column<double>(nullable: false),
                     ImageUrl = table.Column<string>(nullable: false),
+                    VideoUrl = table.Column<string>(nullable: true),
                     Description = table.Column<string>(nullable: true)
                 },
                 constraints: table =>

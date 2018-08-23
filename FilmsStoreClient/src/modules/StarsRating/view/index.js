@@ -14,11 +14,12 @@ const DialogAlert = ({
 	handleClickOpen,
 	handleClose,
 	ratingSend,
+	isUserRated,
 }) => {
 	return (
 		<div>
 			<Button onClick={handleClickOpen} className={classes.button}>
-				Rate
+				{isUserRated ? 'Change rating' : 'Rate'}
 			</Button>
 			<Dialog
 				open={open}
@@ -49,6 +50,7 @@ DialogAlert.propTypes = {
 	handleClickOpen: PropTypes.func.isRequired,
 	handleClose: PropTypes.func.isRequired,
 	ratingSend: PropTypes.func.isRequired,
+	isUserRated: PropTypes.bool.isRequired,
 };
 
 export default withStyles(styles)(DialogAlert);

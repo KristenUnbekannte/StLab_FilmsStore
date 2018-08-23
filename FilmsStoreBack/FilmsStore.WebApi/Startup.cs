@@ -88,6 +88,7 @@ namespace FilmsStore.WebApi
                 cfg.CreateMap<RegistrationViewModel, UserModel>();
                 cfg.CreateMap<LoginViewModel, UserModel>();
                 cfg.CreateMap<UserModel, User>();
+                cfg.CreateMap<RatingViewModel, RatingModel>();
                 cfg.CreateMap<RatingModel, Rating>();
                 cfg.CreateMap<CommentViewModel, CommentModel>();
                 cfg.CreateMap<CommentModel, Comment>();

@@ -12,7 +12,7 @@ export default styles => ({
 	},
 	input: {
 		width: 300,
-		marginBottom: 25,
+		marginBottom: 10,
 		'&:after': {
 			borderBottomColor: '3f51b5',
 		},

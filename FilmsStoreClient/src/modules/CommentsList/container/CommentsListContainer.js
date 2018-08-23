@@ -13,7 +13,7 @@ import CommentsList from '../view';
 import baseUrl from '../../../Common/BaseUrl';
 import styles from '../view/styles';
 
-class CommentsListContainer extends React.PureComponent {
+class CommentsListContainer extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -33,7 +33,7 @@ class CommentsListContainer extends React.PureComponent {
 		commentsLoading();
 
 		axios
-			.get(`${baseUrl}/api/films/comments/${this.state.id}`)
+			.get(`${baseUrl}/comment/${this.state.id}`)
 			.then(response => {
 				commentsLoaded(response.data);
 			})
@@ -49,7 +49,7 @@ class CommentsListContainer extends React.PureComponent {
 		};
 
 		axios
-			.post(`${baseUrl}/api/films/comment`, data, {
+			.post(`${baseUrl}/comment`, data, {
 				headers: {
 					'Content-Type': 'application/json',
 					Authorization: `Bearer ${TokenService.getToken('Token')}`,
@@ -60,10 +60,12 @@ class CommentsListContainer extends React.PureComponent {
 				this.loadComments();
 			})
 			.catch(error => {
-				if (error.response.status === 401) {
-					this.props.user.userUnauthorized();
-					TokenService.removeToken();
-					this.props.history.push('/login');
+				if (error.response) {
+					if (error.response.status === 401) {
+						this.props.user.userUnauthorized();
+						TokenService.removeToken();
+						this.props.history.push('/login');
+					}
 				}
 			});
 	}
@@ -89,6 +91,7 @@ class CommentsListContainer extends React.PureComponent {
 
 CommentsListContainer.propTypes = {
 	comment: PropTypes.object.isRequired,
+	user: PropTypes.object.isRequired,
 	reset: PropTypes.func.isRequired,
 	comments: PropTypes.array,
 	isAuthorized: PropTypes.bool.isRequired,
@@ -110,4 +113,5 @@ const Comments = connect(
 	mapStateToProps,
 	mapDispatchToProps
 )(CommentsListContainer);
+
 export default withStyles(styles)(Comments);

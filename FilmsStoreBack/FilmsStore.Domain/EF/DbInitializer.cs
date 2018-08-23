@@ -22,11 +22,11 @@ namespace FilmsStore.Domain.EF
                         Year = 2006,
                         Producer = "Doug Davison",
                         ImageUrl = "http://localhost:58038/images/lake_house/lake_house.jpg",
+                        VideoUrl = "https://www.youtube.com/embed/V02lqEpbk2Y",
                         Genre = "Drama",
                         Description = "A lonely doctor, who once occupied an unusual lakeside house," +
                         " begins exchanging love letters with its former resident, a frustrated architect." +
                         " They must try to unravel the mystery behind their extraordinary romance before it's too late.",
-                        Rating = 4,
                         Images = new List<Image>()
                         {
                             new Image(){Url="https://i.ytimg.com/vi/kjlVXF9NWiU/maxresdefault.jpg" },
@@ -44,11 +44,11 @@ namespace FilmsStore.Domain.EF
                         Year = 2006,
                         Producer = "Chris Roberts",
                         ImageUrl = "http://localhost:58038/images/Slevin/lucky-number-slevin.jpg",
+                        VideoUrl = "https://www.youtube.com/embed/fVIUEcizkPc",
                         Genre = "Drama",
                         Description = "Lucky Number Slevin is a thriller that twists and turns its way through an underworld of crime and revenge." +
                         " Set in New York City, a case of mistaken identity lands Slevin (Hartnett) into the middle of a war being plotted by two of" +
                         " the city's most rival crime bosses.",
-                        Rating = 4.8,
                         Images = new List<Image>()
                         {
                             new Image(){Url="http://st.kp.yandex.net/im/kadr/1/9/1/kinopoisk.ru-Lucky-Number-Slevin-1914053.jpg" },
@@ -66,10 +66,10 @@ namespace FilmsStore.Domain.EF
                         Year = 2002,
                         Producer = "Steven Spielberg",
                         ImageUrl = "http://localhost:58038/images/Catch_me/catch_me.jpg",
+                        VideoUrl = "https://www.youtube.com/embed/71rDQ7z4eFg",
                         Genre = "Drama",
                         Description = "A seasoned FBI agent pursues Frank Abagnale Jr. who, before his 19th birthday, successfully forged millions of dollars" +
                         " worth of checks while posing as a Pan Am pilot, a doctor, and a legal prosecutor.",
-                        Rating = 4.2,
                         Images = new List<Image>()
                         {
                             new Image(){Url="https://www.film.ru/sites/default/files/movies/frames/catch-me-if-you-can-24.jpg" },
@@ -87,11 +87,11 @@ namespace FilmsStore.Domain.EF
                         Year = 2010,
                         Producer = "Scott Rudin",
                         ImageUrl = "http://localhost:58038/images/Social_Network/social_network.jpg",
+                        VideoUrl = "https://www.youtube.com/embed/lB95KLmpLR4",
                         Genre = "Biography",
                         Description = "Harvard student Mark Zuckerberg creates the social networking site that would become known as Facebook," +
                         "but is later sued by two brothers who claimed he stole their idea," +
                         "and the co - founder who was later squeezed out of the business.",
-                        Rating = 4,
                         Images = new List<Image>()
                         {
                             new Image(){Url="http://themacguffinmen.com/wp-content/uploads/2012/07/socialnetwork_.jpeg" },
@@ -109,11 +109,11 @@ namespace FilmsStore.Domain.EF
                         Year = 2001,
                         Producer = "Darla K.Anderson",
                         ImageUrl = "http://localhost:58038/images/Monsters/Monsters_corporation.jpg",
+                        VideoUrl = "https://www.youtube.com/embed/zatM_LInqBk",
                         Genre = "Animation",
                         Description = "In order to power the city, monsters have to scare children so that they scream." +
                         " However, the children are toxic to the monsters, and after a child gets through," +
                         " 2 monsters realize things may not be what they think.",
-                        Rating = 4.5,
                         Images = new List<Image>()
                         {
                             new Image(){Url="https://img.getbg.net/upload/full/1/8072_korporaciya-monstrov_or_monsters-inc_1024x768_(www.GetBg.net).jpg" },
@@ -126,14 +126,35 @@ namespace FilmsStore.Domain.EF
                     });
                     context.Films.Add(new Film
                     {
+                        Name = "Ostwind",
+                        Country = "Deutschland",
+                        Year = 2013,
+                        Producer = "Andreas Ulmke-Smeaton",
+                        ImageUrl = "http://localhost:58038/images/Ostwind/ostwind.jpg",
+                        VideoUrl = "https://www.youtube.com/embed/bRaL1rXOwSM",
+                        Genre = "Adventure",
+                        Description = "A girl who thinks is not good at doing anything has to stay for the holidays with her grandmother at a riding stable." +
+                        " There she discovers her interest in horses, riding and more and what she is good in.",
+                        Images = new List<Image>()
+                        {
+                            new Image(){Url="https://data.puzzle.at/.5/xxl-teile-ausritt-mit-ostwind-150-teile--puzzle.57620-1.fs.jpg" },
+                            new Image(){Url="https://www.thomassaddlery.it/image/cache/data/journal2/blog/liberi-nel-vento-1102x1021h.jpg" },
+                            new Image(){Url="https://www.prisma.de/data/img/default/455/4540642_3059df1de22e147faa9afebc545b456c.jpg" },
+                            new Image(){Url="https://www.lungaukultur.at/wp-content/uploads/2014/10/ostwind-1-Custom.jpg" },
+                            new Image(){Url="https://bilder.wunschliste.de/epg/sf2/sf2_171008_1300_1ab52e9a_ostwind_b.jpg" },
+                            new Image(){Url="https://bilder.buecher.de/zusatz/37/37707/37707646_deta_2.jpg" },
+                        }
+                    });
+                    context.Films.Add(new Film
+                    {
                         Name = "Bruce Almighty",
                         Country = "United States",
                         Year = 2003,
                         Producer = "Tom Shadyac",
                         ImageUrl = "http://localhost:58038/images/Bruce/bruce.jpg",
+                        VideoUrl = "https://www.youtube.com/embed/3uX0wjl9PzM",
                         Genre = "Comedy",
                         Description = "A guy who complains about God too often is given almighty powers to teach him how difficult it is to run the world.",
-                        Rating = 4,
                         Images = new List<Image>()
                         {
                             new Image(){Url="https://avatars.mds.yandex.net/get-kino-vod-films-gallery/33804/2a00000151e8742d5f570c6009dffbb5775d/280x178_2" },
@@ -151,10 +172,10 @@ namespace FilmsStore.Domain.EF
                         Year = 2016,
                         Producer = "Kevin Feige",
                         ImageUrl = "http://localhost:58038/images/Strange/Doctor_Strange.jpg",
+                        VideoUrl = "https://www.youtube.com/embed/HSzx-zryEgM",
                         Genre = "Action",
                         Description = "While on a journey of physical and spiritual healing," +
                         " a brilliant neurosurgeon is drawn into the world of the mystic arts.",
-                        Rating = 3.7,
                         Images = new List<Image>()
                         {
                             new Image(){Url="https://www.sideshowtoy.com/wp-content/uploads/2016/09/marvel-doctor-strange-sixth-scale-hot-toys-feature-902854-1.jpg" },
@@ -165,27 +186,7 @@ namespace FilmsStore.Domain.EF
                             new Image(){Url="https://static1.gamespot.com/uploads/original/1444/14446008/3152630-doctorstrange_fight.jpg" },
                         }
                     });
-                    context.Films.Add(new Film
-                    {
-                        Name = "Ostwind",
-                        Country = "Deutschland",
-                        Year = 2013,
-                        Producer = "Andreas Ulmke-Smeaton",
-                        ImageUrl = "http://localhost:58038/images/Ostwind/ostwind.jpg",
-                        Genre = "Adventure",
-                        Description = "A girl who thinks is not good at doing anything has to stay for the holidays with her grandmother at a riding stable." +
-                        " There she discovers her interest in horses, riding and more and what she is good in.",
-                        Rating = 4.2,
-                        Images = new List<Image>()
-                        {
-                            new Image(){Url="https://data.puzzle.at/.5/xxl-teile-ausritt-mit-ostwind-150-teile--puzzle.57620-1.fs.jpg" },
-                            new Image(){Url="https://www.thomassaddlery.it/image/cache/data/journal2/blog/liberi-nel-vento-1102x1021h.jpg" },
-                            new Image(){Url="https://www.prisma.de/data/img/default/455/4540642_3059df1de22e147faa9afebc545b456c.jpg" },
-                            new Image(){Url="https://www.lungaukultur.at/wp-content/uploads/2014/10/ostwind-1-Custom.jpg" },
-                            new Image(){Url="https://bilder.wunschliste.de/epg/sf2/sf2_171008_1300_1ab52e9a_ostwind_b.jpg" },
-                            new Image(){Url="https://bilder.buecher.de/zusatz/37/37707/37707646_deta_2.jpg" },
-                        }
-                    });
+
                     context.Films.Add(new Film
                     {
                         Name = "Passengers",
@@ -193,10 +194,10 @@ namespace FilmsStore.Domain.EF
                         Year = 2016,
                         Producer = "Stephen Hamel",
                         ImageUrl = "http://localhost:58038/images/Passengers/passengers.jpg",
+                        VideoUrl = "https://www.youtube.com/embed/7BWWWQzTpNU",
                         Genre = "Drama",
                         Description = "A spacecraft traveling to a distant colony planet and transporting thousands" +
                         " of people has a malfunction in its sleep chambers. As a result, two passengers are awakened 90 years early.",
-                        Rating = 4,
                         Images = new List<Image>()
                         {
                             new Image(){Url="https://amp.thisisinsider.com/images/585c641255b10620008b4739-750-563.jpg" },
@@ -209,15 +210,77 @@ namespace FilmsStore.Domain.EF
                     });
                     context.Films.Add(new Film
                     {
+                        Name = "Inside Out",
+                        Country = "United States",
+                        Year = 2015,
+                        Producer = "Jonas Rivera",
+                        ImageUrl = "https://m.media-amazon.com/images/M/MV5BOTgxMDQwMDk0OF5BMl5BanBnXkFtZTgwNjU5OTg2NDE@._V1_.jpg",
+                        VideoUrl = "https://www.youtube.com/embed/yRUAzGQ3nSY",
+                        Genre = "Animation",
+                        Description = "After young Riley is uprooted from her Midwest life and moved to San Francisco," +
+                        " her emotions - Joy, Fear, Anger, Disgust and Sadness - conflict on how best to navigate a new city, house, and school.",
+                        Images = new List<Image>()
+                        {
+                            new Image(){Url="https://www.mindful.org/wp-content/uploads/2015/07/InsideOut556500e6a2be0-2040.0.jpg" },
+                            new Image(){Url="https://timedotcom.files.wordpress.com/2015/06/inside-out-concept-art-01.jpg" },
+                            new Image(){Url="http://kindredmedia.org/wp-content/uploads/BIng-Bong-Inside-Out-e1458587597390.jpg" },
+                            new Image(){Url="https://www.repstatic.it/content/nazionale/img/2017/06/22/180142004-a435bca6-07c6-454e-920c-cdfebab51535.jpg" },
+                            new Image(){Url="https://www.repstatic.it/content/nazionale/img/2017/06/22/180142004-a435bca6-07c6-454e-920c-cdfebab51535.jpg" },
+                            new Image(){Url="http://enjoyurlife.ru/wp-content/uploads/2015/10/12-critics-inside-out.w529.h352.2x.jpg" },
+                        }
+                    });
+                    context.Films.Add(new Film
+                    {
+                        Name = "Kung Fu Panda",
+                        Country = "United States",
+                        Year = 2008,
+                        Producer = "Melissa Cobb",
+                        ImageUrl = "https://images-na.ssl-images-amazon.com/images/I/517M%2BF7msHL.jpg",
+                        VideoUrl = "https://www.youtube.com/embed/PXi3Mv6KMzY",
+                        Genre = "Animation",
+                        Description = "balance: However, the Dragon Warrior mantle is supposedly mistaken to be bestowed upon an obese panda who is a tyro in martial arts.",
+                        Images = new List<Image>()
+                        {
+                            new Image(){Url="http://papelarrozkantinhodobolo.com.br/wp-content/uploads/2017/08/11-2-1-600x500.jpg" },
+                            new Image(){Url="https://media1.fdncms.com/sacurrent/imager/u/original/2501687/kung-fu-panda-3.jpg" },
+                            new Image(){Url="https://cdn1.thr.com/sites/default/files/imagecache/landscape_928x523/2011/11/panda_a_0.jpg" },
+                            new Image(){Url="http://lamcdn.net/lookatme.ru/post_image-image/ZtE-G5DTDz8-q7oR-ofEvw-article.jpg" },
+                            new Image(){Url="http://www.filmclub.nl/images/screenshots/groot/11152_3_Kung-Fu-Panda-3-03.jpg" },
+                            new Image(){Url="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSKzw7itA-9rgGz59srQXvuqRa6U6nhIlWwhb8PIrAyHvZQ8PVw" },
+                        }
+                    });
+                    context.Films.Add(new Film
+                    {
+                        Name = "The Day After Tomorrow",
+                        Country = "United States",
+                        Year = 2004,
+                        Producer = "Roland Emmerich",
+                        ImageUrl = "https://images-na.ssl-images-amazon.com/images/I/A1JtBGpgX2L._RI_.jpg",
+                        VideoUrl = "https://www.youtube.com/embed/gvSFCUpRrhA",
+                        Genre = "Action,",
+                        Description = "Jack Hall, paleoclimatologist, must make a daring trek from Washington," +
+                        " D.C. to New York City, to reach his son, trapped in the cross-hairs of a sudden international storm which plunges the planet into a new Ice Age.",
+                        Images = new List<Image>()
+                        {
+                            new Image(){Url="http://images1.fanpop.com/images/photos/2200000/The-Day-After-Tomorrow-stills-the-day-after-tomorrow-2276691-1400-935.jpg" },
+                            new Image(){Url="http://szabadsag.ro/image/journal/article?img_id=3755369&t=1523970924845" },
+                            new Image(){Url="https://i2.wp.com/www.tailslate.net/wp-content/uploads/2004/05/The-Day-After-Tomorrow-Emmy-Rossum-Jake-Gyllenhaal.jpg" },
+                            new Image(){Url="http://images.amcnetworks.com/ifccenter.com/wp-content/uploads/2017/01/the-day-after-tomorrow_1280x720.jpg" },
+                            new Image(){Url="https://vignette.wikia.nocookie.net/rifftrax/images/c/c6/Dayafter.jpg/revision/latest?cb=20140917005747" },
+                            new Image(){Url="http://entertainment.ie//images_content/rectangle/620x372/The-Day-After-Tomorrow-DI.jpg" },
+                        }
+                    });
+                    context.Films.Add(new Film
+                    {
                         Name = "Pirates of the Caribbean",
                         Country = "United States",
                         Year = 2003,
                         Producer = "Jerry Bruckheimer",
                         ImageUrl = "http://localhost:58038/images/Pirates/pirates.jpg",
+                        VideoUrl = "https://www.youtube.com/embed/naQr0uTrH_s",
                         Genre = "Action",
                         Description = "Blacksmith Will Turner teams up with eccentric pirate \"Captain\"" +
                         " Jack Sparrow to save his love, the governor's daughter, from Jack's former pirate allies, who are now undead.",
-                        Rating = 4.2,
                         Images = new List<Image>()
                         {
                             new Image(){Url="http://images4.fanpop.com/image/photos/23100000/pir8s-rule-pirates-of-the-caribbean-1-2-3-and-4-23116534-1280-800.jpg" },
@@ -235,16 +298,16 @@ namespace FilmsStore.Domain.EF
                         Year = 2014,
                         Producer = "Ellen Goldsmith",
                         ImageUrl = "http://localhost:58038/images/maze_runner/maze_runner.jpg",
+                        VideoUrl = "https://www.youtube.com/embed/AwwbhhjQ9Xk",
                         Genre = "Action,",
                         Description = "Thomas is deposited in a community of boys after his memory is erased," +
                         " soon learning they're all trapped in a maze that will require him to join forces with fellow \"runners\" for a shot at escape.",
-                        Rating = 3.9,
                         Images = new List<Image>()
                         {
                             new Image(){Url="https://i0.wp.com/www.thatmomentin.com/wp-content/uploads/2016/11/Screen-Shot-2016-11-21-at-11.50.20-PM.png?resize=750%2C430" },
                             new Image(){Url="https://vignette.wikia.nocookie.net/mazerunner/images/8/89/Minho_pel%C3%ADcula_3.jpg/revision/latest?cb=20141003145508&path-prefix=es" },
                             new Image(){Url="https://rollingout.com/wp-content/uploads/2015/09/mrst.jpg?x72273" },
-                            new Image(){Url="https://d3c1jucybpy4ua.cloudfront.net/data/57083/big_Image/unnamed.jpg?1516222493" },
+                            new Image(){Url="http://filmblerg.com/wp-content/uploads/2014/09/tumblr_n06tylyoQ51rskd87o1_1280.png.jpeg" },
                             new Image(){Url="https://www.hypable.com/wp-content/uploads/2014/09/The-Maze-Runner-Rescue.jpg" },
                             new Image(){Url="https://images.fandango.com/r1.0.505/ImageRenderer/1040/650/redesign/areas/movie/moviesubpages/img/noimage_900x900.jpg/175769/images/masterrepository/fandango/175769/175769_themazerunner-mv-21.jpg" },
                         }
@@ -256,9 +319,9 @@ namespace FilmsStore.Domain.EF
                         Year = 1999,
                         Producer = "Frank Marshall",
                         ImageUrl = "http://localhost:58038/images/sixth_sense/sixth_sense.jpg",
+                        VideoUrl = "https://www.youtube.com/embed/VG9AGf66tXM",
                         Genre = "Mystery",
                         Description = "A boy who communicates with spirits seeks the help of a disheartened child psychologist.",
-                        Rating = 4.9,
                         Images = new List<Image>()
                         {
                             new Image(){Url="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcThcBC-fFxbEX34G4-2SRimhpH7BLSF9frXqmzTPv-5WGrFcHVB" },
@@ -276,10 +339,10 @@ namespace FilmsStore.Domain.EF
                         Year = 1985,
                         Producer = "Bob Gale",
                         ImageUrl = "http://localhost:58038/images/Back_Future/Back_To_The_Future.jpg",
+                        VideoUrl = "https://www.youtube.com/embed/qvsgGtivCgs",
                         Genre = "Adventure",
                         Description = "Marty McFly, a 17-year-old high school student, is accidentally sent thirty years into" +
                         " the past in a time-traveling DeLorean invented by his close friend, the maverick scientist Doc Brown.",
-                        Rating = 5,
                         Images = new List<Image>()
                         {
                             new Image(){Url="https://www.wannart.com/wp-content/uploads/2018/01/back-to-the-future-cover-900x580.jpg" },

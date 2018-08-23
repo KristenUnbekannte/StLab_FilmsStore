@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FilmsStore.Domain.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20180821093614_Initial")]
+    [Migration("20180823071933_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -71,6 +71,8 @@ namespace FilmsStore.Domain.Migrations
                         .IsRequired();
 
                     b.Property<double>("Rating");
+
+                    b.Property<string>("VideoUrl");
 
                     b.Property<int>("Year");
 
@@ -303,7 +305,7 @@ namespace FilmsStore.Domain.Migrations
 
             modelBuilder.Entity("FilmsStore.Domain.Entities.Rating", b =>
                 {
-                    b.HasOne("FilmsStore.Domain.Entities.Film", "Film")
+                    b.HasOne("FilmsStore.Domain.Entities.Film")
                         .WithMany("Ratings")
                         .HasForeignKey("FilmId")
                         .OnDelete(DeleteBehavior.Cascade);

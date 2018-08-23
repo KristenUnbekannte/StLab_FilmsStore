@@ -9,6 +9,7 @@ import PropTypes from 'prop-types';
 import * as actions from '../actions/FilmDetailsActions';
 import styles from '../view/styles';
 import FilmDetail from '../view';
+import TokenService from '../../../Services/TokenService';
 import baseUrl from '../../../Common/BaseUrl';
 
 class FilmDetailsContainer extends React.PureComponent {
@@ -23,15 +24,30 @@ class FilmDetailsContainer extends React.PureComponent {
 		this.props.filmDetailsLoading();
 
 		axios
-			.get(`${baseUrl}/api/films/${this.state.id}`)
+			.get(`${baseUrl}/films/${this.state.id}`)
 			.then(response => {
 				this.props.filmDetailsLoaded(response.data);
 			})
 			.catch(error => {
 				this.props.filmDetailsError(error.toString());
 			});
-	}
 
+		if (this.props.isAuthorized) {
+			axios
+				.get(`${baseUrl}/rating/${this.state.id}`, {
+					headers: {
+						'Content-Type': 'application/json',
+						Authorization: `Bearer ${TokenService.getToken('Token')}`,
+					},
+				})
+				.then(response => {
+					this.props.userRatingSet(response.data);
+				})
+				.catch(error => {
+					this.props.userRatingReset();
+				});
+		}
+	}
 	render() {
 		return this.props.film.isLoaded ? (
 			<Paper className={this.props.classes.body}>
@@ -51,10 +67,14 @@ FilmDetailsContainer.propTypes = {
 	filmDetailsError: PropTypes.func.isRequired,
 	classes: PropTypes.object.isRequired,
 	film: PropTypes.object.isRequired,
+	isAuthorized: PropTypes.bool.isRequired,
 };
 
 const mapStateToProps = state => {
-	return { film: { ...state.filmDetails } };
+	return {
+		film: { ...state.filmDetails },
+		isAuthorized: state.user.isAuthorized,
+	};
 };
 
 const mapDispatchToProps = dispatch => {

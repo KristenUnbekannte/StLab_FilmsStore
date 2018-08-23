@@ -28,12 +28,10 @@ namespace FilmsStore.BusinessLogic.Services
             Film film = await _filmRepository.GetFilmByIdAsync(id);
             return Mapper.Map<Film, FilmDetailsModel>(film);
         }
-        public async Task UpdateTotalRatingAsync(RatingModel model)
+        public async Task UpdateTotalRatingByFilmIdAsync(int id)
         {
-            Film film = await _filmRepository.GetFilmByIdAsync(model.FilmId);
-            int count = _ratingRepository.GetCountByFilmIdAsync(model.FilmId);
-            film.Rating = Math.Round((film.Rating * count + model.Value) / (count + 1), 1);
-
+            Film film = await _filmRepository.GetFilmByIdAsync(id);
+            film.Rating = await _ratingRepository.GetAverageRatingByFilmId(id);
             await _filmRepository.UpdateFilmByIdAsync(film);
         }
 

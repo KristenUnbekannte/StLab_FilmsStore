@@ -27,7 +27,11 @@ export default styles => ({
 		color: '#fff',
 		backgroundColor: deepOrange[500],
 	},
-	icon: {
+	starGold: {
+		color: 'orange',
+		fontSize: 30,
+	},
+	starEmpty: {
 		color: 'gray',
 		fontSize: 30,
 	},
@@ -42,5 +46,10 @@ export default styles => ({
 	},
 	alertButton: {
 		alignSelf: 'flex-end',
+	},
+	video: {
+		margin: 10,
+		display: 'flex',
+		justifyContent: 'center',
 	},
 });

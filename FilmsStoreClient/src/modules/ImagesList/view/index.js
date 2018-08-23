@@ -1,27 +1,22 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import GridList from '@material-ui/core/GridList';
-import GridListTile from '@material-ui/core/GridListTile';
-import GridListTileBar from '@material-ui/core/GridListTileBar';
+import Gallery from 'react-grid-gallery';
 import styles from './styles';
 
 const ImagesList = ({ classes, images }) => {
 	return (
 		<div className={classes.root}>
-			<GridList className={classes.gridList} cols={3} cellHeight={130}>
-				{[...images].map((item, key) => (
-					<GridListTile key={key}>
-						<img src={item.url} alt="film" />
-						<GridListTileBar
-							classes={{
-								root: classes.titleBar,
-								title: classes.title,
-							}}
-						/>
-					</GridListTile>
-				))}
-			</GridList>
+			<Gallery
+				rowHeight={150}
+				enableImageSelection={false}
+				images={[...images].map(item => ({
+					src: item.url,
+					thumbnail: item.url,
+					thumbnailHeight: 150,
+					thumbnailWidth: 250,
+				}))}
+			/>
 		</div>
 	);
 };

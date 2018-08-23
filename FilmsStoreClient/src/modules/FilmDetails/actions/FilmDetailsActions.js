@@ -23,3 +23,14 @@ export const totalRatingChanged = value => {
 		value,
 	};
 };
+export const userRatingSet = value => {
+	return {
+		type: actionTypes.USER_RATING_SET,
+		value,
+	};
+};
+export const userRatingReset = () => {
+	return {
+		type: actionTypes.USER_RATING_RESET,
+	};
+};

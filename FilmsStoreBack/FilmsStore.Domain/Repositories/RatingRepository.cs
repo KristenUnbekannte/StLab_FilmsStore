@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using FilmsStore.Domain.EF;
 using FilmsStore.Domain.Entities;
 using FilmsStore.Domain.Interfaces;
+using Microsoft.EntityFrameworkCore;
 
 namespace FilmsStore.Domain.Repositories
 {
@@ -19,9 +20,25 @@ namespace FilmsStore.Domain.Repositories
             await _context.SaveChangesAsync();
         }
 
-        public int GetCountByFilmIdAsync(int id)
+        public async Task<double> GetAverageRatingByFilmId(int id)
         {
-            return _context.Ratings.Where(r=>r.FilmId==id).Count();
+            return await _context.Ratings.Where(r => r.FilmId == id).AverageAsync(r => r.Value);
+        }
+
+        public bool CheckFilmIsMarkedByCurrentUser(int id, string userId)
+        {
+            return _context.Ratings.Any(r => r.FilmId == id && r.UserId == userId);
+        }
+
+        public async Task<Rating> GetRatingByFilmIdandUserIdAsync(int id, string userId)
+        {
+            return await _context.Ratings.FirstOrDefaultAsync(r => r.FilmId == id && r.UserId == userId);
+        }
+
+        public async Task UpdateRatingAsync(Rating rating)
+        {
+            _context.Ratings.Update(rating);
+            await _context.SaveChangesAsync();
         }
     }
 }

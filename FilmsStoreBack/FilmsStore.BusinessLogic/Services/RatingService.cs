@@ -20,11 +20,22 @@ namespace FilmsStore.BusinessLogic.Services
         }
         public async Task AddRatingByFilmIdAsync(RatingModel model)
         {
-            await _filmService.UpdateTotalRatingAsync(model);
-
-            Rating rating = Mapper.Map<RatingModel, Rating>(model);
-            rating.User = await _userRepository.GetUserByIdAsync(rating.UserId);
-            await _ratingRepository.AddRatingAsync(rating);
+            Rating rating = await _ratingRepository.GetRatingByFilmIdandUserIdAsync(model.FilmId, model.UserId);
+            if (rating != null)
+            {
+                rating.Value = model.Value;
+                await _ratingRepository.UpdateRatingAsync(rating);
+            }
+            else
+            {
+                model.User = await _userRepository.GetUserByIdAsync(model.UserId);
+                await _ratingRepository.AddRatingAsync(Mapper.Map<RatingModel, Rating>(model));
+            }
+            await _filmService.UpdateTotalRatingByFilmIdAsync(model.FilmId);
+        }
+        public bool CheckFilmIsMarkedByCurrentUser(int id, string userId)
+        {
+            return _ratingRepository.CheckFilmIsMarkedByCurrentUser(id, userId);
         }
     }
 }

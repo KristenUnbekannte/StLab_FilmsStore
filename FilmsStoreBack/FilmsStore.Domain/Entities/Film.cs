@@ -20,6 +20,7 @@ namespace FilmsStore.Domain.Entities
         public double Rating { get; set; }
         [Required]
         public string ImageUrl { get; set; }
+        public string VideoUrl { get; set; }
         public string Description { get; set; }
         public ICollection<Image> Images { get; set; }
         public ICollection<Rating> Ratings { get; set; }

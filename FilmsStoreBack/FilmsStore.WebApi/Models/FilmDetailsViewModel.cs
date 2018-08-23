@@ -13,6 +13,7 @@ namespace FilmsStore.WebApi.Models
         public string Producer { get; set; }
         public double Rating { get; set; }
         public string ImageUrl { get; set; }
+        public string VideoUrl { get; set; }
         public string Description { get; set; }
         public ICollection<ImageModel> Images { get; set; }
     }

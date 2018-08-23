@@ -17,7 +17,7 @@ class FilmsListContainer extends React.PureComponent {
 		this.props.filmsLoading();
 
 		axios
-			.get(`${baseUrl}/api/films`)
+			.get(`${baseUrl}/films`)
 			.then(response => {
 				this.props.filmsLoaded(response.data);
 			})

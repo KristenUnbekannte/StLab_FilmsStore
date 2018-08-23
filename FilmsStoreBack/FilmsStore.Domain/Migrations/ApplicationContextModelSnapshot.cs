@@ -70,6 +70,8 @@ namespace FilmsStore.Domain.Migrations
 
                     b.Property<double>("Rating");
 
+                    b.Property<string>("VideoUrl");
+
                     b.Property<int>("Year");
 
                     b.HasKey("FilmId");
@@ -301,7 +303,7 @@ namespace FilmsStore.Domain.Migrations
 
             modelBuilder.Entity("FilmsStore.Domain.Entities.Rating", b =>
                 {
-                    b.HasOne("FilmsStore.Domain.Entities.Film", "Film")
+                    b.HasOne("FilmsStore.Domain.Entities.Film")
                         .WithMany("Ratings")
                         .HasForeignKey("FilmId")
                         .OnDelete(DeleteBehavior.Cascade);

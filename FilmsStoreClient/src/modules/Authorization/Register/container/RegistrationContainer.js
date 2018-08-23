@@ -22,7 +22,7 @@ class RegistrationContainer extends React.PureComponent {
 
 	handleSubmit(values) {
 		axios
-			.post(`${baseUrl}/api/account/register`, {
+			.post(`${baseUrl}/account/register`, {
 				username: values.userName,
 				password: values.password,
 			})
@@ -34,8 +34,9 @@ class RegistrationContainer extends React.PureComponent {
 			.catch(error => {
 				if (error.response) {
 					this.setState({ error: error.response.data.toString() });
+				} else {
+					this.setState({ error: error.toString() });
 				}
-				this.setState({ error: error.toString() });
 			});
 	}
 
