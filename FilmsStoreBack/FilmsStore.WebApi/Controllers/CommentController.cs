@@ -15,9 +15,11 @@ namespace FilmsStore.WebApi.Controllers
     public class CommentController : ControllerBase
     {
         private readonly ICommentService _commentService;
-        public CommentController(ICommentService commentService)
+        private readonly IMapper _mapper;
+        public CommentController(ICommentService commentService, IMapper mapper)
         {
             _commentService = commentService;
+            _mapper = mapper;
         }
 
         // GET api/comment/5
@@ -25,18 +27,18 @@ namespace FilmsStore.WebApi.Controllers
         public async Task<ActionResult<IEnumerable<CommentViewModel>>> GetComments(int id)
         {
             IList<CommentModel> comments = await _commentService.GetCommentsByFilmIdAsync(id);
-            return Ok(Mapper.Map<IList<CommentModel>, IList<CommentViewModel>>(comments));
+            return Ok(_mapper.Map<IList<CommentModel>, IList<CommentViewModel>>(comments));
         }
 
         // POST api/comment
         [Authorize]
-        [HttpPost()]
+        [HttpPost]
         public async Task<IActionResult> AddComment([FromBody]CommentViewModel model)
         {
             if (ModelState.IsValid)
             {
                 model.UserId = HttpContext.GetUserIdAsync();
-                CommentModel comment = Mapper.Map<CommentViewModel, CommentModel>(model);
+                CommentModel comment = _mapper.Map<CommentViewModel, CommentModel>(model);
                 await _commentService.AddCommentAsync(comment);
                 return Ok();
             }

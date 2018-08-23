@@ -3,6 +3,8 @@ import TokenService from '../../../Services/TokenService';
 
 const initialState = {
 	isAuthorized: TokenService.isSetToken(),
+	loginError: '',
+	registrationError: '',
 };
 
 const UserReducer = (state = initialState, action) => {
@@ -16,6 +18,26 @@ const UserReducer = (state = initialState, action) => {
 			return {
 				...state,
 				isAuthorized: false,
+			};
+		case actionTypes.LOGIN_ERROR_SET:
+			return {
+				...state,
+				loginError: action.error,
+			};
+		case actionTypes.LOGIN_ERROR_CLEARED:
+			return {
+				...state,
+				loginError: '',
+			};
+		case actionTypes.REGISTRATION_ERROR_SET:
+			return {
+				...state,
+				registrationError: action.error,
+			};
+		case actionTypes.REGISTRATION_ERROR_CLEARED:
+			return {
+				...state,
+				registrationError: '',
 			};
 		default:
 			return state;

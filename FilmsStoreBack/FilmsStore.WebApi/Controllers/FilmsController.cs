@@ -12,9 +12,11 @@ namespace FilmsStore.WebApi.Controllers
     public class FilmsController : ControllerBase
     {
         private readonly IFilmService _filmService;
-        public FilmsController(IFilmService filmService)
+        private readonly IMapper _mapper;
+        public FilmsController(IFilmService filmService, IMapper mapper)
         {
             _filmService = filmService;
+            _mapper = mapper;
         }
 
         // GET api/films
@@ -22,7 +24,7 @@ namespace FilmsStore.WebApi.Controllers
         public async Task<ActionResult<IEnumerable<FilmViewModel>>> Get()
         {
             IList<FilmModel> films = await _filmService.GetFilmsAsync();
-            return Ok(Mapper.Map<IList<FilmModel>, IList<FilmViewModel>>(films));
+            return Ok(_mapper.Map<IList<FilmModel>, IList<FilmViewModel>>(films));
         }
 
         // GET api/films/5
@@ -30,7 +32,7 @@ namespace FilmsStore.WebApi.Controllers
         public async Task<ActionResult<FilmDetailsViewModel>> Get(int id)
         {
             FilmDetailsModel film = await _filmService.GetFilmByIdAsync(id);
-            return Ok(Mapper.Map<FilmDetailsModel, FilmDetailsViewModel>(film));
+            return Ok(_mapper.Map<FilmDetailsModel, FilmDetailsViewModel>(film));
         }
 
         // GET api/films/rating/5

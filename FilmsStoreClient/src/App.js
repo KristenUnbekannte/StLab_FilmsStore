@@ -1,13 +1,10 @@
 import React from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import {BrowserRouter} from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { createStore, combineReducers } from 'redux';
 import { reducer as formReducer } from 'redux-form';
-import RegistrationContainer from './modules/Authorization/Register/container/RegistrationContainer';
-import LoginContainer from './modules/Authorization/Login/container/LoginContainer';
-import FilmsListContainer from './modules/FilmsList/containers/FilmsListContainer';
-import FilmDetailsContainer from './modules/FilmDetails/containers/FilmDetailsContainer';
 import Header from './modules/Header/view';
+import Routes from './Routes';
 import FilmsListReducer from './modules/FilmsList/reducers/FilmsListReducer';
 import FilmDetailsReducer from './modules/FilmDetails/reducers/FilmDetailsReducer';
 import UserReducer from './modules/Authorization/reducers/UserReducer';
@@ -35,12 +32,7 @@ class App extends React.Component {
 				<BrowserRouter>
 					<React.Fragment>
 						<Header />
-						<Switch>
-							<Route exact path="/" component={FilmsListContainer} />
-							<Route exact path="/register" component={RegistrationContainer} />
-							<Route exact path="/login" component={LoginContainer} />
-							<Route exact path="/film/:id" component={FilmDetailsContainer} />
-						</Switch>
+						<Routes/>
 					</React.Fragment>
 				</BrowserRouter>
 			</Provider>

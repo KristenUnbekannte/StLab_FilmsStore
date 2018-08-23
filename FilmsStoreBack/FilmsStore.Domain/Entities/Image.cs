@@ -5,7 +5,7 @@ namespace FilmsStore.Domain.Entities
     public class Image
     {
         [Required]
-        public int Id { get; set; }
+        public int ImageId { get; set; }
         [Required]
         public string Url { get; set; }
         [Required]

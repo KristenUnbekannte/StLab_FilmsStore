@@ -69,7 +69,7 @@ const FilmDetail = ({ classes, film, history }) => {
 			<Card className={classes.video}>
 				<iframe
 					title={film.name}
-					width="690"
+					width="800"
 					height="400"
 					src={film.videoUrl}
 					frameBorder="0"

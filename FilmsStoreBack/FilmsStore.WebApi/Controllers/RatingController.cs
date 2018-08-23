@@ -14,9 +14,11 @@ namespace FilmsStore.WebApi.Controllers
     public class RatingController : ControllerBase
     {
         private readonly IRatingService _ratingService;
-        public RatingController(IRatingService ratingService)
+        private readonly IMapper _mapper;
+        public RatingController(IRatingService ratingService, IMapper mapper)
         {
             _ratingService = ratingService;
+            _mapper = mapper;
         }
 
         // GET api/rating/5
@@ -36,7 +38,7 @@ namespace FilmsStore.WebApi.Controllers
             if (ModelState.IsValid)
             {
                 model.UserId = HttpContext.GetUserIdAsync();
-                RatingModel rating = Mapper.Map<RatingViewModel, RatingModel>(model);
+                RatingModel rating = _mapper.Map<RatingViewModel, RatingModel>(model);
                 await _ratingService.AddRatingByFilmIdAsync(rating);
                 return Ok();
             }

@@ -225,7 +225,7 @@ namespace FilmsStore.Domain.EF
                             new Image(){Url="https://timedotcom.files.wordpress.com/2015/06/inside-out-concept-art-01.jpg" },
                             new Image(){Url="http://kindredmedia.org/wp-content/uploads/BIng-Bong-Inside-Out-e1458587597390.jpg" },
                             new Image(){Url="https://www.repstatic.it/content/nazionale/img/2017/06/22/180142004-a435bca6-07c6-454e-920c-cdfebab51535.jpg" },
-                            new Image(){Url="https://www.repstatic.it/content/nazionale/img/2017/06/22/180142004-a435bca6-07c6-454e-920c-cdfebab51535.jpg" },
+                            new Image(){Url="https://anima.pro/wp-content/uploads/Inside-Out-700x350.jpg" },
                             new Image(){Url="http://enjoyurlife.ru/wp-content/uploads/2015/10/12-critics-inside-out.w529.h352.2x.jpg" },
                         }
                     });

@@ -12,11 +12,14 @@ namespace FilmsStore.BusinessLogic.Services
         private readonly IFilmService _filmService;
         private readonly IRatingRepository _ratingRepository;
         private readonly IUserRepository _userRepository;
-        public RatingService(IRatingRepository ratingRepository, IUserRepository userRepository, IFilmService filmService)
+        private readonly IMapper _mapper;
+        public RatingService(IRatingRepository ratingRepository, IUserRepository userRepository,
+            IFilmService filmService, IMapper mapper)
         {
             _ratingRepository = ratingRepository;
             _userRepository = userRepository;
             _filmService = filmService;
+            _mapper = mapper;
         }
         public async Task AddRatingByFilmIdAsync(RatingModel model)
         {
@@ -29,7 +32,7 @@ namespace FilmsStore.BusinessLogic.Services
             else
             {
                 model.User = await _userRepository.GetUserByIdAsync(model.UserId);
-                await _ratingRepository.AddRatingAsync(Mapper.Map<RatingModel, Rating>(model));
+                await _ratingRepository.AddRatingAsync(_mapper.Map<RatingModel, Rating>(model));
             }
             await _filmService.UpdateTotalRatingByFilmIdAsync(model.FilmId);
         }

@@ -8,7 +8,7 @@ namespace FilmsStore.BusinessLogic.Models
         {
             Errors = new List<string>();
         }
-        public bool isSuccessful { get; set; }
+        public bool IsSuccessful { get; set; }
         public string Token { get; set; }
         public List<string> Errors { get; set; }
     }

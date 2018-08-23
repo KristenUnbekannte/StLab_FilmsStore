@@ -4,7 +4,7 @@ namespace FilmsStore.BusinessLogic.Models
 {
     public class FilmModel
     {
-        public int filmId { get; set; }
+        public int FilmId { get; set; }
         public string Name { get; set; }
         public int Year { get; set; }
         public string Genre { get; set; }

@@ -11,9 +11,11 @@ namespace FilmsStore.WebApi.Controllers
     public class AccountController : ControllerBase
     {
         private readonly IUserService _userService;
-        public AccountController(IUserService userService)
+        private readonly IMapper _mapper;
+        public AccountController(IUserService userService, IMapper mapper)
         {
             _userService = userService;
+            _mapper = mapper;
         }
 
         // POST api/account/register
@@ -22,9 +24,9 @@ namespace FilmsStore.WebApi.Controllers
         {
             if (ModelState.IsValid)
             {
-                UserModel user = Mapper.Map<RegistrationViewModel, UserModel>(model);
+                UserModel user = _mapper.Map<RegistrationViewModel, UserModel>(model);
                 AuthorizationResultModel result = await _userService.RegisterAsync(user);
-                if (result.isSuccessful)
+                if (result.IsSuccessful)
                 {
                     return Ok(new { access_token = result.Token });
                 }
@@ -39,9 +41,9 @@ namespace FilmsStore.WebApi.Controllers
         {
             if (ModelState.IsValid)
             {
-                UserModel user = Mapper.Map<LoginViewModel, UserModel>(model);
+                UserModel user = _mapper.Map<LoginViewModel, UserModel>(model);
                 AuthorizationResultModel result = await _userService.LoginAsync(user);
-                if (result.isSuccessful)
+                if (result.IsSuccessful)
                 {
                     return Ok(new { access_token = result.Token });
                 }

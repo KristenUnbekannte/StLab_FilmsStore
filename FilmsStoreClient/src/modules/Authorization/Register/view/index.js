@@ -2,6 +2,11 @@ import React from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { Paper, Button } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
+import {
+	validatePassword,
+	validateUserName,
+	validateMatchPassword,
+} from '../../../../Common/FormValidation';
 import PropTypes from 'prop-types';
 import renderField from './renderFiled';
 import Alert from '../../../Alert/view';
@@ -22,18 +27,21 @@ let RegistrationForm = ({ handleSubmit, registrationError, classes }) => {
 					component={renderField}
 					type="text"
 					label="Username"
+					validate={validateUserName}
 				/>
 				<Field
 					name="password"
 					component={renderField}
 					type="password"
 					label="Password"
+					validate={validatePassword}
 				/>
 				<Field
 					name="confirmPassword"
 					component={renderField}
 					type="password"
 					label="Confirm password"
+					validate={[validatePassword, validateMatchPassword]}
 				/>
 				<Button
 					type="submit"

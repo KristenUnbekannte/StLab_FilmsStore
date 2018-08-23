@@ -81,7 +81,7 @@ namespace FilmsStore.Domain.Migrations
 
             modelBuilder.Entity("FilmsStore.Domain.Entities.Image", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("ImageId")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -90,7 +90,7 @@ namespace FilmsStore.Domain.Migrations
                     b.Property<string>("Url")
                         .IsRequired();
 
-                    b.HasKey("Id");
+                    b.HasKey("ImageId");
 
                     b.HasIndex("FilmId");
 

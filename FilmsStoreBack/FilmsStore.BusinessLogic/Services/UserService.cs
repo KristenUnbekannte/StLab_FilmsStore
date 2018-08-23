@@ -12,23 +12,26 @@ namespace FilmsStore.BusinessLogic.Services
         private readonly UserManager<User> _userManager;
         private readonly SignInManager<User> _signInManager;
         private readonly ITokenService _tokenService;
-        public UserService(UserManager<User> userManager, SignInManager<User> signInManager, ITokenService tokenService)
+        private readonly IMapper _mapper;
+        public UserService(UserManager<User> userManager, SignInManager<User> signInManager,
+            ITokenService tokenService, IMapper mapper)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _tokenService = tokenService;
+            _mapper = mapper;
         }
 
         public async Task<AuthorizationResultModel> RegisterAsync(UserModel model)
         {
-            User user = Mapper.Map<UserModel, User>(model);
+            User user = _mapper.Map<UserModel, User>(model);
             var result = await _userManager.CreateAsync(user, model.Password);
 
             AuthorizationResultModel registrationResult = new AuthorizationResultModel();
             if (result.Succeeded)
             {
                 await _signInManager.SignInAsync(user, false);
-                registrationResult.isSuccessful = true;
+                registrationResult.IsSuccessful = true;
                 registrationResult.Token = _tokenService.GetToken(user);
                 return registrationResult;
             }
@@ -47,7 +50,7 @@ namespace FilmsStore.BusinessLogic.Services
             {
                 User user = await _userManager.FindByNameAsync(model.UserName);
                 loginResult.Token = _tokenService.GetToken(user);
-                loginResult.isSuccessful = true;
+                loginResult.IsSuccessful = true;
                 return loginResult;
             }
             loginResult.Errors.Add("Invalid username or password");

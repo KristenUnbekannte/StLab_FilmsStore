@@ -14,9 +14,7 @@ using FilmsStore.Domain.Repositories;
 using FilmsStore.BusinessLogic.Interfaces;
 using FilmsStore.BusinessLogic.Services;
 using AutoMapper;
-using FilmsStore.BusinessLogic.Models;
 using FilmsStore.BusinessLogic.Infrastructure;
-using FilmsStore.WebApi.Models;
 
 namespace FilmsStore.WebApi
 {
@@ -32,6 +30,7 @@ namespace FilmsStore.WebApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddAutoMapper();
             services.AddCors();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1)
                 .AddJsonOptions(options =>
@@ -81,18 +80,6 @@ namespace FilmsStore.WebApi
                     IssuerSigningKey = AuthOptions.GetSymmetricSecurityKey(),
                     ValidateIssuerSigningKey = true,
                 };
-            });
-            Mapper.Initialize(cfg =>
-            {
-                cfg.CreateMap<FilmModel, Film>();
-                cfg.CreateMap<RegistrationViewModel, UserModel>();
-                cfg.CreateMap<LoginViewModel, UserModel>();
-                cfg.CreateMap<UserModel, User>();
-                cfg.CreateMap<RatingViewModel, RatingModel>();
-                cfg.CreateMap<RatingModel, Rating>();
-                cfg.CreateMap<CommentViewModel, CommentModel>();
-                cfg.CreateMap<CommentModel, Comment>();
-                cfg.CreateMap<Comment, CommentModel>().ForMember(c => c.UserName, c => c.MapFrom(m => m.User.UserName));
             });
         }
 

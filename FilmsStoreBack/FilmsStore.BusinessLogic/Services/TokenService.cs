@@ -20,7 +20,7 @@ namespace FilmsStore.BusinessLogic.Services
                    audience: AuthOptions.AUDIENCE,
                    notBefore: dateTime,
                    claims: identity.Claims,
-                   expires: dateTime.Add(TimeSpan.FromMinutes(AuthOptions.LIFETIME)),
+                   expires: dateTime.Add(TimeSpan.FromDays(AuthOptions.LIFETIME)),
                    signingCredentials: new SigningCredentials(AuthOptions.GetSymmetricSecurityKey(), SecurityAlgorithms.HmacSha256));
             var encodedJwt = new JwtSecurityTokenHandler().WriteToken(jwt);
             return encodedJwt;

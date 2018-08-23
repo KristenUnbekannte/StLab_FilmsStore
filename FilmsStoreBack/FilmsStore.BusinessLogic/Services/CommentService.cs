@@ -13,14 +13,17 @@ namespace FilmsStore.BusinessLogic.Services
     {
         private readonly ICommentRepository _commentRepository;
         private readonly IUserRepository _userRepository;
-        public CommentService(ICommentRepository commentRepository, IUserRepository userRepository)
+        private readonly IMapper _mapper;
+        public CommentService(ICommentRepository commentRepository,
+            IUserRepository userRepository, IMapper mapper)
         {
             _commentRepository = commentRepository;
             _userRepository = userRepository;
+            _mapper = mapper;
         }
         public async Task AddCommentAsync(CommentModel model)
         {
-            Comment comment = Mapper.Map<CommentModel, Comment>(model);
+            Comment comment = _mapper.Map<CommentModel, Comment>(model);
             comment.Date = $"{ DateTime.Now.ToShortDateString()} {DateTime.Now.ToShortTimeString()}";
             comment.User = await _userRepository.GetUserByIdAsync(comment.UserId);
 
@@ -29,7 +32,7 @@ namespace FilmsStore.BusinessLogic.Services
         public async Task<IList<CommentModel>> GetCommentsByFilmIdAsync(int id)
         {
             IList<Comment> comments = await _commentRepository.GetCommentsByFilmIdAsync(id);
-            return Mapper.Map<IList<Comment>, IList<CommentModel>>(comments);
+            return _mapper.Map<IList<Comment>, IList<CommentModel>>(comments);
         }
     }
 }

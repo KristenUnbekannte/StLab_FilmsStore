@@ -14,7 +14,7 @@ const ImagesList = ({ classes, images }) => {
 					src: item.url,
 					thumbnail: item.url,
 					thumbnailHeight: 150,
-					thumbnailWidth: 250,
+					thumbnailWidth: 270,
 				}))}
 			/>
 		</div>

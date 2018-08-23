@@ -3,7 +3,6 @@ import axios from 'axios';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { validatePassword } from '../../../../Common/FormValidation';
 import TokenService from '../../../../Services/TokenService';
 import * as actions from '../../actions/UserActions';
 import baseUrl from '../../../../Common/BaseUrl';
@@ -12,12 +11,9 @@ import Login from '../view';
 class LoginContainer extends React.PureComponent {
 	constructor(props) {
 		super(props);
-		this.state = {
-			error: '',
-		};
 
+		this.props.loginErrorCleared();
 		this.handleSubmit = this.handleSubmit.bind(this);
-		this.validateValues = this.validateValues.bind(this);
 	}
 
 	handleSubmit(values) {
@@ -32,38 +28,23 @@ class LoginContainer extends React.PureComponent {
 				this.props.history.push(window.history.back());
 			})
 			.catch(error => {
-				if (error.response) {
-					this.setState({ error: error.response.data.toString() });
-				} else {
-					this.setState({ error: error.toString() });
-				}
+				error.response
+					? this.props.loginErrorSet(error.response.data.toString())
+					: this.props.loginErrorSet(error.toString());
 			});
 	}
 
-	validateValues(values) {
-		const errors = {};
-		if (!values.userName) {
-			errors.userName = 'Field must not be empty';
-		}
-		if (!values.password || !validatePassword(values.password)) {
-			errors.password = 'Field must contain at least 6 characters';
-		}
-		return errors;
-	}
 	render() {
-		return (
-			<Login
-				onSubmit={this.handleSubmit}
-				loginError={this.state.error}
-				validate={this.validateValues}
-			/>
-		);
+		return <Login onSubmit={this.handleSubmit} loginError={this.props.loginError} />;
 	}
 }
 
 LoginContainer.propTypes = {
 	isAuthorized: PropTypes.bool.isRequired,
 	userAuthorized: PropTypes.func.isRequired,
+	loginError: PropTypes.string.isRequired,
+	loginErrorSet: PropTypes.func.isRequired,
+	loginErrorCleared: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => {

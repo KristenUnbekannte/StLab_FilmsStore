@@ -13,20 +13,23 @@ namespace FilmsStore.BusinessLogic.Services
     {
         private readonly IFilmRepository _filmRepository;
         private readonly IRatingRepository _ratingRepository;
-        public FilmService(IFilmRepository repository, IRatingRepository ratingRepository)
+        private readonly IMapper _mapper;
+        public FilmService(IFilmRepository repository,
+            IRatingRepository ratingRepository, IMapper mapper)
         {
             _filmRepository = repository;
             _ratingRepository = ratingRepository;
+            _mapper = mapper;
         }
         public async Task<IList<FilmModel>> GetFilmsAsync()
         {
             IList<Film> films = await _filmRepository.GetFilmsAsync();
-            return Mapper.Map<IList<Film>, IList<FilmModel>>(films);
+            return _mapper.Map<IList<Film>, IList<FilmModel>>(films);
         }
         public async Task<FilmDetailsModel> GetFilmByIdAsync(int id)
         {
             Film film = await _filmRepository.GetFilmByIdAsync(id);
-            return Mapper.Map<Film, FilmDetailsModel>(film);
+            return _mapper.Map<Film, FilmDetailsModel>(film);
         }
         public async Task UpdateTotalRatingByFilmIdAsync(int id)
         {

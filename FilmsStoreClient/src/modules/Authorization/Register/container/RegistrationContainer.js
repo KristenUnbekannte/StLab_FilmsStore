@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import axios from 'axios';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
-import { validatePassword } from '../../../../Common/FormValidation';
 import TokenService from '../../../../Services/TokenService';
 import * as actions from '../../actions/UserActions';
 import baseUrl from '../../../../Common/BaseUrl';
@@ -12,12 +11,9 @@ import Registration from '../view';
 class RegistrationContainer extends React.PureComponent {
 	constructor(props) {
 		super(props);
-		this.state = {
-			error: '',
-		};
 
+		this.props.registrationErrorCleared();
 		this.handleSubmit = this.handleSubmit.bind(this);
-		this.validateValues = this.validateValues.bind(this);
 	}
 
 	handleSubmit(values) {
@@ -32,33 +28,17 @@ class RegistrationContainer extends React.PureComponent {
 				this.props.history.push(window.history.back());
 			})
 			.catch(error => {
-				if (error.response) {
-					this.setState({ error: error.response.data.toString() });
-				} else {
-					this.setState({ error: error.toString() });
-				}
+				error.response
+					? this.props.registrationErrorSet(error.response.data.toString())
+					: this.props.registrationErrorSet(error.toString());
 			});
 	}
 
-	validateValues(values) {
-		const errors = {};
-		if (!values.userName) {
-			errors.userName = 'Field must not be empty';
-		}
-		if (!values.password || !validatePassword(values.password)) {
-			errors.password = 'Field must contain at least 6 characters';
-		}
-		if (values.confirmPassword !== values.password) {
-			errors.confirmPassword = 'Password does not match';
-		}
-		return errors;
-	}
 	render() {
 		return (
 			<Registration
 				onSubmit={this.handleSubmit}
-				registrationError={this.state.error}
-				validate={this.validateValues}
+				registrationError={this.props.registrationError}
 			/>
 		);
 	}
@@ -67,6 +47,9 @@ class RegistrationContainer extends React.PureComponent {
 RegistrationContainer.propTypes = {
 	isAuthorized: PropTypes.bool.isRequired,
 	userAuthorized: PropTypes.func.isRequired,
+	registrationError: PropTypes.string.isRequired,
+	registrationErrorSet: PropTypes.func.isRequired,
+	registrationErrorCleared: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => {

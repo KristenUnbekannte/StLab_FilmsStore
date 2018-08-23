@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { reset } from 'redux-form';
 import { withStyles } from '@material-ui/core/styles';
-import CircularProgress from '@material-ui/core/CircularProgress';
 import PropTypes from 'prop-types';
 import TokenService from '../../../Services/TokenService';
 import * as actions from '../actions/CommentsListActions';
@@ -25,12 +24,7 @@ class CommentsListContainer extends React.Component {
 	}
 
 	loadComments() {
-		const {
-			commentsLoading,
-			commentsError,
-			commentsLoaded,
-		} = this.props.comment;
-		commentsLoading();
+		const { commentsError, commentsLoaded } = this.props.comment;
 
 		axios
 			.get(`${baseUrl}/comment/${this.state.id}`)
@@ -75,16 +69,12 @@ class CommentsListContainer extends React.Component {
 	}
 
 	render() {
-		return this.props.isLoaded ? (
+		return (
 			<CommentsList
 				comments={this.props.comments}
 				onSubmit={this.handleSubmit}
 				isAuth={this.props.isAuthorized}
 			/>
-		) : (
-			<div className={this.props.classes.progress}>
-				<CircularProgress size={40} color="secondary" />
-			</div>
 		);
 	}
 }
@@ -95,7 +85,6 @@ CommentsListContainer.propTypes = {
 	reset: PropTypes.func.isRequired,
 	comments: PropTypes.array,
 	isAuthorized: PropTypes.bool.isRequired,
-	isLoaded: PropTypes.bool.isRequired,
 	filmId: PropTypes.number.isRequired,
 };
 

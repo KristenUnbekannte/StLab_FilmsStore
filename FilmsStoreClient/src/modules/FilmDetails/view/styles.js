@@ -2,19 +2,21 @@ import deepOrange from '@material-ui/core/colors/deepOrange';
 
 export default styles => ({
 	body: {
-		maxWidth: 710,
+		maxWidth: 840,
 		margin: 'auto',
 	},
 	card: {
-		padding: 10,
-		maxWidth: 800,
+		padding: 20,
+		maxWidth: 820,
 		display: 'flex',
 		justifyContent: 'space-around',
 		flexWrap: 'wrap',
 	},
 	details: {
-		width: 360,
+		maxWidth: 450,
 		display: 'flex',
+		flexDirection: 'column',
+		justifyContent: 'space-between',
 	},
 	cover: {
 		width: 325,
@@ -48,7 +50,8 @@ export default styles => ({
 		alignSelf: 'flex-end',
 	},
 	video: {
-		margin: 10,
+		margin: '10px 0',
+		padding: 20,
 		display: 'flex',
 		justifyContent: 'center',
 	},

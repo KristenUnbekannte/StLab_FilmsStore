@@ -1,6 +1,6 @@
 const styles = theme => ({
 	root: {
-		margin: 10,
+		margin: 20,
 	},
 });
 

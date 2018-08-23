@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FilmsStore.Domain.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20180823071933_Initial")]
+    [Migration("20180823150342_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -83,7 +83,7 @@ namespace FilmsStore.Domain.Migrations
 
             modelBuilder.Entity("FilmsStore.Domain.Entities.Image", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("ImageId")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -92,7 +92,7 @@ namespace FilmsStore.Domain.Migrations
                     b.Property<string>("Url")
                         .IsRequired();
 
-                    b.HasKey("Id");
+                    b.HasKey("ImageId");
 
                     b.HasIndex("FilmId");
 
