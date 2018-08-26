@@ -1,5 +1,4 @@
 import React from 'react';
-import axios from 'axios';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { withStyles } from '@material-ui/core/styles';
@@ -9,8 +8,6 @@ import PropTypes from 'prop-types';
 import * as actions from '../actions/FilmDetailsActions';
 import styles from '../view/styles';
 import FilmDetail from '../view';
-import TokenService from '../../../Services/TokenService';
-import baseUrl from '../../../Common/BaseUrl';
 
 class FilmDetailsContainer extends React.PureComponent {
 	constructor(props) {
@@ -21,31 +18,16 @@ class FilmDetailsContainer extends React.PureComponent {
 	}
 
 	componentDidMount() {
-		this.props.filmDetailsLoading();
+		const {
+			filmDetailsRequested,
+			isAuthorized,
+			userRatingRequested,
+		} = this.props;
 
-		axios
-			.get(`${baseUrl}/films/${this.state.id}`)
-			.then(response => {
-				this.props.filmDetailsLoaded(response.data);
-			})
-			.catch(error => {
-				this.props.filmDetailsError(error.toString());
-			});
+		filmDetailsRequested(this.state.id);
 
-		if (this.props.isAuthorized) {
-			axios
-				.get(`${baseUrl}/rating/${this.state.id}`, {
-					headers: {
-						'Content-Type': 'application/json',
-						Authorization: `Bearer ${TokenService.getToken('Token')}`,
-					},
-				})
-				.then(response => {
-					this.props.userRatingSet(response.data);
-				})
-				.catch(error => {
-					this.props.userRatingReset();
-				});
+		if (isAuthorized) {
+			userRatingRequested(this.state.id);
 		}
 	}
 	render() {
@@ -62,9 +44,8 @@ class FilmDetailsContainer extends React.PureComponent {
 }
 
 FilmDetailsContainer.propTypes = {
-	filmDetailsLoading: PropTypes.func.isRequired,
-	filmDetailsLoaded: PropTypes.func.isRequired,
-	filmDetailsError: PropTypes.func.isRequired,
+	filmDetailsRequested: PropTypes.func.isRequired,
+	userRatingRequested: PropTypes.func.isRequired,
 	classes: PropTypes.object.isRequired,
 	film: PropTypes.object.isRequired,
 	isAuthorized: PropTypes.bool.isRequired,

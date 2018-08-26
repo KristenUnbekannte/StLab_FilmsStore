@@ -19,7 +19,7 @@ const initialState = {
 
 const FilmDetailsReducer = (state = initialState, action) => {
 	switch (action.type) {
-		case actionTypes.FILM_DETAILS_LOADING:
+		case actionTypes.FILM_DETAILS_REQUESTED:
 			return {
 				...state,
 				isLoaded: false,
@@ -29,11 +29,21 @@ const FilmDetailsReducer = (state = initialState, action) => {
 				...state,
 				...action.film,
 				isLoaded: true,
+				error: '',
 			};
 		case actionTypes.FILM_DETAILS_ERROR:
 			return {
 				...state,
 				error: action.error,
+				isLoaded: false,
+			};
+		case actionTypes.USER_RATING_REQUESTED:
+			return {
+				...state,
+			};
+		case actionTypes.UPDATE_TOTAL_RATING_REQUESTED:
+			return {
+				...state,
 			};
 		case actionTypes.TOTAL_RATING_CHANGED:
 			return {

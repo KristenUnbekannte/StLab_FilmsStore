@@ -6,6 +6,10 @@ const initialState = {
 
 const RatingReducer = (state = initialState, action) => {
 	switch (action.type) {
+		case actionTypes.RATING_SEND_REQUESTED:
+			return {
+				...state,
+			};
 		case actionTypes.RATING_SET:
 			return {
 				...state,

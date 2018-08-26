@@ -1,4 +1,5 @@
 import actionTypes from './actionTypes';
+import baseUrl from '../../../Common/BaseUrl';
 
 export const userAuthorized = () => {
 	return {
@@ -10,25 +11,25 @@ export const userUnauthorized = () => {
 		type: actionTypes.USER_UNAUTHORIZED,
 	};
 };
-export const loginErrorSet = error => {
+export const authErrorSet = error => {
 	return {
-		type: actionTypes.LOGIN_ERROR_SET,
+		type: actionTypes.AUTH_ERROR_SET,
 		error,
 	};
 };
-export const loginErrorCleared = () => {
+export const authErrorCleared = () => {
 	return {
-		type: actionTypes.LOGIN_ERROR_CLEARED,
+		type: actionTypes.AUTH_ERROR_CLEARED,
 	};
 };
-export const registrationErrorSet = error => {
+export const authRequested = (url, data, history) => {
 	return {
-		type: actionTypes.REGISTRATION_ERROR_SET,
-		error,
-	};
-};
-export const registrationErrorCleared = () => {
-	return {
-		type: actionTypes.REGISTRATION_ERROR_CLEARED,
+		type: actionTypes.AUTH_REQUESTED,
+		request: {
+			method: 'post',
+			url: `${baseUrl}/account/${url}`,
+			data: data,
+		},
+		history,
 	};
 };

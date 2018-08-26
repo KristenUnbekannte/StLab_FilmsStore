@@ -13,10 +13,12 @@ import { bindActionCreators } from 'redux';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import * as actions from '../../Authorization/actions/UserActions';
+import * as filmDetailsActions from '../../FilmDetails/actions/FilmDetailsActions';
 import TokenService from '../../../Services/TokenService';
 import styles from '../view/styles';
 
 class MenuContainer extends React.Component {
+	D;
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -37,8 +39,9 @@ class MenuContainer extends React.Component {
 	}
 	handleLogOut() {
 		this.handleClose();
-		this.props.userUnauthorized();
 		TokenService.removeToken();
+		this.props.user.userUnauthorized();
+		this.props.filmDetails.userRatingReset();
 	}
 
 	render() {
@@ -121,7 +124,8 @@ class MenuContainer extends React.Component {
 MenuContainer.propTypes = {
 	classes: PropTypes.object.isRequired,
 	isAuthorized: PropTypes.bool.isRequired,
-	userUnauthorized: PropTypes.func.isRequired,
+	user: PropTypes.object.isRequired,
+	filmDetails: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = state => {
@@ -130,9 +134,10 @@ const mapStateToProps = state => {
 	};
 };
 
-const mapDispatchToProps = dispatch => {
-	return bindActionCreators({ ...actions }, dispatch);
-};
+const mapDispatchToProps = dispatch => ({
+	user: bindActionCreators({ ...actions }, dispatch),
+	filmDetails: bindActionCreators({ ...filmDetailsActions }, dispatch),
+});
 
 const MenuBar = connect(
 	mapStateToProps,

@@ -6,16 +6,16 @@ import FilmsListContainer from './modules/FilmsList/containers/FilmsListContaine
 import FilmDetailsContainer from './modules/FilmDetails/containers/FilmDetailsContainer';
 
 class Routes extends React.Component {
-    render() {
-        return (
-            <Switch>
-                <Route exact path="/" component={FilmsListContainer} />
-                <Route exact path="/register" component={RegistrationContainer} />
-                <Route exact path="/login" component={LoginContainer} />
-                <Route exact path="/film/:id" component={FilmDetailsContainer} />
-            </Switch>
-        );
-    }
+	render() {
+		return (
+			<Switch>
+				<Route exact path="/" component={FilmsListContainer} />
+				<Route exact path="/register" component={RegistrationContainer} />
+				<Route exact path="/login" component={LoginContainer} />
+				<Route exact path="/film/:id" component={FilmDetailsContainer} />
+			</Switch>
+		);
+	}
 }
 
 export default Routes;

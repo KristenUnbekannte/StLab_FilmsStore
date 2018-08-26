@@ -12,7 +12,7 @@ import renderField from './renderFiled';
 import Alert from '../../../Alert/view';
 import styles from './styles';
 
-let RegistrationForm = ({ handleSubmit, registrationError, classes }) => {
+let RegistrationForm = ({ handleSubmit, authError, classes }) => {
 	return (
 		<Paper className={classes.container}>
 			<img
@@ -20,7 +20,7 @@ let RegistrationForm = ({ handleSubmit, registrationError, classes }) => {
 				alt="joke"
 				className={classes.image}
 			/>
-			{registrationError ? <Alert error={registrationError} /> : null}
+			{authError ? <Alert error={authError} /> : null}
 			<form onSubmit={handleSubmit}>
 				<Field
 					name="userName"
@@ -58,13 +58,13 @@ let RegistrationForm = ({ handleSubmit, registrationError, classes }) => {
 
 RegistrationForm.propTypes = {
 	handleSubmit: PropTypes.func.isRequired,
-	registrationError: PropTypes.string.isRequired,
+	authError: PropTypes.string.isRequired,
 	classes: PropTypes.object.isRequired,
 	form: PropTypes.string.isRequired,
 };
 
 RegistrationForm = reduxForm({
-	form: 'login',
+	form: 'registration',
 })(RegistrationForm);
 
 export default withStyles(styles)(RegistrationForm);

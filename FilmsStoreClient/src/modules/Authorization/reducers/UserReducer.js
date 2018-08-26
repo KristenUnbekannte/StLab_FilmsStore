@@ -3,41 +3,35 @@ import TokenService from '../../../Services/TokenService';
 
 const initialState = {
 	isAuthorized: TokenService.isSetToken(),
-	loginError: '',
-	registrationError: '',
+	authError: '',
 };
 
 const UserReducer = (state = initialState, action) => {
 	switch (action.type) {
+		case actionTypes.AUTH_REQUESTED:
+			return {
+				...state,
+			};
 		case actionTypes.USER_AUTHORIZED:
 			return {
 				...state,
 				isAuthorized: true,
+				authError: '',
 			};
 		case actionTypes.USER_UNAUTHORIZED:
 			return {
 				...state,
 				isAuthorized: false,
 			};
-		case actionTypes.LOGIN_ERROR_SET:
+		case actionTypes.AUTH_ERROR_SET:
 			return {
 				...state,
-				loginError: action.error,
+				authError: action.error,
 			};
-		case actionTypes.LOGIN_ERROR_CLEARED:
+		case actionTypes.AUTH_ERROR_CLEARED:
 			return {
 				...state,
-				loginError: '',
-			};
-		case actionTypes.REGISTRATION_ERROR_SET:
-			return {
-				...state,
-				registrationError: action.error,
-			};
-		case actionTypes.REGISTRATION_ERROR_CLEARED:
-			return {
-				...state,
-				registrationError: '',
+				authError: '',
 			};
 		default:
 			return state;

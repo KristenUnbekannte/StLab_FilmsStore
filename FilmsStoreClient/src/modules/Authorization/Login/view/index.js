@@ -11,7 +11,7 @@ import renderField from './renderFiled';
 import Alert from '../../../Alert/view';
 import styles from './styles';
 
-let LoginForm = ({ handleSubmit, loginError, classes }) => {
+let LoginForm = ({ handleSubmit, authError, classes }) => {
 	return (
 		<Paper className={classes.container}>
 			<img
@@ -19,7 +19,7 @@ let LoginForm = ({ handleSubmit, loginError, classes }) => {
 				alt="joke"
 				className={classes.image}
 			/>
-			{loginError ? <Alert error={loginError} /> : null}
+			{authError ? <Alert error={authError} /> : null}
 			<form onSubmit={handleSubmit}>
 				<Field
 					name="userName"
@@ -50,7 +50,7 @@ let LoginForm = ({ handleSubmit, loginError, classes }) => {
 
 LoginForm.propTypes = {
 	handleSubmit: PropTypes.func.isRequired,
-	loginError: PropTypes.string.isRequired,
+	authError: PropTypes.string.isRequired,
 	classes: PropTypes.object.isRequired,
 	form: PropTypes.string.isRequired,
 };

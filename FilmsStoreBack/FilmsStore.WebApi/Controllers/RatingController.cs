@@ -22,6 +22,7 @@ namespace FilmsStore.WebApi.Controllers
         }
 
         // GET api/rating/5
+        [Authorize]
         [HttpGet("{id}")]
         public ActionResult<bool> CheckRating(int id)
         {

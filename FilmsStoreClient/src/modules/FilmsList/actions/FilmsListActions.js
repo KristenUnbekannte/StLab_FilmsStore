@@ -1,8 +1,13 @@
 import actionTypes from './actionTypes';
+import baseUrl from '../../../Common/BaseUrl';
 
-export const filmsLoading = () => {
+export const filmsRequested = () => {
 	return {
-		type: actionTypes.FILMS_LOADING,
+		type: actionTypes.FILMS_REQUESTED,
+		request: {
+			method: 'get',
+			url: `${baseUrl}/films`,
+		},
 	};
 };
 export const filmsLoaded = films => {

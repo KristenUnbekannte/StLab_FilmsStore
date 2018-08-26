@@ -1,8 +1,10 @@
 import React from 'react';
-import {BrowserRouter} from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import { createStore, combineReducers } from 'redux';
+import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
+import createSagaMiddleware from 'redux-saga';
 import { reducer as formReducer } from 'redux-form';
+import { rootSaga } from './Sagas/rootSaga';
 import Header from './modules/Header/view';
 import Routes from './Routes';
 import FilmsListReducer from './modules/FilmsList/reducers/FilmsListReducer';
@@ -10,6 +12,8 @@ import FilmDetailsReducer from './modules/FilmDetails/reducers/FilmDetailsReduce
 import UserReducer from './modules/Authorization/reducers/UserReducer';
 import CommentsListReducer from './modules/CommentsList/reducers/CommentsListReducer';
 import RatingReducer from './modules/StarsRating/reducers/RatingReducer';
+
+const sagaMiddleware = createSagaMiddleware();
 
 const reducers = combineReducers({
 	form: formReducer,
@@ -19,11 +23,18 @@ const reducers = combineReducers({
 	comments: CommentsListReducer,
 	rating: RatingReducer,
 });
+const reduxDevTools =
+	window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__();
 
 const store = createStore(
 	reducers,
-	window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+	compose(
+		applyMiddleware(sagaMiddleware),
+		reduxDevTools
+	)
 );
+
+sagaMiddleware.run(rootSaga);
 
 class App extends React.Component {
 	render() {
@@ -32,7 +43,7 @@ class App extends React.Component {
 				<BrowserRouter>
 					<React.Fragment>
 						<Header />
-						<Routes/>
+						<Routes />
 					</React.Fragment>
 				</BrowserRouter>
 			</Provider>

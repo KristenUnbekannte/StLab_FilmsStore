@@ -1,5 +1,4 @@
 import React from 'react';
-import axios from 'axios';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { withStyles } from '@material-ui/core/styles';
@@ -9,24 +8,11 @@ import PropTypes from 'prop-types';
 import * as actions from '../actions/FilmsListActions';
 import Film from '../../Film/view';
 import Alert from '../../Alert/view';
-import baseUrl from '../../../Common/BaseUrl';
 import styles from '../view/styles';
 
 class FilmsListContainer extends React.PureComponent {
 	componentDidMount() {
-		this.props.filmsLoading();
-
-		axios
-			.get(`${baseUrl}/films`)
-			.then(response => {
-				this.props.filmsLoaded(response.data);
-			})
-			.catch(error => {
-				if (error.response === 'undefined') {
-					this.props.filmsError(error.response.data.toString());
-				}
-				this.props.filmsError(error.toString());
-			});
+		this.props.filmsRequested();
 	}
 	render() {
 		return this.props.error ? (
@@ -46,9 +32,7 @@ class FilmsListContainer extends React.PureComponent {
 }
 
 FilmsListContainer.propTypes = {
-	filmsLoading: PropTypes.func.isRequired,
-	filmsLoaded: PropTypes.func.isRequired,
-	filmsError: PropTypes.func.isRequired,
+	filmsRequested: PropTypes.func.isRequired,
 	classes: PropTypes.object.isRequired,
 	films: PropTypes.array.isRequired,
 	isLoaded: PropTypes.bool.isRequired,
@@ -67,4 +51,5 @@ const FilmsList = connect(
 	mapStateToProps,
 	mapDispatchToProps
 )(FilmsListContainer);
+
 export default withStyles(styles)(FilmsList);

@@ -8,10 +8,11 @@ const initialState = {
 
 const FilmsListReducer = (state = initialState, action) => {
 	switch (action.type) {
-		case actionTypes.FILMS_LOADING:
+		case actionTypes.FILMS_REQUESTED:
 			return {
 				...state,
 				isLoaded: false,
+				error: '',
 			};
 		case actionTypes.FILMS_LOADED:
 			return {
@@ -23,6 +24,7 @@ const FilmsListReducer = (state = initialState, action) => {
 			return {
 				...state,
 				error: action.error,
+				isLoaded: false,
 			};
 		default:
 			return state;

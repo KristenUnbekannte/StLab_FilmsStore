@@ -1,8 +1,14 @@
 import actionTypes from './actionTypes';
+import baseUrl from '../../../Common/BaseUrl';
+import header from '../../../Common/FetchHeader';
 
-export const filmDetailsLoading = () => {
+export const filmDetailsRequested = id => {
 	return {
-		type: actionTypes.FILM_DETAILS_LOADING,
+		type: actionTypes.FILM_DETAILS_REQUESTED,
+		request: {
+			method: 'get',
+			url: `${baseUrl}/films/${id}`,
+		},
 	};
 };
 export const filmDetailsLoaded = film => {
@@ -17,10 +23,14 @@ export const filmDetailsError = error => {
 		error,
 	};
 };
-export const totalRatingChanged = value => {
+export const userRatingRequested = id => {
 	return {
-		type: actionTypes.TOTAL_RATING_CHANGED,
-		value,
+		type: actionTypes.USER_RATING_REQUESTED,
+		request: {
+			method: 'get',
+			url: `${baseUrl}/rating/${id}`,
+			headers: header(),
+		},
 	};
 };
 export const userRatingSet = value => {
@@ -32,5 +42,20 @@ export const userRatingSet = value => {
 export const userRatingReset = () => {
 	return {
 		type: actionTypes.USER_RATING_RESET,
+	};
+};
+export const updateTotalRatingRequested = id => {
+	return {
+		type: actionTypes.UPDATE_TOTAL_RATING_REQUESTED,
+		request: {
+			method: 'get',
+			url: `${baseUrl}/films/rating/${id}`,
+		},
+	};
+};
+export const totalRatingChanged = value => {
+	return {
+		type: actionTypes.TOTAL_RATING_CHANGED,
+		value,
 	};
 };
