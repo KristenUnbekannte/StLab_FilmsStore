@@ -1,6 +1,6 @@
 import actionTypes from './actionTypes';
 import baseUrl from '../../../Common/BaseUrl';
-import header from '../../../Common/FetchHeader';
+import header from '../../../Common/AxiosHeader';
 
 export const commentSendRequested = (id, message) => {
 	return {

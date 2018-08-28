@@ -9,5 +9,8 @@ namespace FilmsStore.Domain.Interfaces
         Task<IList<Film>> GetFilmsAsync();
         Task<Film> GetFilmByIdAsync(int id);
         Task UpdateFilmByIdAsync(Film film);
+        Task AddFilmAsync(Film film);
+        Task EditFilmAsync(Film film);
+        Task<Film> DeleteFilmAsync(int id);
     }
 }

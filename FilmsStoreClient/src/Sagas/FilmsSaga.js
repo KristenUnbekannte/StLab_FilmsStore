@@ -3,10 +3,11 @@ import {
 	filmsLoaded,
 	filmsError,
 } from '../modules/FilmsList/actions/FilmsListActions';
+import actionTypes from '../modules/FilmsList/actions/actionTypes';
 import axios from 'axios';
 
 export function* watcherFilms() {
-	yield takeLatest('FILMS_REQUESTED', workerSaga);
+	yield takeLatest(actionTypes.FILMS_REQUESTED, workerSaga);
 }
 
 function fetchFilms(action) {

@@ -1,9 +1,10 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using System.Threading.Tasks;
+using FilmsStore.Domain.Entities;
 
 namespace FilmsStore.BusinessLogic.Interfaces
 {
     public interface ITokenService
     {
-        string GetToken(IdentityUser user);
+        Task<string> GetToken(User user);
     }
 }

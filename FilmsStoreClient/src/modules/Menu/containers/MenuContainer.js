@@ -14,7 +14,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import * as actions from '../../Authorization/actions/UserActions';
 import * as filmDetailsActions from '../../FilmDetails/actions/FilmDetailsActions';
-import TokenService from '../../../Services/TokenService';
+import SessionService from '../../../Services/SessionService';
 import styles from '../view/styles';
 
 class MenuContainer extends React.Component {
@@ -39,13 +39,13 @@ class MenuContainer extends React.Component {
 	}
 	handleLogOut() {
 		this.handleClose();
-		TokenService.removeToken();
+		SessionService.removeAllItems();
 		this.props.user.userUnauthorized();
 		this.props.filmDetails.userRatingReset();
 	}
 
 	render() {
-		const { classes } = this.props;
+		const { classes, isAuthorized } = this.props;
 		const { anchorEl } = this.state;
 		const open = Boolean(anchorEl);
 
@@ -68,6 +68,12 @@ class MenuContainer extends React.Component {
 					>
 						FilmsStore
 					</Typography>
+					{isAuthorized ? (
+						<Typography
+							variant="title"
+							className={classes.userName}
+						>{`Hello, ${SessionService.getItem('UserName')}`}</Typography>
+					) : null}
 					<div>
 						<IconButton
 							aria-owns={open ? 'menu-appbar' : null}
@@ -91,7 +97,7 @@ class MenuContainer extends React.Component {
 							open={open}
 							onClose={this.handleClose}
 						>
-							{this.props.isAuthorized ? (
+							{isAuthorized ? (
 								<MenuItem onClick={this.handleLogOut}>Sign out</MenuItem>
 							) : (
 								[

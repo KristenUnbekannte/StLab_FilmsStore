@@ -30,9 +30,12 @@ namespace FilmsStore.BusinessLogic.Services
             AuthorizationResultModel registrationResult = new AuthorizationResultModel();
             if (result.Succeeded)
             {
+                await _userManager.AddToRoleAsync(user, "user");
                 await _signInManager.SignInAsync(user, false);
+
                 registrationResult.IsSuccessful = true;
-                registrationResult.Token = _tokenService.GetToken(user);
+                registrationResult.Token = await _tokenService.GetToken(user);
+                registrationResult.UserName = model.UserName;
                 return registrationResult;
             }
             foreach (var error in result.Errors)
@@ -49,8 +52,9 @@ namespace FilmsStore.BusinessLogic.Services
             if (result.Succeeded)
             {
                 User user = await _userManager.FindByNameAsync(model.UserName);
-                loginResult.Token = _tokenService.GetToken(user);
+                loginResult.Token = await _tokenService.GetToken(user);
                 loginResult.IsSuccessful = true;
+                loginResult.UserName = model.UserName;
                 return loginResult;
             }
             loginResult.Errors.Add("Invalid username or password");

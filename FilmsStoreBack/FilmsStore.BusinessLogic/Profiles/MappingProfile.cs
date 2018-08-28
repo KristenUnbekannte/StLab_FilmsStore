@@ -10,6 +10,7 @@ namespace FilmsStore.BusinessLogic.Profiles
             CreateMap<FilmModel, Film>();
             CreateMap<UserModel, User>();
             CreateMap<RatingModel, Rating>();
+            CreateMap<FilmDetailsModel, Film>();
             CreateMap<CommentModel, Comment>();
             CreateMap<Comment, CommentModel>().ForMember(c => c.UserName, c => c.MapFrom(m => m.User.UserName));
         }

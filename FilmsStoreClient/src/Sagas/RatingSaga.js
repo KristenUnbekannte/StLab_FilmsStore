@@ -1,32 +1,22 @@
 import { takeLatest, call, put } from 'redux-saga/effects';
 import {
 	userRatingSet,
-	userRatingReset,
 	updateTotalRatingRequested,
 } from '../modules/FilmDetails/actions/FilmDetailsActions';
 import { ratingCleared } from '../modules/StarsRating/actions/RatingActions';
 import { userUnauthorized } from '../modules/Authorization/actions/UserActions';
-import TokenService from '../Services/TokenService';
+import SessionService from '../Services/SessionService';
+import actionTypes from '../modules/StarsRating/actions/actionTypes';
 import axios from 'axios';
 
 export function* watcherRating() {
-	yield takeLatest('USER_RATING_REQUESTED', workerSaga);
-	yield takeLatest('RATING_SEND_REQUESTED', workerRatingSaga);
+	yield takeLatest(actionTypes.RATING_SEND_REQUESTED, workerRatingSaga);
 }
 
 function fetchRating(action) {
 	return axios({
 		...action.request,
 	});
-}
-
-function* workerSaga(action) {
-	try {
-		const response = yield call(fetchRating, action);
-		yield put(userRatingSet(response.data));
-	} catch (error) {
-		yield put(userRatingReset());
-	}
 }
 
 function* workerRatingSaga(action) {
@@ -39,7 +29,7 @@ function* workerRatingSaga(action) {
 		if (error.response) {
 			if (error.response.status === 401) {
 				yield put(userUnauthorized());
-				TokenService.removeToken();
+				SessionService.removeAllItems();
 				action.history.push('/login');
 			}
 		}

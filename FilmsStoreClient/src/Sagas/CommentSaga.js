@@ -5,15 +5,16 @@ import {
 	commentsError,
 } from '../modules/CommentsList/actions/CommentsListActions';
 import { userUnauthorized } from '../modules/Authorization/actions/UserActions';
-import TokenService from '../Services/TokenService';
+import SessionService from '../Services/SessionService';
+import actionTypes from '../modules/CommentsList/actions/actionTypes';
 import axios from 'axios';
 
 export function* watcherComments() {
-	yield takeLatest('COMMENTS_GET_REQUESTED', getCommentsSaga);
-	yield takeLatest('COMMENT_SEND_REQUESTED', sendCommentSaga);
+	yield takeLatest(actionTypes.COMMENTS_GET_REQUESTED, getCommentsSaga);
+	yield takeLatest(actionTypes.COMMENT_SEND_REQUESTED, sendCommentSaga);
 }
 
-function fetchComments(action) {
+function axiosComments(action) {
 	return axios({
 		...action.request,
 	});
@@ -21,7 +22,7 @@ function fetchComments(action) {
 
 function* getCommentsSaga(action) {
 	try {
-		const response = yield call(fetchComments, action);
+		const response = yield call(axiosComments, action);
 		const comments = response.data;
 		yield put(commentsLoaded(comments));
 	} catch (error) {
@@ -31,13 +32,13 @@ function* getCommentsSaga(action) {
 
 function* sendCommentSaga(action) {
 	try {
-		yield call(fetchComments, action);
+		yield call(axiosComments, action);
 		yield put(commentsGetRequested(action.request.data.filmId));
 	} catch (error) {
 		if (error.response) {
 			if (error.response.status === 401) {
 				yield put(userUnauthorized());
-				TokenService.removeToken();
+				SessionService.removeAllItems();
 				this.props.history.push('/login');
 			}
 		}

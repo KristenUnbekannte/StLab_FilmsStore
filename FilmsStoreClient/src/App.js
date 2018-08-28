@@ -23,7 +23,6 @@ const reducers = combineReducers({
 	comments: CommentsListReducer,
 	rating: RatingReducer,
 });
-
 const reduxDevTools =
 	window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__();
 

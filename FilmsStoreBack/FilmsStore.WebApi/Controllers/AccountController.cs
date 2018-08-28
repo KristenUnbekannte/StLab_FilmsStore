@@ -28,7 +28,7 @@ namespace FilmsStore.WebApi.Controllers
                 AuthorizationResultModel result = await _userService.RegisterAsync(user);
                 if (result.IsSuccessful)
                 {
-                    return Ok(new { access_token = result.Token });
+                    return Ok(new { access_token = result.Token, userName = result.UserName });
                 }
                 return BadRequest(result.Errors );
             }
@@ -45,7 +45,7 @@ namespace FilmsStore.WebApi.Controllers
                 AuthorizationResultModel result = await _userService.LoginAsync(user);
                 if (result.IsSuccessful)
                 {
-                    return Ok(new { access_token = result.Token });
+                    return Ok(new { access_token = result.Token, userName = result.UserName });
                 }
                 return BadRequest(result.Errors);
             }

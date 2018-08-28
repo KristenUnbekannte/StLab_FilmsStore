@@ -13,3 +13,10 @@ export const validateMatchPassword = (password, allInputs) => {
 		? undefined
 		: 'Password does not match';
 };
+
+export const validateYear = year => {
+	const currentYear = new Date().getFullYear();
+	return year > 1888 && year < currentYear + 2
+		? undefined
+		: 'Field is incorrect';
+};

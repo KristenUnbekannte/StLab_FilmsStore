@@ -3,23 +3,27 @@ import {
 	userAuthorized,
 	authErrorSet,
 } from '../modules/Authorization/actions/UserActions';
-import TokenService from '../Services/TokenService';
+import actionTypes from '../modules/Authorization/actions/actionTypes';
+import SessionService from '../Services/SessionService';
 import axios from 'axios';
 
 export function* watcherAuth() {
-	yield takeLatest('AUTH_REQUESTED', workerSaga);
+	yield takeLatest(actionTypes.AUTH_REQUESTED, authSaga);
 }
 
-function fetchAuth(action) {
+function axiosAuth(action) {
 	return axios({
 		...action.request,
 	});
 }
 
-function* workerSaga(action) {
+function* authSaga(action) {
 	try {
-		const response = yield call(fetchAuth, action);
-		TokenService.setToken(response.data.access_token);
+		const response = yield call(axiosAuth, action);
+		const { access_token, userName } = response.data;
+
+		SessionService.setItem('Token', access_token);
+		SessionService.setItem('UserName', userName);
 		yield put(userAuthorized());
 		yield action.history.push(window.history.back());
 	} catch (error) {

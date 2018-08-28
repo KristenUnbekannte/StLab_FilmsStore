@@ -4,6 +4,7 @@ import { watcherFilmDetails } from './FilmDetailsSaga';
 import { watcherComments } from './CommentSaga';
 import { watcherRating } from './RatingSaga';
 import { watcherAuth } from './AuthorizationSaga';
+import { watcherAdminFilm } from './AdminSaga';
 
 export function* rootSaga() {
 	yield all([
@@ -12,5 +13,6 @@ export function* rootSaga() {
 		watcherComments(),
 		watcherRating(),
 		watcherAuth(),
+		watcherAdminFilm(),
 	]);
 }

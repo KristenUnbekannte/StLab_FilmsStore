@@ -37,11 +37,25 @@ namespace FilmsStore.BusinessLogic.Services
             film.Rating = await _ratingRepository.GetAverageRatingByFilmId(id);
             await _filmRepository.UpdateFilmByIdAsync(film);
         }
-
         public async Task<double> GetTotalRatingByFilmIdAsync(int id)
         {
             Film film = await _filmRepository.GetFilmByIdAsync(id);
             return film.Rating;
+        }
+        public async Task AddFilmAsync(FilmDetailsModel model)
+        {
+            Film film = _mapper.Map<FilmDetailsModel, Film>(model);
+            await _filmRepository.AddFilmAsync(film);
+        }
+        public async Task EditFilmAsync(FilmDetailsModel model)
+        {
+            Film film = _mapper.Map<FilmDetailsModel, Film>(model);
+            await _filmRepository.EditFilmAsync(film);
+        }
+        public async Task<FilmDetailsModel> DeleteFilmAsync(int id)
+        {
+            Film film = await _filmRepository.DeleteFilmAsync(id);
+            return _mapper.Map<Film, FilmDetailsModel>(film);
         }
     }
 }

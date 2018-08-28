@@ -7,6 +7,9 @@ export default styles => ({
 		flexGrow: 1,
 		textDecoration: 'none',
 	},
+	userName: {
+		color: 'white',
+	},
 	menuButton: {
 		marginRight: 20,
 	},

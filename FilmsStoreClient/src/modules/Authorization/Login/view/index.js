@@ -41,7 +41,7 @@ let LoginForm = ({ handleSubmit, authError, classes }) => {
 					color="primary"
 					className={classes.button}
 				>
-					Отправить
+					Send
 				</Button>
 			</form>
 		</Paper>

@@ -2,17 +2,33 @@
 using System.Linq;
 using FilmsStore.Domain.Entities;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace FilmsStore.Domain.EF
 {
     public class DbInitializer
     {
-        public static void Seed(IApplicationBuilder applicationBuilder)
+        public static async void Seed(IApplicationBuilder applicationBuilder)
         {
             using (var serviceScope = applicationBuilder.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
             {
                 ApplicationContext context = serviceScope.ServiceProvider.GetService<ApplicationContext>();
+                UserManager<User> userManager = serviceScope.ServiceProvider.GetService<UserManager<User>>();
+                RoleManager<IdentityRole> roleManager = serviceScope.ServiceProvider.GetService<RoleManager<IdentityRole>>();
+
+                if (!context.Users.Any())
+                {
+                    await roleManager.CreateAsync(new IdentityRole("admin"));
+                    await roleManager.CreateAsync(new IdentityRole("user"));
+
+                    var user = new User { UserName = "admin" };
+                    IdentityResult result = await userManager.CreateAsync(user, "admin2018");
+                    if (result.Succeeded)
+                    {
+                        await userManager.AddToRoleAsync(user, "admin");
+                    }
+                }
                 if (!context.Films.Any())
                 {
                     context.Films.Add(new Film
@@ -257,7 +273,7 @@ namespace FilmsStore.Domain.EF
                         Producer = "Roland Emmerich",
                         ImageUrl = "https://images-na.ssl-images-amazon.com/images/I/A1JtBGpgX2L._RI_.jpg",
                         VideoUrl = "https://www.youtube.com/embed/gvSFCUpRrhA",
-                        Genre = "Action,",
+                        Genre = "Action",
                         Description = "Jack Hall, paleoclimatologist, must make a daring trek from Washington," +
                         " D.C. to New York City, to reach his son, trapped in the cross-hairs of a sudden international storm which plunges the planet into a new Ice Age.",
                         Images = new List<Image>()

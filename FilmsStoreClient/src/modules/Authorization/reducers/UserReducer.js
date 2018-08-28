@@ -1,8 +1,8 @@
 import actionTypes from '../actions/actionTypes';
-import TokenService from '../../../Services/TokenService';
+import SessionService from '../../../Services/SessionService';
 
 const initialState = {
-	isAuthorized: TokenService.isSetToken(),
+	isAuthorized: SessionService.isSetItem('Token'),
 	authError: '',
 };
 

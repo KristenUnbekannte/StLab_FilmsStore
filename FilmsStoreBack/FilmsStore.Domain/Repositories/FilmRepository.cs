@@ -31,5 +31,28 @@ namespace FilmsStore.Domain.Repositories
             }
             await _context.SaveChangesAsync();
         }
+        public async Task AddFilmAsync(Film film)
+        {
+            _context.Films.Add(film);
+            await _context.SaveChangesAsync();
+        }
+        public async Task EditFilmAsync(Film film)
+        {
+            if (_context.Films.Any(f => f.FilmId == film.FilmId))
+            {
+                _context.Films.Update(film);
+            }
+            await _context.SaveChangesAsync();
+        }
+        public async Task<Film> DeleteFilmAsync(int id)
+        {
+            Film deletedFilm = await _context.Films.FindAsync(id);
+            if (deletedFilm != null)
+            {
+                _context.Films.Remove(deletedFilm);
+                await _context.SaveChangesAsync();
+            }
+            return deletedFilm;
+        }
     }
 }

@@ -10,5 +10,8 @@ namespace FilmsStore.BusinessLogic.Interfaces
         Task<FilmDetailsModel> GetFilmByIdAsync(int id);
         Task UpdateTotalRatingByFilmIdAsync(int id);
         Task<double> GetTotalRatingByFilmIdAsync(int id);
+        Task AddFilmAsync(FilmDetailsModel model);
+        Task EditFilmAsync(FilmDetailsModel model);
+        Task<FilmDetailsModel> DeleteFilmAsync(int id);
     }
 }
