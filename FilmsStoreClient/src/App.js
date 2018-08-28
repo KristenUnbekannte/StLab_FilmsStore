@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
+import { createStore, combineReducers, applyMiddleware } from 'redux';
 import createSagaMiddleware from 'redux-saga';
 import { reducer as formReducer } from 'redux-form';
 import { rootSaga } from './Sagas/rootSaga';
@@ -23,15 +23,14 @@ const reducers = combineReducers({
 	comments: CommentsListReducer,
 	rating: RatingReducer,
 });
+
 const reduxDevTools =
 	window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__();
 
 const store = createStore(
 	reducers,
-	compose(
-		applyMiddleware(sagaMiddleware),
-		reduxDevTools
-	)
+	reduxDevTools,
+	applyMiddleware(sagaMiddleware)
 );
 
 sagaMiddleware.run(rootSaga);
