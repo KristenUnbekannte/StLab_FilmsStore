@@ -4,14 +4,14 @@ export const validatePassword = password => {
 		: undefined;
 };
 
-export const validateUserName = userName => {
-	return userName ? undefined : 'Field must not be empty';
-};
-
 export const validateMatchPassword = (password, allInputs) => {
 	return password === allInputs.password
 		? undefined
 		: 'Password does not match';
+};
+
+export const validateSimpleField = field => {
+	return field ? undefined : 'Field must not be empty';
 };
 
 export const validateYear = year => {

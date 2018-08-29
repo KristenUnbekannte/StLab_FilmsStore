@@ -2,6 +2,7 @@ import React from 'react';
 import { Field, reduxForm } from 'redux-form';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
+import { validateSimpleField } from '../../../Common/FormValidation';
 import {
 	List,
 	ListItem,
@@ -38,6 +39,7 @@ let CommentsList = ({ classes, comments, handleSubmit, isAuth }) => {
 					component={renderField}
 					type="text"
 					isAuth={isAuth}
+					validate={validateSimpleField}
 				/>
 				<Button
 					type="submit"

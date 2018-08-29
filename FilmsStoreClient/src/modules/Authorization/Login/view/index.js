@@ -5,7 +5,7 @@ import { withStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
 import {
 	validatePassword,
-	validateUserName,
+	validateSimpleField,
 } from '../../../../Common/FormValidation';
 import renderField from './renderFiled';
 import Alert from '../../../Alert/view';
@@ -26,7 +26,7 @@ let LoginForm = ({ handleSubmit, authError, classes }) => {
 					component={renderField}
 					type="text"
 					label="Username"
-					validate={validateUserName}
+					validate={validateSimpleField}
 				/>
 				<Field
 					name="password"

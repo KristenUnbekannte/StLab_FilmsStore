@@ -1,35 +1,26 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
-import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
-import AccountCircle from '@material-ui/icons/AccountCircle';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import MenuItem from '@material-ui/core/MenuItem';
-import Menu from '@material-ui/core/Menu';
+import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/core/styles';
+import { AppBar, Toolbar, Typography, MenuItem, Menu } from '@material-ui/core';
+import IconButton from '@material-ui/core/IconButton';
+import AccountCircle from '@material-ui/icons/AccountCircle';
 import * as actions from '../../Authorization/actions/UserActions';
 import * as filmDetailsActions from '../../FilmDetails/actions/FilmDetailsActions';
 import SessionService from '../../../Services/SessionService';
 import styles from '../view/styles';
 
 class MenuContainer extends React.Component {
-	D;
 	constructor(props) {
 		super(props);
-		this.state = {
-			anchorEl: null,
-		};
+		this.state = { anchorEl: null };
 
 		this.handleMenu = this.handleMenu.bind(this);
 		this.handleClose = this.handleClose.bind(this);
 		this.handleLogOut = this.handleLogOut.bind(this);
 	}
-
 	handleMenu(event) {
 		this.setState({ anchorEl: event.currentTarget });
 	}
@@ -43,36 +34,21 @@ class MenuContainer extends React.Component {
 		this.props.user.userUnauthorized();
 		this.props.filmDetails.userRatingReset();
 	}
-
 	render() {
-		const { classes, isAuthorized } = this.props;
+		const { classes, isAuthorized, role } = this.props;
 		const { anchorEl } = this.state;
 		const open = Boolean(anchorEl);
 
 		return (
 			<AppBar position="static" className={classes.root}>
 				<Toolbar>
-					<IconButton
-						className={classes.menuButton}
-						color="inherit"
-						aria-label="Menu"
-					>
-						<MenuIcon />
-					</IconButton>
-					<Typography
-						variant="title"
-						color="inherit"
-						className={classes.title}
-						component={Link}
-						to="/"
-					>
+					<Typography className={classes.title} component={Link} to="/">
 						FilmsStore
 					</Typography>
 					{isAuthorized ? (
-						<Typography
-							variant="title"
-							className={classes.userName}
-						>{`Hello, ${SessionService.getItem('UserName')}`}</Typography>
+						<Typography className={classes.userName}>
+							{`Hello, ${SessionService.getItem('userName')}`}
+						</Typography>
 					) : null}
 					<div>
 						<IconButton
@@ -80,23 +56,27 @@ class MenuContainer extends React.Component {
 							aria-haspopup="true"
 							onClick={this.handleMenu}
 							color="inherit"
+							className={classes.menuButton}
 						>
 							<AccountCircle />
 						</IconButton>
 						<Menu
 							id="menu-appbar"
 							anchorEl={anchorEl}
-							anchorOrigin={{
-								vertical: 'top',
-								horizontal: 'right',
-							}}
-							transformOrigin={{
-								vertical: 'top',
-								horizontal: 'right',
-							}}
+							anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+							transformOrigin={{ vertical: 'top', horizontal: 'right' }}
 							open={open}
 							onClose={this.handleClose}
 						>
+							{role === 'admin' ? (
+								<MenuItem
+									onClick={this.handleClose}
+									component={Link}
+									to="/admin"
+								>
+									Admin panel
+								</MenuItem>
+							) : null}
 							{isAuthorized ? (
 								<MenuItem onClick={this.handleLogOut}>Sign out</MenuItem>
 							) : (

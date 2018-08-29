@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace FilmsStore.Domain.Repositories
 {
-    public class FilmRepository: IFilmRepository
+    public class FilmRepository : IFilmRepository
     {
         private readonly ApplicationContext _context;
         public FilmRepository(ApplicationContext context)
@@ -21,7 +21,7 @@ namespace FilmsStore.Domain.Repositories
         }
         public async Task<Film> GetFilmByIdAsync(int id)
         {
-            return await _context.Films.Include(f => f.Images).FirstOrDefaultAsync(f => f.FilmId == id);
+            return await _context.Films.FirstOrDefaultAsync(f => f.FilmId == id);
         }
         public async Task UpdateFilmByIdAsync(Film film)
         {

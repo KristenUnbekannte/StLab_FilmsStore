@@ -15,6 +15,5 @@ namespace FilmsStore.BusinessLogic.Models
         public string ImageUrl { get; set; }
         public string VideoUrl { get; set; }
         public string Description { get; set; }
-        public ICollection<Image> Images { get; set; }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Linq;
+using System.Threading.Tasks;
 using AutoMapper;
 using FilmsStore.BusinessLogic.Interfaces;
 using FilmsStore.BusinessLogic.Models;
@@ -30,12 +31,15 @@ namespace FilmsStore.BusinessLogic.Services
             AuthorizationResultModel registrationResult = new AuthorizationResultModel();
             if (result.Succeeded)
             {
-                await _userManager.AddToRoleAsync(user, "user");
+                string role = "user";
+                await _userManager.AddToRoleAsync(user, role);
                 await _signInManager.SignInAsync(user, false);
 
                 registrationResult.IsSuccessful = true;
                 registrationResult.Token = await _tokenService.GetToken(user);
                 registrationResult.UserName = model.UserName;
+                registrationResult.Role = role;
+
                 return registrationResult;
             }
             foreach (var error in result.Errors)
@@ -52,9 +56,12 @@ namespace FilmsStore.BusinessLogic.Services
             if (result.Succeeded)
             {
                 User user = await _userManager.FindByNameAsync(model.UserName);
+
                 loginResult.Token = await _tokenService.GetToken(user);
                 loginResult.IsSuccessful = true;
                 loginResult.UserName = model.UserName;
+                loginResult.Role = (await _userManager.GetRolesAsync(user)).First();
+
                 return loginResult;
             }
             loginResult.Errors.Add("Invalid username or password");

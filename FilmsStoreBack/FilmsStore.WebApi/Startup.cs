@@ -40,12 +40,14 @@ namespace FilmsStore.WebApi
             services.AddTransient<ICommentRepository, CommentRepository>();
             services.AddTransient<IUserRepository, UserRepository>();
             services.AddTransient<IRatingRepository, RatingRepository>();
+            services.AddTransient<IImageRepository, ImageRepository>();
 
             services.AddTransient<IFilmService, FilmService>();
             services.AddTransient<IUserService, UserService>();
             services.AddTransient<ICommentService, CommentService>();
             services.AddTransient<ITokenService, TokenService>();
             services.AddTransient<IRatingService, RatingService>();
+            services.AddTransient<IImageService, ImageService>();
 
             string connection = Configuration.GetConnectionString("DefaultConnection");
             services.AddDbContext<ApplicationContext>(options => options.UseSqlServer(connection));

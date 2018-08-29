@@ -4,7 +4,7 @@ import { Paper, Button } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 import {
 	validatePassword,
-	validateUserName,
+	validateSimpleField,
 	validateMatchPassword,
 } from '../../../../Common/FormValidation';
 import PropTypes from 'prop-types';
@@ -27,7 +27,7 @@ let RegistrationForm = ({ handleSubmit, authError, classes }) => {
 					component={renderField}
 					type="text"
 					label="Username"
-					validate={validateUserName}
+					validate={validateSimpleField}
 				/>
 				<Field
 					name="password"

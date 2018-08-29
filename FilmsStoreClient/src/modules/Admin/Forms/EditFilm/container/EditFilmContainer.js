@@ -3,9 +3,12 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { formValueSelector } from 'redux-form';
-import * as filmActions from '../../../FilmDetails/actions/FilmDetailsActions';
-import * as actions from '../../actions/AdminActions';
+import { withStyles } from '@material-ui/core/styles';
+import AdminImageListContainer from '../../../ImageList/container/AdminImageListContainer';
+import * as filmActions from '../../../../FilmDetails/actions/FilmDetailsActions';
+import * as actions from '../../../actions/AdminActions';
 import EditFilmForm from '../view';
+import styles from '../view/styles';
 
 class EditFilmContainer extends React.PureComponent {
 	constructor(props) {
@@ -17,7 +20,7 @@ class EditFilmContainer extends React.PureComponent {
 		this.handleSubmit = this.handleSubmit.bind(this);
 	}
 	componentDidMount() {
-		this.props.film.filmDetailsRequested(this.state.id);
+		this.state.id ? this.props.film.filmDetailsRequested(this.state.id) : this.props.film.filmDetailsCleared();
 	}
 	handleSubmit(values) {
 		const data = {
@@ -28,11 +31,15 @@ class EditFilmContainer extends React.PureComponent {
 
 	render() {
 		return (
-			<EditFilmForm
-				onSubmit={this.handleSubmit}
-				imageUrl={this.props.imageUrl}
-				images={this.props.images}
-			/>
+			<div className={this.props.classes.editFilmContainer}>
+				<EditFilmForm
+					onSubmit={this.handleSubmit}
+					imageUrl={this.props.imageUrl}
+					images={this.props.images}
+					filmId={this.state.id}
+				/>
+				<AdminImageListContainer filmId={this.state.id} />
+			</div>
 		);
 	}
 }
@@ -46,7 +53,7 @@ EditFilmContainer.propTypes = {
 
 const mapStateToProps = state => {
 	return {
-		...formValueSelector('editfilm')(state, 'imageUrl', 'images'),
+		...formValueSelector('editfilm')(state, 'imageUrl', 'name'),
 	};
 };
 
@@ -55,7 +62,9 @@ const mapDispatchToProps = dispatch => ({
 	film: bindActionCreators({ ...filmActions }, dispatch),
 });
 
-export default connect(
+const EditFilm = connect(
 	mapStateToProps,
 	mapDispatchToProps
 )(EditFilmContainer);
+
+export default withStyles(styles)(EditFilm);

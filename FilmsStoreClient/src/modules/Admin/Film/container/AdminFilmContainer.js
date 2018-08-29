@@ -1,8 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { withStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/core/styles';
 import * as actions from '../../actions/AdminActions';
 import AdminFilm from '../view';
 import styles from '../view/styles';
@@ -27,10 +27,10 @@ class AdminFilmContainer extends React.PureComponent {
 	}
 
 	filmDelete() {
-		const { filmId } = this.props.film;
-		const { filmDeleteRequested } = this.props;
-		filmDeleteRequested(filmId);
 		this.setState({ open: false });
+		const { filmDeleteRequested, film } = this.props;
+
+		filmDeleteRequested(film.filmId);
 	}
 	render() {
 		return (

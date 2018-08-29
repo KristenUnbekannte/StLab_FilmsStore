@@ -24,8 +24,8 @@ function axiosFilmDetails(action) {
 function* filmRequestSaga(action) {
 	try {
 		const response = yield call(axiosFilmDetails, action);
-		const films = response.data;
-		yield put(filmDetailsLoaded(films));
+		const film = response.data;
+		yield put(filmDetailsLoaded(film));
 	} catch (error) {
 		yield put(filmDetailsError(error.toString()));
 	}

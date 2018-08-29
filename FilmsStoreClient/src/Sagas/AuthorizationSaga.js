@@ -20,11 +20,9 @@ function axiosAuth(action) {
 function* authSaga(action) {
 	try {
 		const response = yield call(axiosAuth, action);
-		const { access_token, userName } = response.data;
+		SessionService.setItems(response.data);
 
-		SessionService.setItem('Token', access_token);
-		SessionService.setItem('UserName', userName);
-		yield put(userAuthorized());
+		yield put(userAuthorized(response.data.role));
 		yield action.history.push(window.history.back());
 	} catch (error) {
 		error.response

@@ -1,16 +1,19 @@
 export default styles => ({
 	root: {
-		backgroundColor: '#fb8c00',
+		backgroundColor: 'black',
 		marginBottom: 10,
 	},
 	title: {
 		flexGrow: 1,
 		textDecoration: 'none',
+		color: 'gray',
+		fontSize: 20,
 	},
 	userName: {
-		color: 'white',
+		color: 'gray',
+		fontSize: 18,
 	},
 	menuButton: {
-		marginRight: 20,
+		color: 'gray',
 	},
 });

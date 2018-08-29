@@ -77,7 +77,7 @@ const FilmDetail = ({ classes, film, history }) => {
 					allowFullScreen
 				/>
 			</Card>
-			<ImagesListContainer />
+			<ImagesListContainer filmId={film.filmId} />
 			<CommentsListContainer filmId={film.filmId} history={history} />
 		</React.Fragment>
 	);

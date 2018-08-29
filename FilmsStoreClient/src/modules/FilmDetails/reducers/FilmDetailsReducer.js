@@ -37,6 +37,11 @@ const FilmDetailsReducer = (state = initialState, action) => {
 				error: action.error,
 				isLoaded: false,
 			};
+		case actionTypes.FILM_DETAILS_CLEARED:
+			return {
+				...state,
+				...initialState
+			};
 		case actionTypes.USER_RATING_REQUESTED:
 			return {
 				...state,

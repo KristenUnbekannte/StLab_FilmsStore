@@ -1,6 +1,6 @@
 export default styles => ({
 	container: {
-		maxWidth: 1060,
+		maxWidth: 1000,
 		margin: 'auto',
 		display: 'flex',
 		justifyContent: 'space-around',

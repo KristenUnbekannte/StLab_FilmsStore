@@ -1,4 +1,8 @@
 export default styles => ({
+	editFilmContainer:{
+		maxWidth: 900,
+		margin: 'auto'
+	},
 	error: {
 		marginBottom: 15,
 	},
@@ -6,12 +10,14 @@ export default styles => ({
 		display: 'flex',
 		flexWrap: 'wrap',
 		justifyContent: 'space-around',
-		maxWidth: 940,
 		padding: 10,
-		margin: 'auto',
+		marginBottom: 20,
+		border: '1px solid gray',
+		boxShadow: '1px 1px 10px black',
+		borderRadius: 20,
 	},
 	input: {
-		width: 500,
+		width: 400,
 		marginBottom: 10,
 		'&:after': {
 			borderBottomColor: '3f51b5',
@@ -23,10 +29,11 @@ export default styles => ({
 	image: {
 		width: 340,
 		maxHeight: 520,
-		border: '2px solid orange',
+		border: '2px solid gray',
+		borderRadius: 20,
 	},
 	form: {
-		width: 500,
+		width: 420,
 		marginLeft: 10,
 	},
 });

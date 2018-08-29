@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { withStyles } from '@material-ui/core/styles';
 import CircularProgress from '@material-ui/core/CircularProgress';
-import Paper from '@material-ui/core/Paper';
 import PropTypes from 'prop-types';
 import * as actions from '../actions/FilmsListActions';
 import Film from '../../Film/view';
@@ -18,11 +17,11 @@ class FilmsListContainer extends React.PureComponent {
 		return this.props.error ? (
 			<Alert error={this.props.error} />
 		) : this.props.isLoaded ? (
-			<Paper className={this.props.classes.container}>
+			<div className={this.props.classes.container}>
 				{this.props.films.map((item, i) => {
 					return <Film key={i} {...item} />;
 				})}
-			</Paper>
+			</div>
 		) : (
 			<div className={this.props.classes.progress}>
 				<CircularProgress size={80} color="secondary" />

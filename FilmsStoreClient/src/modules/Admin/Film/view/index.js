@@ -12,7 +12,7 @@ import {
 } from '@material-ui/core';
 import EditIcon from '@material-ui/icons/Edit';
 import StarIcon from '@material-ui/icons/Star';
-import DeleteAlert from './DeleteAlert';
+import DeleteAlert from '../../DeleteAlert/view';
 import styles from './styles';
 
 const Film = ({
@@ -51,11 +51,11 @@ const Film = ({
 						<EditIcon />
 					</Button>
 					<DeleteAlert
-						filmName={film.name}
+						itemName={film.name}
 						open={open}
 						handleClickOpen={handleClickOpen}
 						handleClose={handleClose}
-						filmDelete={filmDelete}
+						ItemDelete={filmDelete}
 					/>
 				</div>
 			</div>

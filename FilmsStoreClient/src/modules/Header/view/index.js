@@ -6,9 +6,9 @@ import styles from './styles';
 
 const Header = ({ classes }) => {
 	return (
-		<React.Fragment>
-			<MenuBar className={classes.header} />
-		</React.Fragment>
+		<div className={classes.header} >
+			<MenuBar/>
+		</div>
 	);
 };
 

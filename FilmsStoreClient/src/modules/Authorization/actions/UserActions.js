@@ -1,9 +1,10 @@
 import actionTypes from './actionTypes';
 import baseUrl from '../../../Common/BaseUrl';
 
-export const userAuthorized = () => {
+export const userAuthorized = role => {
 	return {
 		type: actionTypes.USER_AUTHORIZED,
+		role,
 	};
 };
 export const userUnauthorized = () => {

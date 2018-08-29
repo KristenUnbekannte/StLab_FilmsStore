@@ -315,7 +315,7 @@ namespace FilmsStore.Domain.EF
                         Producer = "Ellen Goldsmith",
                         ImageUrl = "http://localhost:58038/images/maze_runner/maze_runner.jpg",
                         VideoUrl = "https://www.youtube.com/embed/AwwbhhjQ9Xk",
-                        Genre = "Action,",
+                        Genre = "Action",
                         Description = "Thomas is deposited in a community of boys after his memory is erased," +
                         " soon learning they're all trapped in a maze that will require him to join forces with fellow \"runners\" for a shot at escape.",
                         Images = new List<Image>()

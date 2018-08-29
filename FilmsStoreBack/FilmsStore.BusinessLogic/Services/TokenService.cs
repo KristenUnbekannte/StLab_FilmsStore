@@ -16,9 +16,11 @@ namespace FilmsStore.BusinessLogic.Services
     public class TokenService : ITokenService
     {
         private readonly UserManager<User> _userManager;
-        public TokenService(UserManager<User> userManager)
+        private readonly IMapper _mapper;
+        public TokenService(UserManager<User> userManager, IMapper mapper)
         {
             _userManager = userManager;
+            _mapper = mapper;
         }
         public async Task<string> GetToken(User user)
         {

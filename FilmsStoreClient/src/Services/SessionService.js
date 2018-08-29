@@ -2,6 +2,11 @@ export default class SessionService {
 	static setItem(type, value) {
 		window.sessionStorage.setItem(type, value);
 	}
+	static setItems(object) {
+		Object.keys(object).forEach(key => {
+			window.sessionStorage.setItem(key, object[key]);
+		});
+	}
 	static getItem(type) {
 		return window.sessionStorage.getItem(type);
 	}
@@ -12,6 +17,6 @@ export default class SessionService {
 		return window.sessionStorage.getItem(type) ? true : false;
 	}
 	static removeAllItems() {
-		return window.sessionStorage.removeAllItems();
+		window.sessionStorage.clear();
 	}
 }

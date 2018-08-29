@@ -2,7 +2,8 @@ import actionTypes from '../actions/actionTypes';
 import SessionService from '../../../Services/SessionService';
 
 const initialState = {
-	isAuthorized: SessionService.isSetItem('Token'),
+	isAuthorized: SessionService.isSetItem('token'),
+	role: SessionService.getItem('role'),
 	authError: '',
 };
 
@@ -16,12 +17,14 @@ const UserReducer = (state = initialState, action) => {
 			return {
 				...state,
 				isAuthorized: true,
+				role: action.role,
 				authError: '',
 			};
 		case actionTypes.USER_UNAUTHORIZED:
 			return {
 				...state,
 				isAuthorized: false,
+				role: '',
 			};
 		case actionTypes.AUTH_ERROR_SET:
 			return {

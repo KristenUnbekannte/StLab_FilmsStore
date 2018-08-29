@@ -4,6 +4,7 @@ const actions = keymirror({
 	FILM_DETAILS_REQUESTED: null,
 	FILM_DETAILS_LOADED: null,
 	FILM_DETAILS_ERROR: null,
+	FILM_DETAILS_CLEARED: null,
 	USER_RATING_REQUESTED: null,
 	USER_RATING_SET: null,
 	USER_RATING_RESET: null,

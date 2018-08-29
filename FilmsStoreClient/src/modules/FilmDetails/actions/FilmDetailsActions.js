@@ -23,6 +23,11 @@ export const filmDetailsError = error => {
 		error,
 	};
 };
+export const filmDetailsCleared= () => {
+	return {
+		type: actionTypes.FILM_DETAILS_CLEARED,
+	};
+};
 export const userRatingRequested = id => {
 	return {
 		type: actionTypes.USER_RATING_REQUESTED,

@@ -12,6 +12,7 @@ namespace FilmsStore.WebApi.Profiles
             CreateMap<LoginViewModel, UserModel>();
             CreateMap<RatingViewModel, RatingModel>();
             CreateMap<CommentViewModel, CommentModel>();
+            CreateMap<ImageViewModel, ImageModel>();
             CreateMap<FilmModel, FilmViewModel>()
                 .ForMember(f => f.Rating, f => f.MapFrom(r => Math.Round(r.Rating, 1)));
             CreateMap<FilmDetailsModel, FilmDetailsViewModel>()

@@ -1,29 +1,27 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { withStyles } from '@material-ui/core/styles';
-import Paper from '@material-ui/core/Paper';
-import PropTypes from 'prop-types';
 import * as actions from '../../../FilmsList/actions/FilmsListActions';
 import CircularProgress from '@material-ui/core/CircularProgress';
-import AdminFilmContainer from './AdminFilmContainer';
+import AdminFilmContainer from '../../Film/container/AdminFilmContainer';
 import AddFilm from '../view/AddFilm';
 import styles from '../view/styles';
 
-class AdminFilmListContainer extends React.Component {
+class AdminFilmsListContainer extends React.Component {
 	componentDidMount() {
 		this.props.filmsRequested();
 	}
-
 	render() {
 		const { isLoaded, classes, films } = this.props;
 		return isLoaded ? (
-			<Paper className={classes.container}>
+			<div className={classes.container}>
 				<AddFilm />
 				{films.map((item, i) => {
 					return <AdminFilmContainer key={i} film={item} />;
 				})}
-			</Paper>
+			</div>
 		) : (
 			<div className={classes.progress}>
 				<CircularProgress size={80} color="secondary" />
@@ -32,10 +30,11 @@ class AdminFilmListContainer extends React.Component {
 	}
 }
 
-AdminFilmListContainer.propTypes = {
+AdminFilmsListContainer.propTypes = {
 	classes: PropTypes.object.isRequired,
 	films: PropTypes.array.isRequired,
 	filmsRequested: PropTypes.func.isRequired,
+	isLoaded: PropTypes.bool.isRequired,
 };
 
 const mapStateToProps = state => {
@@ -46,9 +45,9 @@ const mapDispatchToProps = dispatch => {
 	return bindActionCreators({ ...actions }, dispatch);
 };
 
-AdminFilmListContainer = connect(
+AdminFilmsListContainer = connect(
 	mapStateToProps,
 	mapDispatchToProps
-)(AdminFilmListContainer);
+)(AdminFilmsListContainer);
 
-export default withStyles(styles)(AdminFilmListContainer);
+export default withStyles(styles)(AdminFilmsListContainer);

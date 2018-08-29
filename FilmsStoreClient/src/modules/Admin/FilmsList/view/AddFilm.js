@@ -15,7 +15,7 @@ const AddFilm = ({ classes }) => {
 				color="secondary"
 				className={classes.addButton}
 				component={Link}
-				to={`admin/film/add`}
+				to={`admin/film`}
 			>
 				<AddIcon />
 			</Button>
