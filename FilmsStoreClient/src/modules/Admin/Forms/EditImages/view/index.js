@@ -21,7 +21,7 @@ let EditImagesForm = ({ handleSubmit, classes, url }) => {
 					label="Url"
 					rows={1}
 					multiline={true}
-					rowsMax={5}
+					rowsMax={6}
 					validate={validateSimpleField}
 				/>
 				<Button

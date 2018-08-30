@@ -1,6 +1,6 @@
 export default styles => ({
 	editFilmContainer: {
-		maxWidth: 900,
+		maxWidth: 800,
 		margin: 'auto',
 	},
 	error: {
@@ -17,7 +17,7 @@ export default styles => ({
 		borderRadius: 20,
 	},
 	input: {
-		width: 400,
+		width: 320,
 		marginBottom: 10,
 		'&:after': {
 			borderBottomColor: '3f51b5',
@@ -33,7 +33,7 @@ export default styles => ({
 		borderRadius: 20,
 	},
 	form: {
-		width: 420,
-		marginLeft: 10,
+		width: 340,
+		margin: '0 10px'
 	},
 });

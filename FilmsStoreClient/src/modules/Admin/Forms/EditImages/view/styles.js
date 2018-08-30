@@ -3,7 +3,7 @@ export default styles => ({
 		marginBottom: 15,
 	},
 	input: {
-		width: 340,
+		width: 320,
 		marginBottom: 10,
 		'&:after': {
 			borderBottomColor: '3f51b5',
@@ -13,7 +13,7 @@ export default styles => ({
 		width: '100%',
 	},
 	form: {
-		width: 360,
+		width: 340,
 		marginLeft: 10,
 	},
 	editButton: {
