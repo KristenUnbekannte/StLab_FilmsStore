@@ -26,26 +26,26 @@ class EditImagesContainer extends React.Component {
 	}
 
 	handleSubmit(values) {
-		this.handleClose()
+		this.handleClose();
 		const { imageId, url } = values;
 		const data = {
 			filmId: this.props.filmId,
 			imageId,
-			url
+			url,
 		};
 		this.props.imagesAddRequested(data);
-	};
+	}
 
 	handleClickOpen() {
 		this.setState({ open: true });
 		const { images, index, imageSet } = this.props;
 		imageSet(images[index]);
-	};
+	}
 
 	handleClose() {
 		this.setState({ open: false });
 		this.props.imageCleared();
-	};
+	}
 
 	render() {
 		const { classes, form, icon } = this.props;
@@ -71,7 +71,6 @@ class EditImagesContainer extends React.Component {
 							url={form.url}
 						/>
 					</DialogContent>
-
 				</Dialog>
 			</div>
 		);
@@ -88,15 +87,15 @@ EditImagesContainer.propTypes = {
 };
 
 const mapStateToProps = state => {
-	return ({
+	return {
 		form: { ...formValueSelector('editImage')(state, 'url', 'filmId') },
 		images: state.images.images,
-		filmId: state.filmDetails.filmId
-	});
+		filmId: state.filmDetails.filmId,
+	};
 };
 
 const mapDispatchToProps = dispatch => {
-	return bindActionCreators({ ...actions }, dispatch)
+	return bindActionCreators({ ...actions }, dispatch);
 };
 
 const EditImages = connect(

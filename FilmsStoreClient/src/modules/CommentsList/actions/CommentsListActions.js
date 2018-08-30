@@ -37,3 +37,9 @@ export const commentsError = error => {
 		error,
 	};
 };
+export const commentRequested = comment => {
+	return {
+		type: actionTypes.COMMENT_REQUESTED,
+		comment,
+	};
+};

@@ -20,7 +20,9 @@ class EditFilmContainer extends React.PureComponent {
 		this.handleSubmit = this.handleSubmit.bind(this);
 	}
 	componentDidMount() {
-		this.state.id ? this.props.film.filmDetailsRequested(this.state.id) : this.props.film.filmDetailsCleared();
+		this.state.id
+			? this.props.film.filmDetailsRequested(this.state.id)
+			: this.props.film.filmDetailsCleared();
 	}
 	handleSubmit(values) {
 		const data = {
@@ -38,7 +40,9 @@ class EditFilmContainer extends React.PureComponent {
 					images={this.props.images}
 					filmId={this.state.id}
 				/>
-				<AdminImageListContainer filmId={this.state.id} />
+				{this.state.id ? (
+					<AdminImageListContainer filmId={this.state.id} />
+				) : null}
 			</div>
 		);
 	}

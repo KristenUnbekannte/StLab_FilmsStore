@@ -6,7 +6,7 @@ namespace FilmsStore.BusinessLogic.Interfaces
 {
     public interface ICommentService
     {
-        Task AddCommentAsync(CommentModel comment);
+        Task<CommentModel> AddCommentAsync(CommentModel model);
         Task<IList<CommentModel>> GetCommentsByFilmIdAsync(int id);
     }
 }

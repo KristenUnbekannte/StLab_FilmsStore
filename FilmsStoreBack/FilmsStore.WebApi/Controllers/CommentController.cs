@@ -5,9 +5,11 @@ using FilmsStore.BusinessLogic.Interfaces;
 using FilmsStore.BusinessLogic.Models;
 using FilmsStore.WebApi.Extensions;
 using FilmsStore.WebApi.Models;
+using FilmsStore.WebApi.SignalR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR;
 
 namespace FilmsStore.WebApi.Controllers
 {
@@ -16,10 +18,12 @@ namespace FilmsStore.WebApi.Controllers
     {
         private readonly ICommentService _commentService;
         private readonly IMapper _mapper;
-        public CommentController(ICommentService commentService, IMapper mapper)
+        private readonly IHubContext<CommentHub> _hubContext;
+        public CommentController(ICommentService commentService, IMapper mapper, IHubContext<CommentHub> hubContext)
         {
             _commentService = commentService;
             _mapper = mapper;
+            _hubContext = hubContext;
         }
 
         // GET api/comment/5
@@ -38,8 +42,8 @@ namespace FilmsStore.WebApi.Controllers
             if (ModelState.IsValid)
             {
                 model.UserId = HttpContext.GetUserIdAsync();
-                CommentModel comment = _mapper.Map<CommentViewModel, CommentModel>(model);
-                await _commentService.AddCommentAsync(comment);
+                CommentModel comment = _mapper.Map<CommentViewModel, CommentModel>(model);              
+                await _hubContext.Clients.All.SendAsync("GetComment", await _commentService.AddCommentAsync(comment));
                 return Ok();
             }
             return BadRequest(ModelState);

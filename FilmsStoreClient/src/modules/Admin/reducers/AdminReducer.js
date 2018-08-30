@@ -3,7 +3,7 @@ import actionTypes from '../actions/actionTypes';
 const initialState = {
 	imageId: 0,
 	url: '',
-	filmId: 0
+	filmId: 0,
 };
 
 const AdminReducer = (state = initialState, action) => {
@@ -27,12 +27,12 @@ const AdminReducer = (state = initialState, action) => {
 		case actionTypes.IMAGE_SET:
 			return {
 				...state,
-				...action.image
+				...action.image,
 			};
 		case actionTypes.IMAGE_CLEARED:
 			return {
 				...state,
-				...initialState
+				...initialState,
 			};
 		default:
 			return state;

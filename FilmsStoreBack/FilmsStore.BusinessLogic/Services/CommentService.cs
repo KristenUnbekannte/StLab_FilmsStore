@@ -21,13 +21,14 @@ namespace FilmsStore.BusinessLogic.Services
             _userRepository = userRepository;
             _mapper = mapper;
         }
-        public async Task AddCommentAsync(CommentModel model)
+        public async Task<CommentModel> AddCommentAsync(CommentModel model)
         {
             Comment comment = _mapper.Map<CommentModel, Comment>(model);
             comment.Date = $"{ DateTime.Now.ToShortDateString()} {DateTime.Now.ToShortTimeString()}";
             comment.User = await _userRepository.GetUserByIdAsync(comment.UserId);
 
             await _commentRepository.AddCommentAsync(comment);
+            return _mapper.Map<Comment, CommentModel>(comment);
         }
         public async Task<IList<CommentModel>> GetCommentsByFilmIdAsync(int id)
         {

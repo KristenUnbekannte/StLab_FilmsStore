@@ -40,7 +40,7 @@ const FilmDetailsReducer = (state = initialState, action) => {
 		case actionTypes.FILM_DETAILS_CLEARED:
 			return {
 				...state,
-				...initialState
+				...initialState,
 			};
 		case actionTypes.USER_RATING_REQUESTED:
 			return {

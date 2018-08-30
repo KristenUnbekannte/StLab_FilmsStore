@@ -22,8 +22,8 @@ export default styles => ({
 		padding: 0,
 		margin: 10,
 	},
-	image:{
-		width:150,
-		height:100
-	}
+	image: {
+		width: 150,
+		height: 100,
+	},
 });

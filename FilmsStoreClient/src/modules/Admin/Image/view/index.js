@@ -1,10 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import {
-	Card,
-	CardMedia,
-} from '@material-ui/core';
+import { Card, CardMedia } from '@material-ui/core';
 import EditIcon from '@material-ui/icons/Edit';
 import DeleteAlert from '../../DeleteAlert/view';
 import EditImageContainer from '../../Forms/EditImages/container/EditImagesContainer';
@@ -17,25 +14,21 @@ const Film = ({
 	handleClickOpen,
 	handleClose,
 	ImageDelete,
-	index
+	index,
 }) => {
 	return (
 		<Card className={classes.card}>
-			<CardMedia
-				className={classes.cover}
-				image={image.url}
-				title="image"
-			/>
-				<div className={classes.buttonContainer}>
-				<EditImageContainer index={index} icon = {<EditIcon/>} img = {image}/>
-					<DeleteAlert
-						itemName = "image"
-						open={open}
-						handleClickOpen={handleClickOpen}
-						handleClose={handleClose}
-						ItemDelete={ImageDelete}
-					/>
-				</div>
+			<CardMedia className={classes.cover} image={image.url} title="image" />
+			<div className={classes.buttonContainer}>
+				<EditImageContainer index={index} icon={<EditIcon />} img={image} />
+				<DeleteAlert
+					itemName="image"
+					open={open}
+					handleClickOpen={handleClickOpen}
+					handleClose={handleClose}
+					ItemDelete={ImageDelete}
+				/>
+			</div>
 		</Card>
 	);
 };

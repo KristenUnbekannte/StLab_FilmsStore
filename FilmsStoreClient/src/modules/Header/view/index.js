@@ -6,8 +6,8 @@ import styles from './styles';
 
 const Header = ({ classes }) => {
 	return (
-		<div className={classes.header} >
-			<MenuBar/>
+		<div className={classes.header}>
+			<MenuBar />
 		</div>
 	);
 };

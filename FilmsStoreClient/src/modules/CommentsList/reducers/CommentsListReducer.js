@@ -30,6 +30,11 @@ const CommentsListReducer = (state = initialState, action) => {
 				error: action.error,
 				isLoaded: false,
 			};
+		case actionTypes.COMMENT_REQUESTED:
+			return {
+				...state,
+				comments: [...state.comments, action.comment],
+			};
 		default:
 			return state;
 	}

@@ -10,7 +10,7 @@ import styles from './styles';
 const AddImage = ({ classes }) => {
 	return (
 		<Card className={classes.card}>
-			<EditImageContainer icon = {<AddIcon/>}/>
+			<EditImageContainer icon={<AddIcon />} />
 		</Card>
 	);
 };

@@ -48,7 +48,7 @@ export const imageDeleteRequested = id => {
 export const imageSet = image => {
 	return {
 		type: actionTypes.IMAGE_SET,
-		image
+		image,
 	};
 };
 export const imageCleared = () => {

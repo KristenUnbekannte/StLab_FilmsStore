@@ -1,7 +1,7 @@
 export default styles => ({
-	editFilmContainer:{
+	editFilmContainer: {
 		maxWidth: 900,
-		margin: 'auto'
+		margin: 'auto',
 	},
 	error: {
 		marginBottom: 15,

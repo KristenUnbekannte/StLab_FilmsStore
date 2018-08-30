@@ -23,7 +23,7 @@ export const filmDetailsError = error => {
 		error,
 	};
 };
-export const filmDetailsCleared= () => {
+export const filmDetailsCleared = () => {
 	return {
 		type: actionTypes.FILM_DETAILS_CLEARED,
 	};

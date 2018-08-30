@@ -12,7 +12,7 @@ import styles from './styles';
 let EditImagesForm = ({ handleSubmit, classes, url }) => {
 	return (
 		<div>
-			<img src={url} alt="movie" className={classes.image}/>
+			<img src={url} alt="movie" className={classes.image} />
 			<form onSubmit={handleSubmit} className={classes.form}>
 				<Field
 					name="url"
@@ -31,7 +31,7 @@ let EditImagesForm = ({ handleSubmit, classes, url }) => {
 					className={classes.button}
 				>
 					Save
-			</Button>
+				</Button>
 			</form>
 		</div>
 	);
@@ -40,7 +40,7 @@ let EditImagesForm = ({ handleSubmit, classes, url }) => {
 EditImagesForm.propTypes = {
 	handleSubmit: PropTypes.func.isRequired,
 	classes: PropTypes.object.isRequired,
-	url : PropTypes.string,
+	url: PropTypes.string,
 	form: PropTypes.string.isRequired,
 };
 

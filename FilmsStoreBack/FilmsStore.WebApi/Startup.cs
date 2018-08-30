@@ -15,6 +15,7 @@ using FilmsStore.BusinessLogic.Interfaces;
 using FilmsStore.BusinessLogic.Services;
 using AutoMapper;
 using FilmsStore.BusinessLogic.Infrastructure;
+using FilmsStore.WebApi.SignalR;
 
 namespace FilmsStore.WebApi
 {
@@ -31,6 +32,7 @@ namespace FilmsStore.WebApi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddAutoMapper();
+            services.AddSignalR();
             services.AddCors();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1)
                 .AddJsonOptions(options =>
@@ -100,6 +102,11 @@ namespace FilmsStore.WebApi
                 .AllowAnyHeader()
                 .AllowCredentials();
             });
+            app.UseSignalR(routes =>
+            {
+                routes.MapHub<CommentHub>("/comments");
+            });
+
             app.UseAuthentication();
             DbInitializer.Seed(app);
 
