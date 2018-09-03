@@ -1,25 +1,26 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
-import { AppBar, Toolbar, Typography, MenuItem, Menu } from '@material-ui/core';
-import IconButton from '@material-ui/core/IconButton';
-import AccountCircle from '@material-ui/icons/AccountCircle';
 import * as actions from '../../Authorization/actions/UserActions';
 import * as filmDetailsActions from '../../FilmDetails/actions/FilmDetailsActions';
+import * as filmsActions from '../../FilmsList/actions/FilmsListActions';
 import SessionService from '../../../Services/SessionService';
-import styles from '../view/styles';
+import Menu from '../view';
 
-class MenuContainer extends React.Component {
+class MenuContainer extends React.PureComponent {
 	constructor(props) {
 		super(props);
-		this.state = { anchorEl: null };
+		this.state = {
+			anchorEl: null,
+			search: '',
+		};
 
 		this.handleMenu = this.handleMenu.bind(this);
 		this.handleClose = this.handleClose.bind(this);
 		this.handleLogOut = this.handleLogOut.bind(this);
+		this.onChangeField = this.onChangeField.bind(this);
+		this.handleSubmit = this.handleSubmit.bind(this);
 	}
 	handleMenu(event) {
 		this.setState({ anchorEl: event.currentTarget });
@@ -29,89 +30,51 @@ class MenuContainer extends React.Component {
 		this.setState({ anchorEl: null });
 	}
 	handleLogOut() {
+		const { user, filmDetails } = this.props;
+
 		this.handleClose();
 		SessionService.removeAllItems();
-		this.props.user.userUnauthorized();
-		this.props.filmDetails.userRatingReset();
+		user.userUnauthorized();
+		filmDetails.userRatingReset();
 	}
+	onChangeField(event) {
+		this.setState({ search: event.target.value });
+	}
+
+	handleSubmit(e) {
+		e.preventDefault();
+		const { filmsCleared, filmsRequested } = this.props.film;
+
+		filmsCleared();
+		filmsRequested(1, this.state.search);
+		this.setState({ search: '' });
+	}
+
 	render() {
-		const { classes, isAuthorized, role } = this.props;
-		const { anchorEl } = this.state;
-		const open = Boolean(anchorEl);
+		const { isAuthorized, role } = this.props;
+		const { anchorEl, search } = this.state;
 
 		return (
-			<AppBar position="static" className={classes.root}>
-				<Toolbar>
-					<Typography className={classes.title} component={Link} to="/">
-						FilmsStore
-					</Typography>
-					{isAuthorized ? (
-						<Typography className={classes.userName}>
-							{`Hello, ${SessionService.getItem('userName')}`}
-						</Typography>
-					) : null}
-					<div>
-						<IconButton
-							aria-owns={open ? 'menu-appbar' : null}
-							aria-haspopup="true"
-							onClick={this.handleMenu}
-							color="inherit"
-							className={classes.menuButton}
-						>
-							<AccountCircle />
-						</IconButton>
-						<Menu
-							id="menu-appbar"
-							anchorEl={anchorEl}
-							anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
-							transformOrigin={{ vertical: 'top', horizontal: 'right' }}
-							open={open}
-							onClose={this.handleClose}
-						>
-							{role === 'admin' ? (
-								<MenuItem
-									onClick={this.handleClose}
-									component={Link}
-									to="/admin"
-								>
-									Admin panel
-								</MenuItem>
-							) : null}
-							{isAuthorized ? (
-								<MenuItem onClick={this.handleLogOut}>Sign out</MenuItem>
-							) : (
-								[
-									<MenuItem
-										onClick={this.handleClose}
-										key={1}
-										component={Link}
-										to="/register"
-									>
-										Sign up
-									</MenuItem>,
-									<MenuItem
-										onClick={this.handleClose}
-										key={2}
-										component={Link}
-										to="/login"
-									>
-										Sign in
-									</MenuItem>,
-								]
-							)}
-						</Menu>
-					</div>
-				</Toolbar>
-			</AppBar>
+			<Menu
+				isAuthorized={isAuthorized}
+				handleMenu={this.handleMenu}
+				anchorEl={anchorEl}
+				handleClose={this.handleClose}
+				handleLogOut={this.handleLogOut}
+				onChangeField={this.onChangeField}
+				handleSubmit={this.handleSubmit}
+				role={role}
+				search={search}
+			/>
 		);
 	}
 }
 
 MenuContainer.propTypes = {
-	classes: PropTypes.object.isRequired,
 	isAuthorized: PropTypes.bool.isRequired,
 	user: PropTypes.object.isRequired,
 	filmDetails: PropTypes.object.isRequired,
+	film: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = state => {
@@ -123,10 +86,10 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => ({
 	user: bindActionCreators({ ...actions }, dispatch),
 	filmDetails: bindActionCreators({ ...filmDetailsActions }, dispatch),
+	film: bindActionCreators({ ...filmsActions }, dispatch),
 });
 
-const MenuBar = connect(
+export default connect(
 	mapStateToProps,
 	mapDispatchToProps
 )(MenuContainer);
-export default withStyles(styles)(MenuBar);

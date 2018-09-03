@@ -6,7 +6,7 @@ namespace FilmsStore.Domain.Interfaces
 {
     public interface IFilmRepository
     {
-        Task<IList<Film>> GetFilmsAsync();
+        Task<IList<Film>> GetFilmsAsync(int page, int pageSize, string search);
         Task<Film> GetFilmByIdAsync(int id);
         Task UpdateFilmByIdAsync(Film film);
         Task AddFilmAsync(Film film);

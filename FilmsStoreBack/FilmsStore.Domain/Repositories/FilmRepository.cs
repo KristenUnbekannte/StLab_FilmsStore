@@ -15,9 +15,11 @@ namespace FilmsStore.Domain.Repositories
         {
             _context = context;
         }
-        public async Task<IList<Film>> GetFilmsAsync()
+        public async Task<IList<Film>> GetFilmsAsync(int page, int pageSize, string search)
         {
-            return await _context.Films.ToListAsync();
+            return await _context.Films
+                .Where(f => (search == null || f.Name.ToUpper().Contains(search.ToUpper())))
+                .OrderBy(f => f.FilmId).Skip((page - 1) * pageSize).Take(pageSize).ToListAsync();
         }
         public async Task<Film> GetFilmByIdAsync(int id)
         {

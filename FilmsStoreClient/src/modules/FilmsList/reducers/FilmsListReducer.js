@@ -2,8 +2,10 @@ import actionTypes from '../actions/actionTypes';
 
 const initialState = {
 	isLoaded: false,
+	isLoadedAllFilms: false,
 	error: '',
 	films: [],
+	page: 1,
 };
 
 const FilmsListReducer = (state = initialState, action) => {
@@ -13,18 +15,25 @@ const FilmsListReducer = (state = initialState, action) => {
 				...state,
 				isLoaded: false,
 				error: '',
+				page: action.page,
 			};
 		case actionTypes.FILMS_LOADED:
 			return {
 				...state,
-				films: action.films,
 				isLoaded: true,
+				isLoadedAllFilms: action.films.length < 6,
+				films: [...state.films, ...action.films],
 			};
 		case actionTypes.FILMS_ERROR:
 			return {
 				...state,
 				error: action.error,
 				isLoaded: false,
+			};
+		case actionTypes.FILMS_CLEARED:
+			return {
+				...state,
+				...initialState,
 			};
 		default:
 			return state;

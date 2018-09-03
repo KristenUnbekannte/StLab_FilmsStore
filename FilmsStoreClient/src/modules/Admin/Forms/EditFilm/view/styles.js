@@ -34,6 +34,6 @@ export default styles => ({
 	},
 	form: {
 		width: 340,
-		margin: '0 10px'
+		margin: '0 10px',
 	},
 });

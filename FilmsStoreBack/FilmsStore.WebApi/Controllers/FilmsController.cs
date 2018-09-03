@@ -21,15 +21,15 @@ namespace FilmsStore.WebApi.Controllers
 
         // GET api/films
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<FilmViewModel>>> Get()
+        public async Task<ActionResult<IEnumerable<FilmViewModel>>> GetAllFilms(int? page = 1, string search = null)
         {
-            IList<FilmModel> films = await _filmService.GetFilmsAsync();
+            IList<FilmModel> films = await _filmService.GetFilmsAsync((int)page, search);
             return Ok(_mapper.Map<IList<FilmModel>, IList<FilmViewModel>>(films));
         }
 
         // GET api/films/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<FilmDetailsViewModel>> Get(int id)
+        public async Task<ActionResult<FilmDetailsViewModel>> GetFilmDetails(int id)
         {
             FilmDetailsModel film = await _filmService.GetFilmByIdAsync(id);
             return Ok(_mapper.Map<FilmDetailsModel, FilmDetailsViewModel>(film));

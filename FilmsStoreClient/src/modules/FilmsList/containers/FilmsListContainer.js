@@ -10,21 +10,47 @@ import Alert from '../../Alert/view';
 import styles from '../view/styles';
 
 class FilmsListContainer extends React.PureComponent {
-	componentDidMount() {
-		this.props.filmsRequested();
+	constructor(props) {
+		super(props);
+		this.onScroll = this.onScroll.bind(this);
 	}
+
+	componentDidMount() {
+		const { page, filmsRequested } = this.props;
+
+		window.addEventListener('scroll', this.onScroll);
+		filmsRequested(page);
+	}
+
+	componentWillUnmount() {
+		window.removeEventListener('scroll', this.onScroll);
+	}
+
+	onScroll() {
+		const { isLoaded, isLoadedAllFilms, page, filmsRequested } = this.props;
+		if (
+			window.innerHeight + window.scrollY >= document.body.offsetHeight - 200 &&
+			isLoaded &&
+			!isLoadedAllFilms
+		) {
+			filmsRequested(page + 1);
+		}
+	}
+
 	render() {
-		return this.props.error ? (
-			<Alert error={this.props.error} />
-		) : this.props.isLoaded ? (
-			<div className={this.props.classes.container}>
-				{this.props.films.map((item, i) => {
-					return <Film key={i} {...item} />;
-				})}
+		const { classes, isLoaded, films, error, page } = this.props;
+
+		return error ? (
+			<Alert error={error} />
+		) : !isLoaded && page === 1 ? (
+			<div className={classes.progress}>
+				<CircularProgress size={80} color="secondary" />
 			</div>
 		) : (
-			<div className={this.props.classes.progress}>
-				<CircularProgress size={80} color="secondary" />
+			<div className={classes.container}>
+				{films.map((item, i) => {
+					return <Film key={i} {...item} />;
+				})}
 			</div>
 		);
 	}
@@ -35,6 +61,7 @@ FilmsListContainer.propTypes = {
 	classes: PropTypes.object.isRequired,
 	films: PropTypes.array.isRequired,
 	isLoaded: PropTypes.bool.isRequired,
+	isLoadedAllFilms: PropTypes.bool.isRequired,
 	error: PropTypes.string.isRequired,
 };
 

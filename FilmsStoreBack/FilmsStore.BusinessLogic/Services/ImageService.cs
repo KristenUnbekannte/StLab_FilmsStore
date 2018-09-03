@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using AutoMapper;
+using FilmsStore.BusinessLogic.Exceptions;
 using FilmsStore.BusinessLogic.Interfaces;
 using FilmsStore.BusinessLogic.Models;
 using FilmsStore.Domain.Entities;
@@ -31,11 +32,15 @@ namespace FilmsStore.BusinessLogic.Services
         public async Task EditImageAsync(ImageModel model)
         {
             Image image = _mapper.Map<ImageModel, Image>(model);
+            if (image == null) throw new ImageNotExistException("Image not exist");
+
             await _imageRepository.EditImageAsync(image);
         }
         public async Task<ImageModel> DeleteImageAsync(int id)
         {
             Image image = await _imageRepository.DeleteImageAsync(id);
+            if (image == null) throw new ImageNotExistException("Image not exist");
+
             return _mapper.Map<Image, ImageModel>(image);
         }
     }
