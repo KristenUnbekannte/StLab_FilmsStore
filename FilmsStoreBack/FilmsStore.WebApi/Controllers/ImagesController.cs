@@ -3,12 +3,14 @@ using System.Threading.Tasks;
 using AutoMapper;
 using FilmsStore.BusinessLogic.Interfaces;
 using FilmsStore.BusinessLogic.Models;
+using FilmsStore.WebApi.Filters;
 using FilmsStore.WebApi.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FilmsStore.WebApi.Controllers
 {
     [Route("api/[controller]")]
+    [ServiceFilter(typeof(ExceptionFilter))]
     public class ImagesController : ControllerBase
     {
         private readonly IImageService _imageService;

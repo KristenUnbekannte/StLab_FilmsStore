@@ -1,11 +1,11 @@
-2018-09-04 16:18:24.144 +03:00 [Warning] [Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware]
+2018-09-04 19:44:33.927 +03:00 [Warning] [Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware]
  ---Info---
  Failed to determine the https port for redirect.
-2018-09-04 16:18:25.109 +03:00 [Information] []
+2018-09-04 19:44:44.242 +03:00 [Error] []
  ---Info---
- FilmsStore.BusinessLogic.Exceptions.FilmNotExistException: Film with Id123123123 does not exist
-   at FilmsStore.BusinessLogic.Services.FilmService.GetFilmByIdAsync(Int32 id) in C:\Users\K.Platkouskaya\Desktop\StLab_FilmsStore_last\FilmsStoreBack\FilmsStore.BusinessLogic\Services\FilmService.cs:line 42
-   at FilmsStore.WebApi.Controllers.FilmsController.GetFilmDetails(Int32 id) in C:\Users\K.Platkouskaya\Desktop\StLab_FilmsStore_last\FilmsStoreBack\FilmsStore.WebApi\Controllers\FilmsController.cs:line 38
+ FilmsStore.BusinessLogic.Exceptions.FilmNotExistException: Film with Id888888 does not exist
+   at FilmsStore.BusinessLogic.Services.FilmService.GetFilmByIdAsync(Int32 id) in C:\Users\User\Desktop\StLab_FilmsStore\FilmsStoreBack\FilmsStore.BusinessLogic\Services\FilmService.cs:line 42
+   at FilmsStore.WebApi.Controllers.FilmsController.GetFilmDetails(Int32 id) in C:\Users\User\Desktop\StLab_FilmsStore\FilmsStoreBack\FilmsStore.WebApi\Controllers\FilmsController.cs:line 38
    at lambda_method(Closure , Object )
    at Microsoft.Extensions.Internal.ObjectMethodExecutorAwaitable.Awaiter.GetResult()
    at Microsoft.AspNetCore.Mvc.Internal.ActionMethodExecutor.AwaitableObjectResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
@@ -16,29 +16,54 @@
    at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
    at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeInnerFilterAsync()
    at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeNextExceptionFilterAsync()
-2018-09-04 16:18:30.729 +03:00 [Error] [Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware]
+2018-09-04 19:46:34.997 +03:00 [Warning] [Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware]
  ---Info---
- An unhandled exception has occurred while executing the request.
-FilmsStore.BusinessLogic.Exceptions.ImageNotExistException: Image with Id999999 does not exist
-   at FilmsStore.BusinessLogic.Services.ImageService.DeleteImageAsync(Int32 id) in C:\Users\K.Platkouskaya\Desktop\StLab_FilmsStore_last\FilmsStoreBack\FilmsStore.BusinessLogic\Services\ImageService.cs:line 44
-   at FilmsStore.WebApi.Controllers.AdminController.DeleteImage(Int32 id) in C:\Users\K.Platkouskaya\Desktop\StLab_FilmsStore_last\FilmsStoreBack\FilmsStore.WebApi\Controllers\AdminController.cs:line 82
+ Failed to determine the https port for redirect.
+2018-09-04 19:46:40.837 +03:00 [Error] []
+ ---Info---
+ System.Exception: dsfdsfsdf
+   at FilmsStore.BusinessLogic.Services.FilmService.GetFilmByIdAsync(Int32 id) in C:\Users\User\Desktop\StLab_FilmsStore\FilmsStoreBack\FilmsStore.BusinessLogic\Services\FilmService.cs:line 39
+   at FilmsStore.WebApi.Controllers.FilmsController.GetFilmDetails(Int32 id) in C:\Users\User\Desktop\StLab_FilmsStore\FilmsStoreBack\FilmsStore.WebApi\Controllers\FilmsController.cs:line 38
    at lambda_method(Closure , Object )
    at Microsoft.Extensions.Internal.ObjectMethodExecutorAwaitable.Awaiter.GetResult()
-   at Microsoft.AspNetCore.Mvc.Internal.ActionMethodExecutor.TaskOfActionResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Internal.ActionMethodExecutor.AwaitableObjectResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
    at System.Threading.Tasks.ValueTask`1.get_Result()
    at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeActionMethodAsync()
    at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeNextActionFilterAsync()
    at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Rethrow(ActionExecutedContext context)
    at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
    at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeInnerFilterAsync()
-   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeNextResourceFilter()
-   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Rethrow(ResourceExecutedContext context)
-   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
-   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeFilterPipelineAsync()
-   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeAsync()
-   at Microsoft.AspNetCore.Builder.RouterMiddleware.Invoke(HttpContext httpContext)
-   at Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware.Invoke(HttpContext context)
-   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
-   at Microsoft.AspNetCore.Builder.RouterMiddleware.Invoke(HttpContext httpContext)
-   at Microsoft.AspNetCore.Cors.Infrastructure.CorsMiddleware.Invoke(HttpContext context)
-   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeNextExceptionFilterAsync()
+2018-09-04 19:46:46.464 +03:00 [Error] []
+ ---Info---
+ System.Exception: dsfdsfsdf
+   at FilmsStore.BusinessLogic.Services.FilmService.GetFilmByIdAsync(Int32 id) in C:\Users\User\Desktop\StLab_FilmsStore\FilmsStoreBack\FilmsStore.BusinessLogic\Services\FilmService.cs:line 39
+   at FilmsStore.WebApi.Controllers.FilmsController.GetFilmDetails(Int32 id) in C:\Users\User\Desktop\StLab_FilmsStore\FilmsStoreBack\FilmsStore.WebApi\Controllers\FilmsController.cs:line 38
+   at lambda_method(Closure , Object )
+   at Microsoft.Extensions.Internal.ObjectMethodExecutorAwaitable.Awaiter.GetResult()
+   at Microsoft.AspNetCore.Mvc.Internal.ActionMethodExecutor.AwaitableObjectResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at System.Threading.Tasks.ValueTask`1.get_Result()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeActionMethodAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeNextActionFilterAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Rethrow(ActionExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeInnerFilterAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeNextExceptionFilterAsync()
+2018-09-04 20:04:15.003 +03:00 [Warning] [Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware]
+ ---Info---
+ Failed to determine the https port for redirect.
+2018-09-04 20:04:20.095 +03:00 [Error] []
+ ---Info---
+ FilmsStore.BusinessLogic.Exceptions.FilmNotExistException: Film with Id1234567 does not exist
+   at FilmsStore.BusinessLogic.Services.FilmService.GetFilmByIdAsync(Int32 id) in C:\Users\User\Desktop\StLab_FilmsStore\FilmsStoreBack\FilmsStore.BusinessLogic\Services\FilmService.cs:line 42
+   at FilmsStore.WebApi.Controllers.FilmsController.GetFilmDetails(Int32 id) in C:\Users\User\Desktop\StLab_FilmsStore\FilmsStoreBack\FilmsStore.WebApi\Controllers\FilmsController.cs:line 38
+   at lambda_method(Closure , Object )
+   at Microsoft.Extensions.Internal.ObjectMethodExecutorAwaitable.Awaiter.GetResult()
+   at Microsoft.AspNetCore.Mvc.Internal.ActionMethodExecutor.AwaitableObjectResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at System.Threading.Tasks.ValueTask`1.get_Result()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeActionMethodAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeNextActionFilterAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Rethrow(ActionExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeInnerFilterAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeNextExceptionFilterAsync()

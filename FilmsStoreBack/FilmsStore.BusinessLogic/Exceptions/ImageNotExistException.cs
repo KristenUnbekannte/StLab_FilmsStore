@@ -2,7 +2,7 @@
 
 namespace FilmsStore.BusinessLogic.Exceptions
 {
-    public class ImageNotExistException : Exception
+    public class ImageNotExistException : NotExistException
     {
         public ImageNotExistException(string message) : base(message)
         { }
