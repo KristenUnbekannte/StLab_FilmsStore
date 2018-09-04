@@ -8,7 +8,7 @@ namespace FilmsStore.WebApi.Extensions
     {
         public static string GetUserIdAsync(this HttpContext context)
         {
-            return context.User.Claims.Where(claim => claim.Type == ClaimTypes.NameIdentifier).FirstOrDefault().Value;
+            return context.User.Claims.FirstOrDefault(claim => claim.Type == ClaimTypes.NameIdentifier)?.Value;
         }
     }
 }

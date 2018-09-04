@@ -21,9 +21,9 @@ namespace FilmsStore.WebApi.Controllers
 
         // GET api/films
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<FilmViewModel>>> GetAllFilms(int? page = 1, string search = null)
+        public async Task<ActionResult<IEnumerable<FilmViewModel>>> GetAllFilms(int page = 1, string search = null)
         {
-            IList<FilmModel> films = await _filmService.GetFilmsAsync((int)page, search);
+            IList<FilmModel> films = await _filmService.GetFilmsAsync(page, search);
             return Ok(_mapper.Map<IList<FilmModel>, IList<FilmViewModel>>(films));
         }
 

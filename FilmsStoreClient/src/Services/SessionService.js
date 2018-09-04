@@ -13,9 +13,6 @@ export default class SessionService {
 	static removeItem(type) {
 		return window.sessionStorage.removeItem(type);
 	}
-	static isSetItem(type) {
-		return window.sessionStorage.getItem(type) ? true : false;
-	}
 	static removeAllItems() {
 		window.sessionStorage.clear();
 	}

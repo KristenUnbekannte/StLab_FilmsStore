@@ -2,7 +2,7 @@ import actionTypes from '../actions/actionTypes';
 import SessionService from '../../../Services/SessionService';
 
 const initialState = {
-	isAuthorized: SessionService.isSetItem('token'),
+	isAuthorized: !!SessionService.getItem('token'),
 	role: SessionService.getItem('role'),
 	authError: '',
 };
