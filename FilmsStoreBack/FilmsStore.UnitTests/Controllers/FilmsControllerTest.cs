@@ -62,8 +62,9 @@ namespace FilmsStore.UnitTests.Controllers
             // Arrange
             int page = 1;
             string search = null;
+            FilmListModel model = new FilmListModel() { Films = filmsList, TotalCount = filmsList.Count() };
 
-            filmService.Setup(film => film.GetFilmsAsync(page, search)).ReturnsAsync(filmsList);
+            filmService.Setup(film => film.GetFilmsAsync(page, search)).ReturnsAsync(model);
             FilmsController controller = new FilmsController(filmService.Object, mapper);
 
             // Act
@@ -73,10 +74,10 @@ namespace FilmsStore.UnitTests.Controllers
             var okResult = result.Result as OkObjectResult;
             Assert.NotNull(okResult);
 
-            var films = okResult.Value as IEnumerable<FilmViewModel>;
-            Assert.NotNull(films);
-            Assert.Equal(filmsList.Count, films.Count());
-            Assert.Equal(2006, films.FirstOrDefault().Year);
+            var objectResult = okResult.Value as FilmListViewModel;
+            Assert.NotNull(objectResult);
+            Assert.Equal(filmsList.Count, objectResult.Films.Count());
+            Assert.Equal(2006, objectResult.Films.FirstOrDefault().Year);
 
             filmService.Verify(f => f.GetFilmsAsync(page, search), Times.Once);
         }

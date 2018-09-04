@@ -21,8 +21,8 @@ const FilmsListReducer = (state = initialState, action) => {
 			return {
 				...state,
 				isLoaded: true,
-				isLoadedAllFilms: action.films.length < 6,
 				films: [...state.films, ...action.films],
+				isLoadedAllFilms: state.films.length + 1 === action.totalCount,
 			};
 		case actionTypes.FILMS_ERROR:
 			return {

@@ -2,7 +2,7 @@ export default styles => ({
 	root: {
 		backgroundColor: 'black',
 		marginBottom: 10,
-		padding: '10px 5px',
+		padding: '10px 10px',
 		display: 'flex',
 		justifyContent: 'space-between',
 		flexWrap: 'wrap',
@@ -11,7 +11,7 @@ export default styles => ({
 		textDecoration: 'none',
 		color: 'lightgray',
 		fontSize: 20,
-		width: 110,
+		width: 105,
 	},
 	userName: {
 		color: 'lightgray',
@@ -25,15 +25,18 @@ export default styles => ({
 		backgroundColor: 'lightgray',
 		width: 150,
 		borderRadius: 20,
-		padding: '2px 10px'
+		padding: '1px 10px',
+		'&:after': {
+			border: 'none',
+		},
 	},
 	form: {
 		width: 215,
 	},
 	searchButton: {
 		padding: 0,
-		minWidth: 35,
-		minHeight: 35,
+		minWidth: 34,
+		minHeight: 34,
 		backgroundColor: 'lightgray',
 		borderRadius: 20,
 		margin: 'auto 5px',

@@ -23,22 +23,28 @@ namespace FilmsStore.BusinessLogic.Services
             _mapper = mapper;
             pageSize = 6;
         }
-        public async Task<IList<FilmModel>> GetFilmsAsync(int page , string search)
+        public async Task<FilmListModel> GetFilmsAsync(int page, string search)
         {
             IList<Film> films = await _filmRepository.GetFilmsAsync(page, pageSize, search);
-            return _mapper.Map<IList<Film>, IList<FilmModel>>(films);
+            FilmListModel filmList = new FilmListModel()
+            {
+                Films = _mapper.Map<IList<Film>, IList<FilmModel>>(films),
+                TotalCount = await _filmRepository.GetTotalCountFilmsAsync(search)
+            };
+
+            return filmList;
         }
         public async Task<FilmDetailsModel> GetFilmByIdAsync(int id)
         {
             Film film = await _filmRepository.GetFilmByIdAsync(id);
-            if (film == null) throw new FilmNotExistException("Film not exist");
+            if (film == null) throw new FilmNotExistException($"Film with Id{id} does not exist");
 
             return _mapper.Map<Film, FilmDetailsModel>(film);
         }
         public async Task UpdateTotalRatingByFilmIdAsync(int id)
         {
             Film film = await _filmRepository.GetFilmByIdAsync(id);
-            if (film == null) throw new FilmNotExistException("Film not exist");
+            if (film == null) throw new FilmNotExistException($"Film with Id{id} does not exist");
 
             film.Rating = await _ratingRepository.GetAverageRatingByFilmId(id);
             await _filmRepository.UpdateFilmByIdAsync(film);
@@ -46,7 +52,7 @@ namespace FilmsStore.BusinessLogic.Services
         public async Task<double> GetTotalRatingByFilmIdAsync(int id)
         {
             Film film = await _filmRepository.GetFilmByIdAsync(id);
-            if (film == null) throw new FilmNotExistException("Film not exist");
+            if (film == null) throw new FilmNotExistException($"Film with Id{id} does not exist");
 
             return film.Rating;
         }
@@ -58,14 +64,14 @@ namespace FilmsStore.BusinessLogic.Services
         public async Task EditFilmAsync(FilmDetailsModel model)
         {
             Film film = _mapper.Map<FilmDetailsModel, Film>(model);
-            if (film == null) throw new FilmNotExistException("Film not exist");
+            if (film == null) throw new FilmNotExistException($"Film with Id{film.FilmId} does not exist");
 
             await _filmRepository.EditFilmAsync(film);
         }
         public async Task<FilmDetailsModel> DeleteFilmAsync(int id)
         {
             Film film = await _filmRepository.DeleteFilmAsync(id);
-            if (film == null) throw new FilmNotExistException("Film not exist");
+            if (film == null) throw new FilmNotExistException($"Film with Id{id} does not exist");
 
             return _mapper.Map<Film, FilmDetailsModel>(film);
         }

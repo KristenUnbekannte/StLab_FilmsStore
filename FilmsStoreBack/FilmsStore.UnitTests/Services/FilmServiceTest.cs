@@ -57,16 +57,17 @@ namespace FilmsStore.UnitTests.Services
             string search = null;
 
             filmRepository.Setup(film => film.GetFilmsAsync(page, pageSize, search)).ReturnsAsync(filmsList);
+            filmRepository.Setup(film => film.GetTotalCountFilmsAsync(search)).ReturnsAsync(filmsList.Count);
             FilmService service = new FilmService(filmRepository.Object, ratingRepository.Object, mapper);
 
             // Act
             var result = await service.GetFilmsAsync(page, search);
 
             // Assert
-            var films = result as IEnumerable<FilmModel>;
+            var films = result as FilmListModel;
             Assert.NotNull(films);
-            Assert.Equal(filmsList.Count, films.Count());
-            Assert.Equal(1, films.FirstOrDefault().FilmId);
+            Assert.Equal(filmsList.Count, films.Films.Count());
+            Assert.Equal(1, films.Films.FirstOrDefault().FilmId);
         }
 
         [Fact]

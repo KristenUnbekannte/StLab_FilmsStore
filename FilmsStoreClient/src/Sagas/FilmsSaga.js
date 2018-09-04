@@ -19,8 +19,8 @@ function fetchFilms(action) {
 function* workerSaga(action) {
 	try {
 		const response = yield call(fetchFilms, action);
-		const films = response.data;
-		yield put(filmsLoaded(films));
+		const { films, totalCount } = response.data;
+		yield put(filmsLoaded(films, totalCount));
 	} catch (error) {
 		yield put(filmsError(error.toString()));
 	}

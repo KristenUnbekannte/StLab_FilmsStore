@@ -32,14 +32,14 @@ namespace FilmsStore.BusinessLogic.Services
         public async Task EditImageAsync(ImageModel model)
         {
             Image image = _mapper.Map<ImageModel, Image>(model);
-            if (image == null) throw new ImageNotExistException("Image not exist");
+            if (image == null) throw new ImageNotExistException($"Image with Id{model.ImageId} does not exist");
 
             await _imageRepository.EditImageAsync(image);
         }
         public async Task<ImageModel> DeleteImageAsync(int id)
         {
             Image image = await _imageRepository.DeleteImageAsync(id);
-            if (image == null) throw new ImageNotExistException("Image not exist");
+            if (image == null) throw new ImageNotExistException($"Image with Id{id} does not exist");
 
             return _mapper.Map<Image, ImageModel>(image);
         }

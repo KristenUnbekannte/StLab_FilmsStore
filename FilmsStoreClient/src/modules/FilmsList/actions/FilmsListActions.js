@@ -12,10 +12,11 @@ export const filmsRequested = (page = 1, search) => {
 		page,
 	};
 };
-export const filmsLoaded = films => {
+export const filmsLoaded = (films, totalCount) => {
 	return {
 		type: actionTypes.FILMS_LOADED,
 		films,
+		totalCount,
 	};
 };
 export const filmsError = error => {

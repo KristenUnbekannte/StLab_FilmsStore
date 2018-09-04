@@ -21,6 +21,12 @@ namespace FilmsStore.Domain.Repositories
                 .Where(f => (search == null || f.Name.ToUpper().Contains(search.ToUpper())))
                 .OrderBy(f => f.FilmId).Skip((page - 1) * pageSize).Take(pageSize).ToListAsync();
         }
+        public async Task<int> GetTotalCountFilmsAsync(string search)
+        {
+            return await _context.Films
+                .Where(f => (search == null || f.Name.ToUpper().Contains(search.ToUpper())))
+                .CountAsync();
+        }
         public async Task<Film> GetFilmByIdAsync(int id)
         {
             return await _context.Films.FirstOrDefaultAsync(f => f.FilmId == id);

@@ -16,6 +16,9 @@ using FilmsStore.BusinessLogic.Services;
 using AutoMapper;
 using FilmsStore.BusinessLogic.Infrastructure;
 using FilmsStore.WebApi.SignalR;
+using FilmsStore.WebApi.Filters;
+using Serilog;
+using Microsoft.Extensions.Logging;
 
 namespace FilmsStore.WebApi
 {
@@ -23,6 +26,7 @@ namespace FilmsStore.WebApi
     {
         public Startup(IConfiguration configuration)
         {
+            Log.Logger = new LoggerConfiguration().ReadFrom.Configuration(configuration).CreateLogger();
             Configuration = configuration;
         }
 
@@ -50,6 +54,8 @@ namespace FilmsStore.WebApi
             services.AddTransient<ITokenService, TokenService>();
             services.AddTransient<IRatingService, RatingService>();
             services.AddTransient<IImageService, ImageService>();
+
+            services.AddScoped<ExceptionFilter>();
 
             string connection = Configuration.GetConnectionString("DefaultConnection");
             services.AddDbContext<ApplicationContext>(options => options.UseSqlServer(connection));
@@ -88,10 +94,12 @@ namespace FilmsStore.WebApi
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
+            loggerFactory.AddSerilog();
             if (env.IsDevelopment())
             {
+                loggerFactory.AddConsole(Configuration.GetSection("Logging"));
                 app.UseDeveloperExceptionPage();
             }
 

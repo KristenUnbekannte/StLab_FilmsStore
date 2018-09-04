@@ -1,13 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { withStyles } from '@material-ui/core/styles';
-import CircularProgress from '@material-ui/core/CircularProgress';
 import PropTypes from 'prop-types';
 import * as actions from '../actions/FilmsListActions';
-import Film from '../../Film/view';
-import Alert from '../../Alert/view';
-import styles from '../view/styles';
+import FilmList from '../view';
 
 class FilmsListContainer extends React.PureComponent {
 	constructor(props) {
@@ -38,31 +34,20 @@ class FilmsListContainer extends React.PureComponent {
 	}
 
 	render() {
-		const { classes, isLoaded, films, error, page } = this.props;
-
-		return error ? (
-			<Alert error={error} />
-		) : !isLoaded && page === 1 ? (
-			<div className={classes.progress}>
-				<CircularProgress size={80} color="secondary" />
-			</div>
-		) : (
-			<div className={classes.container}>
-				{films.map((item, i) => {
-					return <Film key={i} {...item} />;
-				})}
-			</div>
+		const { error, isLoaded, page, films } = this.props;
+		return (
+			<FilmList error={error} isLoaded={isLoaded} page={page} films={films} />
 		);
 	}
 }
 
 FilmsListContainer.propTypes = {
 	filmsRequested: PropTypes.func.isRequired,
-	classes: PropTypes.object.isRequired,
 	films: PropTypes.array.isRequired,
 	isLoaded: PropTypes.bool.isRequired,
 	isLoadedAllFilms: PropTypes.bool.isRequired,
 	error: PropTypes.string.isRequired,
+	page: PropTypes.number.isRequired,
 };
 
 const mapStateToProps = state => {
@@ -73,9 +58,7 @@ const mapDispatchToProps = dispatch => {
 	return bindActionCreators({ ...actions }, dispatch);
 };
 
-const FilmsList = connect(
+export default connect(
 	mapStateToProps,
 	mapDispatchToProps
 )(FilmsListContainer);
-
-export default withStyles(styles)(FilmsList);

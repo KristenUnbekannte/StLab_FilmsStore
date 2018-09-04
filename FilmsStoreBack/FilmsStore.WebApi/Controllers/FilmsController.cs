@@ -1,14 +1,15 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using AutoMapper;
 using FilmsStore.BusinessLogic.Interfaces;
 using FilmsStore.BusinessLogic.Models;
+using FilmsStore.WebApi.Filters;
 using FilmsStore.WebApi.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FilmsStore.WebApi.Controllers
 {
     [Route("api/[controller]")]
+    [ServiceFilter(typeof(ExceptionFilter))]
     public class FilmsController : ControllerBase
     {
         private readonly IFilmService _filmService;
@@ -21,10 +22,13 @@ namespace FilmsStore.WebApi.Controllers
 
         // GET api/films
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<FilmViewModel>>> GetAllFilms(int page = 1, string search = null)
+        public async Task<ActionResult<FilmListViewModel>> GetAllFilms(int page = 1, string search = null)
         {
-            IList<FilmModel> films = await _filmService.GetFilmsAsync(page, search);
-            return Ok(_mapper.Map<IList<FilmModel>, IList<FilmViewModel>>(films));
+            FilmListViewModel filmList = new FilmListViewModel();
+            FilmListModel model = await _filmService.GetFilmsAsync(page, search);
+            filmList = _mapper.Map<FilmListModel, FilmListViewModel>(model);
+
+            return Ok(filmList);
         }
 
         // GET api/films/5

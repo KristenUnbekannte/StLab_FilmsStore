@@ -1,5 +1,8 @@
 ﻿using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
+using Serilog;
 
 namespace FilmsStore.WebApi
 {
@@ -12,6 +15,11 @@ namespace FilmsStore.WebApi
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
-                .UseStartup<Startup>();
+             .ConfigureLogging((hostingContext, logging) =>
+             {
+                 logging.AddConfiguration(hostingContext.Configuration.GetSection("Logging"));
+             })
+            .UseStartup<Startup>()
+            .UseSerilog();
     }
 }
