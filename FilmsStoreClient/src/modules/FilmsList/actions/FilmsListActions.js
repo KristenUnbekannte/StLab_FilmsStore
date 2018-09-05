@@ -10,6 +10,7 @@ export const filmsRequested = (page = 1, search) => {
 			url: `${baseUrl}/films?${params}`,
 		},
 		page,
+		search,
 	};
 };
 export const filmsLoaded = (films, totalCount) => {

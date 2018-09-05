@@ -6,6 +6,7 @@ const initialState = {
 	error: '',
 	films: [],
 	page: 1,
+	search: '',
 };
 
 const FilmsListReducer = (state = initialState, action) => {
@@ -16,13 +17,15 @@ const FilmsListReducer = (state = initialState, action) => {
 				isLoaded: false,
 				error: '',
 				page: action.page,
+				search: action.search,
 			};
 		case actionTypes.FILMS_LOADED:
+			const { films, totalCount } = action;
 			return {
 				...state,
+				films: [...state.films, ...films],
 				isLoaded: true,
-				films: [...state.films, ...action.films],
-				isLoadedAllFilms: state.films.length + 1 === action.totalCount,
+				isLoadedAllFilms: state.films.length + films.length === totalCount,
 			};
 		case actionTypes.FILMS_ERROR:
 			return {

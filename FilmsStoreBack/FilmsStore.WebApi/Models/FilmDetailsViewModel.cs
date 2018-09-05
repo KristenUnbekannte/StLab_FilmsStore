@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using FilmsStore.BusinessLogic.Models;
+﻿using System;
 
 namespace FilmsStore.WebApi.Models
 {

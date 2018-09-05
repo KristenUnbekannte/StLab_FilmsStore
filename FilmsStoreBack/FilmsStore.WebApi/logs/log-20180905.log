@@ -1,0 +1,15 @@
+2018-09-05 13:56:53.283 +03:00 [Warning] [Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware]
+ ---Info---
+ Failed to determine the https port for redirect.
+2018-09-05 14:41:26.387 +03:00 [Warning] [Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware]
+ ---Info---
+ Failed to determine the https port for redirect.
+2018-09-05 14:41:26.387 +03:00 [Warning] [Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware]
+ ---Info---
+ Failed to determine the https port for redirect.
+2018-09-05 14:58:15.214 +03:00 [Warning] [Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware]
+ ---Info---
+ Failed to determine the https port for redirect.
+2018-09-05 14:58:15.214 +03:00 [Warning] [Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware]
+ ---Info---
+ Failed to determine the https port for redirect.

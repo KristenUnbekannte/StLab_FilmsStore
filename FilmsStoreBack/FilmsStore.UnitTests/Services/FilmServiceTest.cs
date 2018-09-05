@@ -41,7 +41,7 @@ namespace FilmsStore.UnitTests.Services
                     Year = 2006,
                     Rating = 4.4
                 },
-                new Film {
+            new Film {
                     FilmId = 2,
                     Name = "The House",
                     Year = 2016,
@@ -99,6 +99,59 @@ namespace FilmsStore.UnitTests.Services
 
             // Act, Assert
             await Assert.ThrowsAsync<FilmNotExistException>(() => service.GetFilmByIdAsync(filmId));
+        }
+
+        [Fact]
+        public async Task TestGetTotalRatingByFilmIdAsync_GetValidId_ReturnRatingSuccessfully()
+        {
+            // Arrange
+            int filmId = 2;
+
+            filmRepository.Setup(f => f.GetFilmByIdAsync(filmId))
+                .ReturnsAsync(filmsList.FirstOrDefault(f => f.FilmId == filmId));
+
+            FilmService service = new FilmService(filmRepository.Object, ratingRepository.Object, mapper);
+
+            // Act
+            var result = await service.GetTotalRatingByFilmIdAsync(filmId);
+
+            //Assert
+            Assert.IsType<double>(result);
+            Assert.Equal(3.7, result);
+        }
+
+        [Fact]
+        public async Task TestDeleteFilmAsync_GetValidId_ReturnDeletedFilmSuccessfully()
+        {
+            // Arrange
+            int filmId = 2;
+
+            filmRepository.Setup(f => f.DeleteFilmAsync(filmId))
+                .ReturnsAsync(filmsList.FirstOrDefault(f => f.FilmId == filmId));
+
+            FilmService service = new FilmService(filmRepository.Object, ratingRepository.Object, mapper);
+
+            // Act
+            var result = await service.DeleteFilmAsync(filmId);
+
+            //Assert
+            Assert.NotNull(result);
+            Assert.Equal(3.7, result?.Rating);
+        }
+
+        [Fact]
+        public async Task TestDeleteFilmAsync_GetInvalidId_ThrowFilmNotExistException()
+        {
+            // Arrange
+            int filmId = 3;
+
+            filmRepository.Setup(f => f.DeleteFilmAsync(filmId))
+                .ReturnsAsync(filmsList.FirstOrDefault(f => f.FilmId == filmId));
+
+            FilmService service = new FilmService(filmRepository.Object, ratingRepository.Object, mapper);
+
+            // Act, Assert
+            await Assert.ThrowsAsync<FilmNotExistException>(() => service.DeleteFilmAsync(filmId));
         }
     }
 }

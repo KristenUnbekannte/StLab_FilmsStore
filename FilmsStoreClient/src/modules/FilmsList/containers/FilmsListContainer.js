@@ -23,13 +23,19 @@ class FilmsListContainer extends React.PureComponent {
 	}
 
 	onScroll() {
-		const { isLoaded, isLoadedAllFilms, page, filmsRequested } = this.props;
+		const {
+			isLoaded,
+			isLoadedAllFilms,
+			page,
+			filmsRequested,
+			search,
+		} = this.props;
 		if (
 			window.innerHeight + window.scrollY >= document.body.offsetHeight - 200 &&
 			isLoaded &&
 			!isLoadedAllFilms
 		) {
-			filmsRequested(page + 1);
+			filmsRequested(page + 1, search);
 		}
 	}
 
