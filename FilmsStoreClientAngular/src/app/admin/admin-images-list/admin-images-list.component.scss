@@ -1,0 +1,19 @@
+.images-container {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  margin: 20px 0;
+}
+
+.add-image {
+  background-color: white;
+  display: flex;
+  margin: 5px;
+  width: 250px;
+  border: 1px solid gray;
+  box-shadow: 1px 1px 10px black;
+  border-radius: 20px;
+  justify-content: center;
+  align-items: center;
+  height: 130px;
+}

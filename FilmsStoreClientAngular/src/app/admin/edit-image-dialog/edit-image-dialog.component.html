@@ -1,0 +1,21 @@
+<div>
+  <button matButton color="primary" class="close-button">
+    <mat-icon (click)="onCloseClick()">cancel</mat-icon>
+  </button>
+  <img class="image" src="{{ image.url }}" alt="image" />
+  <div class="form-container">
+    <mat-form-field>
+      <textarea
+        matInput
+        matTextareaAutosize
+        matAutosizeMinRows="1"
+        matAutosizeMaxRows="4"
+        placeholder="Url"
+        [(ngModel)]="image.url"
+      ></textarea>
+    </mat-form-field>
+    <button mat-raised-button color="primary" (click)="save()">
+      SAVE
+    </button>
+  </div>
+</div>

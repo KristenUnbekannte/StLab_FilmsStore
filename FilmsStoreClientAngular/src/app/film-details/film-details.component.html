@@ -1,0 +1,60 @@
+<mat-spinner
+  *ngIf="film === undefined; else details"
+  color="accent"
+></mat-spinner>
+<ng-template #details>
+  <mat-card class="root-container">
+    <mat-card class="card">
+      <img class="card-image" src="{{ film.imageUrl }}" alt="image" />
+      <div class="card-content">
+        <div>
+          <mat-card-title>{{ film.name }}</mat-card-title>
+          <mat-card-content>({{ film.year }})</mat-card-content>
+          <div class="star-container">
+            <mat-icon
+              class="star"
+              [ngClass]="getIsUserRated ? 'star__gold' : 'star__gray'"
+              >grade</mat-icon
+            >
+            <div class="avatar">{{ film.rating }}</div>
+          </div>
+          <div></div>
+          <table class="table">
+            <tr>
+              <td class="td-head">Genre</td>
+              <td>{{ film.genre }}</td>
+            </tr>
+            <tr>
+              <td class="td-head">Country</td>
+              <td>{{ film.country }}</td>
+            </tr>
+            <tr>
+              <td class="td-head">Producer</td>
+              <td>{{ film.producer }}</td>
+            </tr>
+          </table>
+
+          <mat-card-content>{{ film.description }}</mat-card-content>
+        </div>
+        <div>
+          <button mat-flat-button class="rate" (click)="rate()">
+            {{ getIsUserRated ? "CHANGE RATING" : "RATE" }}
+          </button>
+        </div>
+      </div>
+    </mat-card>
+    <mat-card class="video">
+      <iframe width="800px" height="400px" [src]="film.videoUrl | safe">
+      </iframe>
+    </mat-card>
+    <div class="images-container" *ngIf="galleryImages.length !== 0">
+      <ngx-gallery
+        class="gallery"
+        [options]="galleryOptions"
+        [images]="galleryImages"
+      ></ngx-gallery>
+    </div>
+
+    <app-comments-list></app-comments-list>
+  </mat-card>
+</ng-template>

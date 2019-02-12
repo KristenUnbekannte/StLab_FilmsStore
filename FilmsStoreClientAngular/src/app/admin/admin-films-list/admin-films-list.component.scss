@@ -1,0 +1,23 @@
+.mat-spinner {
+  margin: auto;
+}
+
+.films-container {
+  max-width: 1100px;
+  margin: auto;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.add-film {
+  margin: 5px;
+  width: 310px;
+  border: 1px solid gray;
+  box-shadow: 1px 1px 10px black;
+  border-radius: 20px;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

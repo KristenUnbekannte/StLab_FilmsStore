@@ -1,0 +1,25 @@
+<form [formGroup]="loginFormGroup" class="login-container">
+  <img
+    src="https://media.tenor.com/images/41a0802c644036ad7f9e6830fbc8cafa/tenor.gif"
+    alt="login-image"
+    class="login-image"
+  />
+  <div *ngIf="error" class="login-error">{{ error }}</div>
+  <mat-form-field>
+    <input matInput placeholder="User name" formControlName="userNameCtrl" />
+  </mat-form-field>
+  <app-validator [field]="loginFormGroup.get('userNameCtrl')"></app-validator>
+  <mat-form-field>
+    <input
+      matInput
+      [type]="hide ? 'password' : 'text'"
+      placeholder="Password"
+      formControlName="passwordCtrl"
+    />
+    <mat-icon matSuffix (click)="hide = !hide">{{
+      hide ? "visibility_off" : "visibility"
+    }}</mat-icon>
+  </mat-form-field>
+  <app-validator [field]="loginFormGroup.get('passwordCtrl')"></app-validator>
+  <button mat-raised-button color="primary" (click)="onLogin()">SEND</button>
+</form>

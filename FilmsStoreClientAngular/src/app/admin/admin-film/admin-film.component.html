@@ -1,0 +1,23 @@
+<mat-card class="card">
+  <img class="image" src="{{ film.imageUrl }}" alt="image" />
+  <mat-card-content class="film-content">
+    <mat-card-title>{{ film.name }}</mat-card-title>
+    <div>({{ film.year }})</div>
+    <div class="star-container">
+      <mat-icon class="star">grade</mat-icon>
+      <div class="avatar">{{ film.rating }}</div>
+    </div>
+    <div class="button-container">
+      <button
+        mat-stroked-button
+        color="primary"
+        routerLink="film/{{ film.filmId }}"
+      >
+        <mat-icon>edit</mat-icon>
+      </button>
+      <button mat-stroked-button color="accent" (click)="deleteFilm()">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </div>
+  </mat-card-content>
+</mat-card>

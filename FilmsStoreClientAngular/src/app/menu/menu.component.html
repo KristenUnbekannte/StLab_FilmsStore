@@ -1,0 +1,34 @@
+<div class="root-container">
+  <div class="title">
+    <mat-card-title routerLink="">FilmsStore</mat-card-title>
+    <form class="search-form">
+      <input
+        matInput
+        class="search-form_input"
+        [(ngModel)]="search"
+        name="search"
+      />
+      <mat-icon class="search-form_button" (click)="onSearch()"
+        >search</mat-icon
+      >
+    </form>
+  </div>
+  <div class="menu">
+    <mat-card-title *ngIf="userName">Hello, {{ userName }}</mat-card-title>
+    <mat-icon [matMenuTriggerFor]="menu" class="menu-button"
+      >account_circle</mat-icon
+    >
+    <mat-menu #menu="matMenu" xPosition="before">
+      <div *ngIf="!userName; else menu_items">
+        <button mat-menu-item routerLink="/register">Sign up</button>
+        <button mat-menu-item routerLink="/login">Sign in</button>
+      </div>
+      <ng-template #menu_items>
+        <button *ngIf="role === 'admin'" mat-menu-item routerLink="/admin">
+          Admin panel
+        </button>
+        <button mat-menu-item (click)="signOut()">Sign out</button>
+      </ng-template>
+    </mat-menu>
+  </div>
+</div>

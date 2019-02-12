@@ -1,0 +1,66 @@
+.root-container {
+  background-color: black;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  color: lightgray;
+  margin: 10px 0;
+  padding: 10px 10px;
+}
+
+.title {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.search-form {
+  margin: 0 10px;
+  display: flex;
+  align-items: center;
+}
+
+.search-form_input {
+  background-color: lightgray;
+  width: 150px;
+  height: 25px;
+  border-radius: 20px;
+  padding: 1px 10px;
+  margin: 0 5px;
+  color: black;
+  outline: none;
+}
+
+.search-form_button {
+  color: black;
+  background-color: lightgray;
+  padding: 5px;
+  border-radius: 25px;
+  cursor: pointer;
+}
+
+::ng-deep .mat-mini-fab .mat-button-wrapper {
+  padding: 0 0;
+}
+
+.menu {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.mat-menu-item {
+  font-size: 18px;
+}
+
+.mat-card-title {
+  margin: 0 8px;
+  cursor: pointer;
+  outline: none;
+}
+
+.menu-button {
+  cursor: pointer;
+}

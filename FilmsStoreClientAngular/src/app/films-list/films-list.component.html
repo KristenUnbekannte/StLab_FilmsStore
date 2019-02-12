@@ -1,0 +1,12 @@
+<mat-spinner *ngIf="!filmsIsLoaded; else films" color="accent"></mat-spinner>
+<ng-template #films>
+  <div
+    class="films-container"
+    infiniteScroll
+    [infiniteScrollDistance]="2"
+    [infiniteScrollThrottle]="10"
+    (scrolled)="onScroll()"
+  >
+    <app-film *ngFor="let film of filmsList" [film]="film"></app-film>
+  </div>
+</ng-template>

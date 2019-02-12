@@ -1,0 +1,13 @@
+<a class="router-link" routerLink="/film/{{ film.filmId }}">
+  <mat-card class="card">
+    <img mat-card-image src="{{ film.imageUrl }}" alt="image" />
+    <mat-card-title>{{ film.name }}</mat-card-title>
+    <mat-card-content class="film-content">
+      <div>{{ film.genre }}, {{ film.year }}</div>
+      <div class="star-container">
+        <mat-icon class="star">grade</mat-icon>
+        <div class="avatar">{{ film.rating }}</div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</a>

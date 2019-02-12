@@ -1,0 +1,60 @@
+.card {
+  width: 270px;
+  height: 460px;
+  margin: 5px 5px;
+  text-decoration: none;
+  border: 1px solid gray;
+  box-shadow: 1px 1px 10px black;
+  border-radius: 25px;
+  background-color: white;
+}
+
+.card:hover {
+  transform: scale(1.05);
+  transition: 0.2s all;
+  z-index: 10000;
+  box-shadow: 1px 1px 10px black;
+}
+
+.mat-card-title {
+  font-size: 24px;
+}
+
+.mat-card-image {
+  height: 390px;
+}
+
+.router-link {
+  border: none;
+  text-decoration: none;
+  color: lightgray;
+}
+
+.star-container {
+  height: 26px;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.star {
+  font-size: 22px;
+  color: black;
+}
+
+.avatar {
+  width: 24px;
+  height: 24px;
+  color: #fff;
+  background-color: #ff5303;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}
+
+.film-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 14px;
+}

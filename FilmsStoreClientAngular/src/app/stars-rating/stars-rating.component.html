@@ -1,0 +1,18 @@
+<h1 mat-dialog-title>You can rate the movie</h1>
+<div class="star-rating-container">
+  <star-rating
+    class="star-rating"
+    (ratingChange)="onRatingChange($event)"
+    size="large"
+    [starType]="'svg'"
+    [rating]="rating"
+  ></star-rating>
+</div>
+<div class="button-container">
+  <button mat-button class="button__gray" (click)="onCloseClick()">
+    CANCEL
+  </button>
+  <button mat-button color="primary" cdkFocusInitial (click)="ok()">
+    OK
+  </button>
+</div>

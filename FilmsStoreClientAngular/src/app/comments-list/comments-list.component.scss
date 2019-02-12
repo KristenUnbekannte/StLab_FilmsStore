@@ -1,0 +1,53 @@
+.comments-container {
+  padding: 10px;
+}
+
+.comment {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.user {
+  color: #fff;
+  background-color: #ff5303;
+  width: 50px;
+  height: 50px;
+  padding: 8px !important;
+}
+
+.comment-title {
+  font-size: 16px;
+}
+
+.mat-line {
+  color: gray;
+}
+
+.comment-form {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 25px;
+}
+
+.input {
+  width: 88%;
+}
+
+.mat-raised-button {
+  height: 45px;
+}
+
+.message {
+  max-height: 200px;
+}
+
+::ng-deep .mat-line {
+  word-wrap: break-word !important;
+  white-space: pre-wrap !important;
+}
+
+.mat-raised-button {
+  background-color: #ff5303;
+  color: white;
+}

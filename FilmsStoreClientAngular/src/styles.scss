@@ -1,0 +1,12 @@
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import "~css-star-rating/scss/star-rating";
+
+body {
+  background: url("https://image.inforesist.org/uploads/2015/02/hq-wallpapers_ru_films_36219_1920x1080.jpg")
+    no-repeat fixed;
+  font-family: "Times New Roman", Times, serif;
+}
+
+*:focus {
+  outline: none !important;
+}

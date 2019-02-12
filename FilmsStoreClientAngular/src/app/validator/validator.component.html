@@ -1,0 +1,9 @@
+<div
+  class="alert alert-danger"
+  *ngIf="field.invalid && field.touched && validatorMessages?.length"
+>
+  <div *ngFor="let errMsg of validatorMessages">
+    {{ errMsg }}
+    <div></div>
+  </div>
+</div>

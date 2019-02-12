@@ -1,0 +1,22 @@
+<mat-list class="comments-container">
+  <mat-list-item *ngFor="let comment of comments">
+    <mat-icon mat-list-icon class="user">account_circle</mat-icon>
+    <h2 mat-line class="comment-title">{{ comment.userName }}</h2>
+    <div class="message" mat-line>{{ comment.message }}</div>
+    <p mat-line>{{ comment.date }}</p>
+  </mat-list-item>
+</mat-list>
+<form class="comment-form">
+  <mat-form-field class="input">
+    <input
+      matInput
+      placeholder="Comment"
+      [disabled]="!isAuth"
+      name="comment"
+      [(ngModel)]="comment"
+    />
+  </mat-form-field>
+  <button mat-raised-button (click)="send()" [disabled]="!isAuth">
+    <mat-icon mat-list-icon>send</mat-icon>
+  </button>
+</form>

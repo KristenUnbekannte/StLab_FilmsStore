@@ -1,0 +1,29 @@
+.images-container {
+  background-color: white;
+  display: flex;
+  justify-content: space-between;
+  margin: 5px;
+  width: 250px;
+  border: 1px solid gray;
+  box-shadow: 1px 1px 10px black;
+  border-radius: 20px;
+  height: 130px;
+}
+
+.image {
+  height: 130px;
+  width: 210px;
+  border-radius: 20px 0 0 20px;
+}
+
+.button-container {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 5px;
+}
+
+.mat-stroked-button {
+  min-width: 0;
+  padding: 4px;
+  border: none;
+}

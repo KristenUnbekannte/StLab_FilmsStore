@@ -1,0 +1,12 @@
+<div class="images-container">
+  <div class="add-image">
+    <button mat-fab (click)="addImage()">
+      <mat-icon>add</mat-icon>
+    </button>
+  </div>
+  <admin-image
+    *ngFor="let image of images"
+    [image]="image"
+    (setImages)="setImages($event)"
+  ></admin-image>
+</div>

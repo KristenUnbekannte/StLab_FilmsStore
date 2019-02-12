@@ -1,0 +1,60 @@
+.card {
+  display: flex;
+  justify-content: space-around;
+  margin: 5px;
+  width: 310px;
+  border: 1px solid gray;
+  box-shadow: 1px 1px 10px black;
+  border-radius: 20px;
+  padding: 10px;
+}
+
+.film-content {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  width: 200px;
+}
+
+.image {
+  height: 150px;
+  width: 100px;
+}
+
+.mat-card-title {
+  font-size: 18px;
+  margin: 0;
+}
+
+.star-container {
+  height: 26px;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.star {
+  font-size: 24px;
+  color: DarkOrange;
+}
+
+.avatar {
+  width: 24px;
+  height: 24px;
+  color: #fff;
+  background-color: #ff5303;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}
+
+.button-container {
+  align-self: flex-end;
+  padding-bottom: 5px;
+}
+
+.mat-stroked-button {
+  min-width: 0px;
+  padding: 4px;
+  border: none;
+}

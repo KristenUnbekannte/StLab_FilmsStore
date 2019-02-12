@@ -1,0 +1,18 @@
+<mat-spinner
+  *ngIf="filmsList.length === 0; else films"
+  color="accent"
+></mat-spinner>
+<ng-template #films>
+  <div class="films-container">
+    <mat-card class="add-film">
+      <button mat-fab routerLink="film/0">
+        <mat-icon>add</mat-icon>
+      </button>
+    </mat-card>
+    <admin-film
+      *ngFor="let film of filmsList"
+      [film]="film"
+      (deleteFilmEvent)="deleteFilmEvent($event)"
+    ></admin-film>
+  </div>
+</ng-template>
