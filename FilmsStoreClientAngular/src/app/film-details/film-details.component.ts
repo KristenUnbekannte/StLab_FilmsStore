@@ -75,7 +75,7 @@ export class FilmDetailsComponent implements OnInit {
 
       dialogRef;
       dialogRef.afterClosed().subscribe(data => {
-        if (data !== 0) {
+        if (data !== 0 && data) {
           this.film.rating = data;
           this.isUserRated = true;
         }
