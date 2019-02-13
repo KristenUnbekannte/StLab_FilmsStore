@@ -1,0 +1,3 @@
+2019-02-13 10:11:07.269 +03:00 [Warning] [Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware]
+ ---Info---
+ Failed to determine the https port for redirect.

@@ -10,7 +10,6 @@ import { AuthRoute } from "./authRoute";
 
 const routes: Routes = [
   { path: "", component: FilmsListComponent },
-  { path: "films/:search", component: FilmsListComponent },
   { path: "film/:id", component: FilmDetailsComponent },
   { path: "login", component: LoginComponent },
   { path: "register", component: RegisterComponent },
