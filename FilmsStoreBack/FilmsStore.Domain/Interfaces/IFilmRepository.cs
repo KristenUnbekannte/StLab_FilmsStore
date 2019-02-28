@@ -7,6 +7,7 @@ namespace FilmsStore.Domain.Interfaces
     public interface IFilmRepository
     {
         Task<IList<Film>> GetFilmsAsync(int page, int pageSize, string search);
+        Task<IList<Film>> GetAllFilmsAsync(string search);
         Task<int> GetTotalCountFilmsAsync(string search);
         Task<Film> GetFilmByIdAsync(int id);
         Task UpdateFilmByIdAsync(Film film);

@@ -22,10 +22,21 @@ namespace FilmsStore.WebApi.Controllers
 
         // GET api/films
         [HttpGet]
-        public async Task<ActionResult<FilmListViewModel>> GetAllFilms(int page = 1, string search = null)
+        public async Task<ActionResult<FilmListViewModel>> GetFilms(int page = 1, string search = null)
         {
             FilmListViewModel filmList = new FilmListViewModel();
             FilmListModel model = await _filmService.GetFilmsAsync(page, search);
+            filmList = _mapper.Map<FilmListModel, FilmListViewModel>(model);
+
+            return Ok(filmList);
+        }
+
+        // GET api/films/all
+        [HttpGet("all")]
+        public async Task<ActionResult<FilmListViewModel>> GetAllFilms(string search = null)
+        {
+            FilmListViewModel filmList = new FilmListViewModel();
+            FilmListModel model = await _filmService.GetAllFilmsAsync(search);
             filmList = _mapper.Map<FilmListModel, FilmListViewModel>(model);
 
             return Ok(filmList);

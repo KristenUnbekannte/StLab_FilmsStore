@@ -1,5 +1,5 @@
 import { takeLatest, call, put } from 'redux-saga/effects';
-import { filmsRequested } from '../modules/FilmsList/actions/FilmsListActions';
+import { allFilmsRequested, filmsCleared } from '../modules/FilmsList/actions/FilmsListActions';
 import { imagesRequested } from '../modules/ImagesList/actions/ImagesActions';
 import axios from 'axios';
 import actionTypes from '../modules/Admin/actions/actionTypes';
@@ -27,7 +27,8 @@ function* addFilmSaga(action) {
 function* deleteFilmSaga(action) {
 	try {
 		yield call(axiosAdmin, action);
-		yield put(filmsRequested());
+		yield put(filmsCleared());
+		yield put(allFilmsRequested());
 	} catch (error) {}
 }
 

@@ -43,10 +43,10 @@ class MenuContainer extends React.PureComponent {
 
 	handleSubmit(e) {
 		e.preventDefault();
-		const { filmsCleared, filmsRequested } = this.props.film;
+		const { filmsCleared, allFilmsRequested } = this.props.film;
 
 		filmsCleared();
-		filmsRequested(1, this.state.search);
+		allFilmsRequested(this.state.search);
 		this.setState({ search: '' });
 	}
 

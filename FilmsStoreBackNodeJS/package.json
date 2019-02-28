@@ -1,0 +1,29 @@
+{
+  "name": "filmsstorebacknodejs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "start": "nodemon app.js",
+    "test": "mocha *.test.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^3.0.4",
+    "body-parser": "^1.18.3",
+    "cors": "^2.8.5",
+    "express": "^4.16.4",
+    "joi": "^14.3.1",
+    "mongodb": "^3.1.13",
+    "mongoose": "^5.4.14",
+    "passport": "^0.4.0",
+    "passport-jwt": "^4.0.0",
+    "socket.io": "^2.2.0",
+    "validator": "^10.9.0"
+  },
+  "devDependencies": {
+    "mocha": "^6.0.1",
+    "supertest": "^3.4.2"
+  }
+}

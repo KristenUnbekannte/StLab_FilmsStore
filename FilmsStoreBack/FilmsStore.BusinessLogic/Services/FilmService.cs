@@ -34,6 +34,18 @@ namespace FilmsStore.BusinessLogic.Services
 
             return filmList;
         }
+        public async Task<FilmListModel> GetAllFilmsAsync(string search)
+        {
+            IList<Film> films = await _filmRepository.GetAllFilmsAsync(search);
+            FilmListModel filmList = new FilmListModel()
+            {
+                Films = _mapper.Map<IList<Film>, IList<FilmModel>>(films),
+                TotalCount = await _filmRepository.GetTotalCountFilmsAsync(search)
+            };
+
+            return filmList;
+        }
+
         public async Task<FilmDetailsModel> GetFilmByIdAsync(int id)
         {
             Film film = await _filmRepository.GetFilmByIdAsync(id);

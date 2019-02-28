@@ -1,0 +1,51 @@
+2019-02-27 11:13:26.194 +03:00 [Warning] [Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware]
+ ---Info---
+ Failed to determine the https port for redirect.
+2019-02-27 11:13:26.504 +03:00 [Error] [Microsoft.AspNetCore.Mvc.Internal.ActionSelector]
+ ---Info---
+ Request matched multiple actions resulting in ambiguity. Matching actions: "FilmsStore.WebApi.Controllers.FilmsController.GetFilms (FilmsStore.WebApi)
+FilmsStore.WebApi.Controllers.FilmsController.GetAllFilms (FilmsStore.WebApi)"
+2019-02-27 11:13:26.930 +03:00 [Error] [Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware]
+ ---Info---
+ An unhandled exception has occurred while executing the request.
+Microsoft.AspNetCore.Mvc.Internal.AmbiguousActionException: Multiple actions matched. The following actions matched route data and had all constraints satisfied:
+
+FilmsStore.WebApi.Controllers.FilmsController.GetFilms (FilmsStore.WebApi)
+FilmsStore.WebApi.Controllers.FilmsController.GetAllFilms (FilmsStore.WebApi)
+   at Microsoft.AspNetCore.Mvc.Internal.ActionSelector.SelectBestCandidate(RouteContext context, IReadOnlyList`1 candidates)
+   at Microsoft.AspNetCore.Mvc.Internal.MvcAttributeRouteHandler.RouteAsync(RouteContext context)
+   at Microsoft.AspNetCore.Routing.Tree.TreeRouter.RouteAsync(RouteContext context)
+   at Microsoft.AspNetCore.Routing.RouteCollection.RouteAsync(RouteContext context)
+   at Microsoft.AspNetCore.Builder.RouterMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Builder.RouterMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Cors.Infrastructure.CorsMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+2019-02-27 11:14:31.269 +03:00 [Warning] [Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware]
+ ---Info---
+ Failed to determine the https port for redirect.
+2019-02-27 11:14:31.403 +03:00 [Error] [Microsoft.AspNetCore.Mvc.Internal.ActionSelector]
+ ---Info---
+ Request matched multiple actions resulting in ambiguity. Matching actions: "FilmsStore.WebApi.Controllers.FilmsController.GetFilms (FilmsStore.WebApi)
+FilmsStore.WebApi.Controllers.FilmsController.GetAllFilms (FilmsStore.WebApi)"
+2019-02-27 11:14:31.717 +03:00 [Error] [Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware]
+ ---Info---
+ An unhandled exception has occurred while executing the request.
+Microsoft.AspNetCore.Mvc.Internal.AmbiguousActionException: Multiple actions matched. The following actions matched route data and had all constraints satisfied:
+
+FilmsStore.WebApi.Controllers.FilmsController.GetFilms (FilmsStore.WebApi)
+FilmsStore.WebApi.Controllers.FilmsController.GetAllFilms (FilmsStore.WebApi)
+   at Microsoft.AspNetCore.Mvc.Internal.ActionSelector.SelectBestCandidate(RouteContext context, IReadOnlyList`1 candidates)
+   at Microsoft.AspNetCore.Mvc.Internal.MvcAttributeRouteHandler.RouteAsync(RouteContext context)
+   at Microsoft.AspNetCore.Routing.Tree.TreeRouter.RouteAsync(RouteContext context)
+   at Microsoft.AspNetCore.Routing.RouteCollection.RouteAsync(RouteContext context)
+   at Microsoft.AspNetCore.Builder.RouterMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Builder.RouterMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Cors.Infrastructure.CorsMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+2019-02-27 11:15:17.275 +03:00 [Warning] [Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware]
+ ---Info---
+ Failed to determine the https port for redirect.

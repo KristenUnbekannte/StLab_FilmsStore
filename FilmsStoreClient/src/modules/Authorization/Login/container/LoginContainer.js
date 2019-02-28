@@ -16,7 +16,7 @@ class LoginContainer extends React.PureComponent {
 	handleSubmit(values) {
 		const { history, authRequested } = this.props;
 		const data = {
-			username: values.userName,
+			userName: values.userName,
 			password: values.password,
 		};
 		authRequested('login', data, history);

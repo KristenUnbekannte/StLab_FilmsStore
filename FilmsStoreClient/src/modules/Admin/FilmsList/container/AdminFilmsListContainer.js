@@ -10,44 +10,48 @@ import AddFilm from '../view/AddFilm';
 import styles from '../view/styles';
 
 class AdminFilmsListContainer extends React.Component {
-	componentDidMount() {
-		this.props.filmsRequested();
-	}
-	render() {
-		const { isLoaded, classes, films } = this.props;
-		return isLoaded ? (
-			<div className={classes.container}>
-				<AddFilm />
-				{films.map((item, i) => {
-					return <AdminFilmContainer key={i} film={item} />;
-				})}
-			</div>
-		) : (
-			<div className={classes.progress}>
-				<CircularProgress size={80} color="secondary" />
-			</div>
-		);
-	}
+  componentDidMount() {
+    const { allFilmsRequested, filmsCleared } = this.props;
+
+    filmsCleared();
+    allFilmsRequested();
+  }
+
+  render() {
+    const { isLoaded, classes, films } = this.props;
+    return isLoaded ? (
+      <div className={classes.container}>
+        <AddFilm />
+        {films.map((item, i) => {
+          return <AdminFilmContainer key={i} film={item} />;
+        })}
+      </div>
+    ) : (
+      <div className={classes.progress}>
+        <CircularProgress size={80} color="secondary" />
+      </div>
+    );
+  }
 }
 
 AdminFilmsListContainer.propTypes = {
-	classes: PropTypes.object.isRequired,
-	films: PropTypes.array.isRequired,
-	filmsRequested: PropTypes.func.isRequired,
-	isLoaded: PropTypes.bool.isRequired,
+  classes: PropTypes.object.isRequired,
+  films: PropTypes.array.isRequired,
+  filmsRequested: PropTypes.func.isRequired,
+  isLoaded: PropTypes.bool.isRequired
 };
 
 const mapStateToProps = state => {
-	return { ...state.films };
+  return { ...state.films };
 };
 
 const mapDispatchToProps = dispatch => {
-	return bindActionCreators({ ...actions }, dispatch);
+  return bindActionCreators({ ...actions }, dispatch);
 };
 
 AdminFilmsListContainer = connect(
-	mapStateToProps,
-	mapDispatchToProps
+  mapStateToProps,
+  mapDispatchToProps
 )(AdminFilmsListContainer);
 
 export default withStyles(styles)(AdminFilmsListContainer);

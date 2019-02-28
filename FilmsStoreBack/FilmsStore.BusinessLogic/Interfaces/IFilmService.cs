@@ -7,6 +7,7 @@ namespace FilmsStore.BusinessLogic.Interfaces
     public interface IFilmService
     {
         Task<FilmListModel> GetFilmsAsync(int page, string search);
+        Task<FilmListModel> GetAllFilmsAsync(string search);
         Task<FilmDetailsModel> GetFilmByIdAsync(int id);
         Task UpdateTotalRatingByFilmIdAsync(int id);
         Task<double> GetTotalRatingByFilmIdAsync(int id);

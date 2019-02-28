@@ -7,7 +7,8 @@ import actionTypes from '../modules/FilmsList/actions/actionTypes';
 import axios from 'axios';
 
 export function* watcherFilms() {
-	yield takeLatest(actionTypes.FILMS_REQUESTED, workerSaga);
+  yield takeLatest(actionTypes.FILMS_REQUESTED, workerSaga);
+  yield takeLatest(actionTypes.ALL_FILMS_REQUESTED, workerSaga);
 }
 
 function fetchFilms(action) {
